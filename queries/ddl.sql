@@ -25,7 +25,7 @@ CREATE TABLE Karyawan
 );
 
 CREATE TABLE Pemilik (
-ktp varchar(16) PRIMARY KEY,
+  ktp varchar(16) PRIMARY KEY,
   nama varchar(50),
   username varchar(25),
   password varchar(50)
