@@ -23,11 +23,12 @@
 	}
 
 	.backbutton{
+		text-decoration: none;
 		background-color: white;
 		color: #003B73;
 		border-radius: 10px;
 		border: 2px solid;
-		padding: 5px 15px 5px 15px;
+		padding: 8px 20px 8px 20px;
 	}
 	.thanks{
 		font-weight: 300;
@@ -48,6 +49,8 @@
     <label>Kode Booking : <?php $kode ?></label>
 </div>
 
-<div><input type="submit" name="kembali" value="KEMBALI" class="backbutton"></div>
+<div>
+	<a href="home" class="backbutton"> KEMBALI </a>
+</div>
 <br>
 <div class="thanks">Terimakasih sudah melakukan reservasi, sampai berjumpa di FUN Resort!</div>
