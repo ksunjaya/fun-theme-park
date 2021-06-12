@@ -16,5 +16,18 @@ class userController{
   public function show_cari_tahu(){
     return View::createPengunjungView("pengunjung_cari_tahu.php", []);
   }
+
+  public function show_post_booking(){
+    $nama = $_POST['nama'];
+    $tanggal = $_POST['tanggal'];
+    return View::createPengunjungView("pengunjung_post_booking.php", [
+      "nama"=> $nama,
+      "tanggal"=> $tanggal
+    ]);
+  }
+
+  public function get_kuota(){
+    
+  }
 }
 ?>

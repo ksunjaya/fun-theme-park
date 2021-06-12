@@ -7,7 +7,7 @@
 }
 
 .left-container{
-  flex:4;
+  flex:5;
   padding: 7% 13%;
 }
 
@@ -26,13 +26,13 @@
 }
 
 .right-container{
-  flex:3;
+  flex:4;
   height: 100%;
 }
 
 .right-container .reservasi{
   text-align: center;
-  margin: 2% 7%;
+  margin: 2% 10%;
   border:5px solid #266E97;
   border-radius: 15px;
 }
@@ -58,7 +58,7 @@
   border: 0px;
   border-radius: 15px;
   height: 50px;
-  font-size: 18px;
+  font-size: 100%;
   width: 40%;
   margin: 0% 30%;
 }

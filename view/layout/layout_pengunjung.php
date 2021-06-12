@@ -9,7 +9,7 @@
 </head>
 <body>
     <div id="header">
-        <img id = "fun_logo" src="src/logo.png">
+        <a href="home"><img id = "fun_logo" src="src/logo.png"></a>
     </div>
 	<?php echo $content; ?>
 </body>

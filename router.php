@@ -15,10 +15,23 @@
 				$user_ctrl = new userController();
 				echo $user_ctrl->show_cari_tahu();
 				break;
+			case $baseURL.'/getkuota':
+				require_once "controller/userController.php";
+				$user_ctrl = new userController();
+				
+				break;
 			default:
 				echo 'Page not found';
 		}
 	}else if($_SERVER["REQUEST_METHOD"] == "POST"){
-		
+		switch($url){
+			case $baseURL.'/confirmation':
+				require_once "controller/userController.php";
+				$user_ctrl = new userController();
+				echo $user_ctrl->show_post_booking();
+				break;
+			default:
+				echo 'Page not found';
+		}
 	}
 ?>
