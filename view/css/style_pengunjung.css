@@ -27,6 +27,14 @@
     color: white;
 }
 
+.row {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 .inline {
     display: inline-block;
 }
@@ -37,4 +45,37 @@ body {
 
 .blue {
     color: #003B73;
+}
+
+.about_col {
+    width: 20%;
+}
+
+.about_img {
+    width: 20%;
+    min-height: 300px;
+}
+
+h1 {
+    font-size: 30px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+p {
+    font-size: 18px;
+}
+
+.about_row3_col {
+    width: 60%;
+}
+
+.footer {
+    text-align: center;
+}
+
+#about_main {
+    font-family: Cairo;
 }
