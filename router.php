@@ -18,7 +18,7 @@
 			case $baseURL.'/getkuota':
 				require_once "controller/userController.php";
 				$user_ctrl = new userController();
-				
+				echo $user_ctrl->get_kuota();
 				break;
 			default:
 				echo 'Page not found';
