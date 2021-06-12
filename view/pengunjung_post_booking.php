@@ -40,13 +40,13 @@
 <div class="info">Bukti reservasi ini berlaku sebagai syarat pembayaran tiket masuk tempat wisata FUN. <br>Simpan dan tunjukkan tangkapan layar ini ketika akan melakukan pembayaran.</div>
 
 <div class="data">
-    <label>Nama : <?php $nama ?></label>
+    <label>Nama : <?php echo $nama ?></label>
     <br>
-    <label>Tanggal : <?php $tgl ?></label>
+    <label>Tanggal : <?php echo date("d/m/Y", strtotime($tanggal)) ?></label>
     <br>
-    <label>Jumlah Pengunjung : <?php $jml ?> orang</label>
+    <label>Jumlah Pengunjung : <?php echo $jml ?> orang</label>
     <br>
-    <label>Kode Booking : <?php $kode ?></label>
+    <label>Kode Booking : <?php echo $kode ?></label>
 </div>
 
 <div>
