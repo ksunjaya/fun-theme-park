@@ -4,7 +4,7 @@
 
 .left-container{
   flex:4;
-  padding: 200px;
+  padding: 7% 13%;
 }
 
 .left-container #title{
@@ -16,8 +16,8 @@
   background-color: #EE4848;
   color: white;
   text-decoration: none;
-  font-family: 'Cairo';
-  padding: 15px;
+  font-family: 'Cairo', sans-serif;
+  padding: 13px 20px;
   border-radius: 15px;
 }
 
