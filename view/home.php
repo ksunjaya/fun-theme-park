@@ -62,8 +62,11 @@
           </tr>
         </table>
 
-        <p style="font-size: 15px;">*Reservasi hanya bisa dilakukan untuk 30 hari kedepan</p>
+        <p style="font-size: 15px; margin: 20px 0px;">*Reservasi hanya bisa dilakukan untuk 30 hari kedepan</p>
         <input type="submit" id="tombol-submit" value="RESERVASI">
+        <span style="text-align:center">
+          <p id="err" style="color:red; visibility:hidden; line-height:130%;">Maaf, masih ada kesalahan pada data yang dimasukkan. Mohon diperiksa kembali</p>
+        </span>
       </form>
     </div>
   </div>
@@ -87,6 +90,22 @@
       let harga_total = document.getElementById("total-harga");
       let harga_satuan = document.getElementById("harga");
       harga_total.innerHTML = format_rupiah(parseInt(jumlah_pengunjung.value) * harga);
+    });
+
+    //event listener buat semua textbox, supaya kalo uda dimerahin terus usernya input lagi te jadi balik ke biru
+    let ktp = document.getElementById("ktp");
+    ktp.addEventListener("input", function(e){
+      ktp.style.backgroundColor = "#DBE9FF";
+    });
+
+    let nama = document.getElementById("nama");
+    nama.addEventListener("input", function(e){
+      nama.style.backgroundColor = "#DBE9FF";
+    });
+
+    let telepon = document.getElementById("telepon");
+    telepon.addEventListener("input", function(e){
+      telepon.style.backgroundColor = "#DBE9FF";
     });
   }
 
@@ -137,12 +156,31 @@
   }
 
   function onClick(e){
-    //e.preventDefault();
-    
-  }
+    let isValid = true;
+    let ktp = document.getElementById("ktp");
+    let nama = document.getElementById("nama");
+    let telepon = document.getElementById("telepon");
+    if(validate_ktp(ktp.value) == false){
+      isValid = false;
+      ktp.style.backgroundColor = "red";
+    }
+    if(nama.value.length == 0){
+      isValid = false;
+      nama.style.backgroundColor = "red";
+    }
+    if(validate_telepon(telepon.value) == false){
+      isValid = false;
+      telepon.style.backgroundColor = "red";
+    }
 
-  function showAlert(){
+    if(harga == 0) isValid = false; //tanggal yg dipilih masi salah
 
+    if(isValid){
+
+    }else{
+      e.preventDefault();
+      document.getElementById("err").style.visibility = 'visible';
+    }
   }
 
   function format_rupiah(money){
@@ -156,8 +194,7 @@
     return formatter.format(money);
   }
 
-  function validate_ktp(){
-    let ktp = document.getElementById("ktp").value;
+  function validate_ktp(ktp){
     if(ktp.length != 16) return false;
     for(let i = 0; i < 16; i++){
       if (ktp.charAt(i) >= '0' && ktp.charAt(i) <= '9') continue;
@@ -166,8 +203,8 @@
     return true;
   }
 
-  function validate_telepon(){
-    let telepon = document.getElementById("telepon").value;
+  function validate_telepon(telepon){
+    if(telepon.length < 7) return false;
     for(let i = 0; i < telepon.length; i++){
       if (telepon.charAt(i) >= '0' && telepon.charAt(i) <= '9') continue;
       else return false;
