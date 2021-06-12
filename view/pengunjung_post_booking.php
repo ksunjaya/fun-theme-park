@@ -42,7 +42,7 @@
 <div class="data">
     <label>Nama : <?php echo $nama ?></label>
     <br>
-    <label>Tanggal : <?php echo $tanggal ?></label>
+    <label>Tanggal : <?php echo date("d/m/Y", strtotime($tanggal)) ?></label>
     <br>
     <label>Jumlah Pengunjung : <?php echo $jml ?> orang</label>
     <br>
