@@ -21,7 +21,7 @@
           <tr>
             <td style="width: 60%;">
               <label>TANGGAL KUNJUGAN</label><br>
-              <input name="tanggal" type="date"><br>
+              <input name="tanggal" id="tanggal" type="date"><br>
             </td>
             <td style="width: 13%;"></td>
             <td style="font-family: 'Cairo', sans-serif;">
@@ -33,15 +33,27 @@
         
         <table>
           <tr>
-            <td style="width: 30%;">
+            <td style="width: 20%;">
               <p style="text-align: center; margin: 0px; line-height: 130%;">JUMLAH PENGUNJUNG</p>
-              <input type="selection">
-            </td>
-            <td style="width: 70%">
+              <select id="jumlah-pengunjung">
 
+              </select>
+            </td>
+            <td style="width: 10%"></td>
+            <td style="width: 30%">
+              <p style="margin: 9px 0px 0px 0px;">PRICE</p>
+              <p id="price" style="font-weight:700; margin: 0px; ">-</p>
+            </td>
+            <td style="width: 10%"></td>
+            <td style="width: 30%">
+              <p style="margin: 9px 0px 0px 0px;">TOTAL</p>
+              <p id="total-price" style="font-weight:700; margin: 0px; ">-</p>
             </td>
           </tr>
         </table>
+
+        <p style="font-size: 15px;">*Reservasi hanya bisa dilakukan untuk 30 hari kedepan</p>
+        <input type="submit" id="tombol-submit" value="RESERVASI">
       </form>
     </div>
   </div>

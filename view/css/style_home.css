@@ -50,3 +50,22 @@
   height: 30px;
   width: 100%;
 }
+
+#tombol-submit{
+  background-color: #003B73;
+  color: white;
+  font-weight: 600;
+  border: 0px;
+  border-radius: 15px;
+  height: 50px;
+  font-size: 18px;
+  width: 40%;
+  margin: 0% 30%;
+}
+
+.right-container .reservasi .form select{
+  background-color: #DBE9FF;
+  border: 1px solid black;
+  height: 30px;
+  width: 100%;
+}
