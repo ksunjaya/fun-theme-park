@@ -13,69 +13,107 @@
 }
 
 .center_castle_text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     font-size: 64px;
-    width: 100%;
 }
 
 .row-1 {
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('../../src/castle.jpg');
+    height: 500px;
     text-align: center;
     color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .row {
     display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.inline {
-    display: inline-block;
+    height: auto;
 }
 
 body {
     margin: 0;
 }
 
-.blue {
-    color: #003B73;
-}
-
 .about_col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     width: 20%;
-}
-
-.about_img {
-    width: 20%;
-    min-height: 300px;
+    padding: 20px;
 }
 
 h1 {
     font-size: 30px;
+    font-weight: 800;
+    margin: 0;
 }
 
 h2 {
     font-size: 20px;
+    font-weight: 800;
 }
 
 p {
     font-size: 18px;
+    font-weight: 600;
+    margin: 0;
 }
 
 .about_row3_col {
     width: 60%;
+    vertical-align: middle;
+    text-align: center;
+    padding: 20px;
 }
 
-.footer {
-    text-align: center;
+.about_img {
+    width: 20%;
 }
 
 #about_main {
     font-family: Cairo;
+}
+
+.about_button_reservasi {
+    margin-top: 10px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 152px;
+    height: 47px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid #003B73;
+    border-radius: 15px;
+    color: #003B73;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.about_button_reservasi:hover {
+    transition: 0.5s;
+    background-color: #003B73;
+    color: white;
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+}
+
+.about_bg_blue {
+    background-color: #003B73;
+}
+
+.about_c_white {
+    color: white;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
 }
