@@ -19,23 +19,23 @@ CREATE TABLE Pengunjung(
 CREATE TABLE Karyawan 
 (
   ktp varchar(16) PRIMARY KEY, 
-  nama varchar(50), 
-  username varchar(25),
-  password varchar(50)
+  nama varchar(50) NOT NULL, 
+  username varchar(25) NOT NULL,
+  password varchar(50) NOT NULL
 );
 
 CREATE TABLE Pemilik (
   ktp varchar(16) PRIMARY KEY,
-  nama varchar(50),
-  username varchar(25),
-  password varchar(50)
+  nama varchar(50) NOT NULL,
+  username varchar(25) NOT NULL,
+  password varchar(50) NOT NULL
 );
 
 CREATE TABLE Reservasi(
 	id_reservasi INT(8) AUTO_INCREMENT PRIMARY KEY,
 	jml_orang INT(2) NOT NULL,
-	nama VARCHAR(50) NOT NULL,
-	tanggal DATE NOT NULL
+	ktp varchar(16) NOT NULL FOREIGN KEY REFERENCES Pengunjung(ktp),
+	tanggal DATE NOT NULL FOREIGN KEY REFERENCES Limit_Tiket(tanggal)
 );
 
 CREATE TABLE Limit_Tiket(
@@ -47,8 +47,8 @@ CREATE TABLE Limit_Tiket(
 
 CREATE TABLE Transaksi(
   id_transaksi INT(8) AUTO_INCREMENT PRIMARY KEY,
-  id_reservasi INT(8) NOT NULL,
-  tanggal DATE NOT NULL,
+  id_reservasi INT(8) NOT NULL FOREIGN KEY REFERENCES Reservasi(id_Reservasi),
+  tanggal DATE NOT NULL FOREIGN KEY REFERENCES Harga_Tiket(tanggal),
   total_harga INT NOT NULL
 );
 
