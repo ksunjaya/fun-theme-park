@@ -3,5 +3,33 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 30px;
+    margin-bottom: 30px;
     width: 5%;
+}
+
+#img_castle {
+    display: block;
+    width: 100%;
+}
+
+.center_castle_text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 120px;
+}
+
+.row-1 {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.inline {
+    display: inline-block;
+}
+
+body {
+    margin: 0;
 }
