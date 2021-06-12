@@ -25,7 +25,7 @@
             <div>
                 <h1>Tiket & Reservasi</h1>
                 <p>Setiap pengunjung diharuskan reservasi tiket sebelum kunjungan pada tanggal tertentu. Reservasi dapat diwakilkan oleh satu orang dewasa yang sudah memiliki KTP. Pembayaran dapat dilakukan pada hari kunjungan.</p>
-                <a class="about_button_reservasi" href="">
+                <a class="about_button_reservasi" href="home">
                     <h2>RESERVASI</h2>
                 </a>
             </div>
