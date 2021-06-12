@@ -1,10 +1,14 @@
+.cairo{
+  font-family: 'Cairo', sans-serif;
+}
+
 .parent-flex{
   display: flex;
 }
 
 .left-container{
   flex:4;
-  padding: 200px;
+  padding: 7% 13%;
 }
 
 .left-container #title{
@@ -15,14 +19,53 @@
 .left-container #about{
   background-color: #EE4848;
   color: white;
+  font-weight: 900;
   text-decoration: none;
-  font-family: 'Cairo';
-  padding: 15px;
+  padding: 13px 20px;
   border-radius: 15px;
 }
 
 .right-container{
-  background-color: blue;
-  flex:2;
+  flex:3;
   height: 100%;
+}
+
+.right-container .reservasi{
+  text-align: center;
+  margin: 2% 7%;
+  border:5px solid #266E97;
+  border-radius: 15px;
+}
+
+.right-container .reservasi .form{
+  margin: 1% 9%;
+  text-align:left;
+  font-weight: 600;
+  font-size: 19px;
+}
+
+.right-container .reservasi .form input{
+  background-color: #DBE9FF;
+  border: 1px solid black;
+  height: 30px;
+  width: 100%;
+}
+
+#tombol-submit{
+  background-color: #003B73;
+  color: white;
+  font-weight: 600;
+  border: 0px;
+  border-radius: 15px;
+  height: 50px;
+  font-size: 18px;
+  width: 40%;
+  margin: 0% 30%;
+}
+
+.right-container .reservasi .form select{
+  background-color: #DBE9FF;
+  border: 1px solid black;
+  height: 30px;
+  width: 100%;
 }
