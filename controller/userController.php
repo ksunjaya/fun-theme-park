@@ -19,7 +19,11 @@ class userController{
 
   public function show_post_booking(){
     $nama = $_POST['nama'];
-    return View::createPengunjungView("pengunjung_post_booking.php", []);
+    $tanggal = $_POST['tanggal'];
+    return View::createPengunjungView("pengunjung_post_booking.php", [
+      "nama"=> $nama,
+      "tanggal"=> $tanggal
+    ]);
   }
 
 
