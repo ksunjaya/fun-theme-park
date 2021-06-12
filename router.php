@@ -1,5 +1,4 @@
 <?php
-	
 	$url = $_SERVER['REDIRECT_URL'];
 	$baseURL = $_SERVER['REQUEST_URI']; 
 	$baseURL = dirname($baseURL);
