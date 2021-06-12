@@ -2,9 +2,10 @@
 <html>
 <head>
     <link rel="stylesheet" href="view/css/style_pengunjung.css">
-    <link rel="stylesheet" href="view/css/style_pengunjung.css">
+    <link rel="stylesheet" href="view/css/style_home.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@700&family=Lato:wght@700;900&display=swap');
     </style>
 </head>
 <body>

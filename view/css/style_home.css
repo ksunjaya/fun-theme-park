@@ -3,7 +3,6 @@
 }
 
 .left-container{
-  background-color: red;
   flex:4;
   padding: 200px;
 }
@@ -11,6 +10,15 @@
 .left-container #title{
   font-size: 72px;
   font-family: 'Lato', sans-serif;
+}
+
+.left-container #about{
+  background-color: #EE4848;
+  color: white;
+  text-decoration: none;
+  font-family: 'Cairo';
+  padding: 15px;
+  border-radius: 15px;
 }
 
 .right-container{
