@@ -2,7 +2,7 @@
   $today = date("Y-m-d");
   $next_month = new DateTime($today);
   $next_month->modify('+30 days');
-  $next_month->format("Y-m-d");
+  $next_month = $next_month->format("Y-m-d");
 ?>
 <div class="parent-flex">
   <div class="left-container">
@@ -27,7 +27,9 @@
           <tr>
             <td style="width: 60%;">
               <label>TANGGAL KUNJUGAN</label><br>
-              <input name="tanggal" id="tanggal" type="date" min="" max=""><br>
+              <?php
+                echo '<input name="tanggal" id="tanggal" type="date" min="'.$today.'" max="'.$next_month.'"><br>';
+              ?>
             </td>
             <td style="width: 13%;"></td>
             <td style="font-family: 'Cairo', sans-serif;">
