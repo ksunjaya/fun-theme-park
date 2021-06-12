@@ -9,7 +9,6 @@ class View {
         }
         ob_start();
         include 'view/'.$view;
-        include 'view/layout/footer.php';
         $content = ob_get_contents();
         ob_end_clean();
 
