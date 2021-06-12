@@ -7,13 +7,9 @@
     width: 5%;
 }
 
-#img_castle {
-    display: block;
-    width: 100%;
-}
-
 .center_castle_text {
     font-size: 64px;
+    font-weight: 600;
 }
 
 .row-1 {
