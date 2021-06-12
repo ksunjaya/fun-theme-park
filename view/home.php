@@ -51,13 +51,13 @@
             </td>
             <td style="width: 10%"></td>
             <td style="width: 30%">
-              <p style="margin: 9px 0px 0px 0px;">PRICE</p>
-              <p id="price" style="font-weight:700; margin: 0px; ">-</p>
+              <p style="margin: 9px 0px 0px 0px;">HARGA/TIKET</p>
+              <p id="harga" style="font-weight:700; margin: 0px; ">-</p>
             </td>
             <td style="width: 10%"></td>
             <td style="width: 30%">
               <p style="margin: 9px 0px 0px 0px;">TOTAL</p>
-              <p id="total-price" style="font-weight:700; margin: 0px; ">-</p>
+              <p id="total-harga" style="font-weight:700; margin: 0px; ">-</p>
             </td>
           </tr>
         </table>
@@ -70,12 +70,24 @@
 </div>
 
 <script>
+  //global attributes
+  var harga = 0; //klo harganya 0, artinya user belom memilih tanggal yang valid!
+
   function init(){
     let tombol_submit = document.getElementById("tombol-submit");
     tombol_submit.addEventListener("click", onClick);
 
+    //event listener buat tanggal kunjungan
     let tanggal = document.getElementById("tanggal");
-    tanggal.addEventListener("change", onDateChange)
+    tanggal.addEventListener("change", onDateChange);
+
+    //event listener buat jumlah pengunjung, supaya harga total nya bisa terus terupdate
+    let jumlah_pengunjung = document.getElementById("jumlah-pengunjung");
+    jumlah_pengunjung.addEventListener("change", function(e){
+      let harga_total = document.getElementById("total-harga");
+      let harga_satuan = document.getElementById("harga");
+      harga_total.innerHTML = format_rupiah(parseInt(jumlah_pengunjung.value) * harga);
+    });
   }
 
   function onDateChange(e){
@@ -100,12 +112,24 @@
             opt.innerHTML = i;
             select_jumlah.appendChild(opt);
           }
+
+          //sekalian harus fetch si harga nya juga
+          let harga_satuan = document.getElementById("harga"); //<paragraph>
+          let harga_total = document.getElementById("total-harga");
+          fetch('getharga?tanggal='+tanggal.value)
+            .then(function(response){
+              return response.text();
+            }).then(function(result){
+              harga = result;
+              harga_satuan.innerHTML = format_rupiah(harga);
+              harga_total.innerHTML = format_rupiah(harga);
+            });
         }else{
           kuota.innerHTML = 0;
           kuota.style.color = "red";
+          this.harga = 0;
         }
     });
-  
   }
 
   function clear_jumlah_pengunjung(elem){
@@ -119,6 +143,17 @@
 
   function showAlert(){
 
+  }
+
+  function format_rupiah(money){
+    money = parseInt(money);
+    let formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'IDR',
+      maximumSignificantDigits: 3 //somehow ini ilangin si ,00 di belakang harga
+    });
+
+    return formatter.format(money);
   }
 
   function validate_ktp(){

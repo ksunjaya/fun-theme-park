@@ -16,9 +16,14 @@
 				echo $user_ctrl->show_cari_tahu();
 				break;
 			case $baseURL.'/getkuota':
-				require_once "controller/userController.php";
-				$user_ctrl = new userController();
-				echo $user_ctrl->get_kuota();
+				require_once "controller/limitTiketController.php";
+				$lt_ctrl = new limitTiketController();
+				echo $lt_ctrl->get_kuota();
+				break;
+			case $baseURL.'/getharga':
+				require_once "controller/hargaTiketController.php";
+				$ht_ctrl = new hargaTiketController();
+				echo $ht_ctrl->get_harga();
 				break;
 			default:
 				echo 'Page not found';
