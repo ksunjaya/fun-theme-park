@@ -16,13 +16,17 @@
             <h1>LOKASI</h1>
             <p>Jalan Raya Imajiner Parahyangan no. 15<br>Bandung<br>Indonesia</p>
             <h1>CONTACT US</h1>
-            <p>0899-999-9999<br>halo</p>
+            <p>0899-999-9999<br>halo@funresort.id</p>
         </div>
         <div class="inline">
-            
+            <img src="src/mickey-welcome-disneyland.webp">
         </div>
         <div class="inline">
-            
+            <h1>Tiket & Reservasi</h1>
+            <p>Setiap pengunjung diharuskan reservasi tiket sebelum kunjungan pada tanggal tertentu. Reservasi dapat diwakilkan oleh satu orang dewasa yang sudah memiliki KTP. Pembayaran dapat dilakukan pada hari kunjungan.</p>
+            <div class="about_button_reservasi">
+                
+            </div>
         </div>
     </div>
     <div class="row-3">

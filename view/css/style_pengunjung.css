@@ -17,7 +17,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 120px;
+    font-size: 64px;
+    width: 100%;
 }
 
 .row-1 {
