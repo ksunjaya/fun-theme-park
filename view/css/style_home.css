@@ -1,0 +1,20 @@
+.parent-flex{
+  display: flex;
+}
+
+.left-container{
+  background-color: red;
+  flex:4;
+  padding: 200px;
+}
+
+.left-container #title{
+  font-size: 72px;
+  font-family: 'Lato', sans-serif;
+}
+
+.right-container{
+  background-color: blue;
+  flex:2;
+  height: 100%;
+}

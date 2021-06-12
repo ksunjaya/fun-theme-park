@@ -2,6 +2,10 @@
 <html>
 <head>
     <link rel="stylesheet" href="view/css/style_pengunjung.css">
+    <link rel="stylesheet" href="view/css/style_pengunjung.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700;900&display=swap');
+    </style>
 </head>
 <body>
     <div id="header">
