@@ -22,6 +22,8 @@ class userController{
     return View::createPengunjungView("pengunjung_post_booking.php", []);
   }
 
-
+  public function get_kuota(){
+    
+  }
 }
 ?>

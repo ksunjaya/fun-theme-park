@@ -15,6 +15,11 @@
 				$user_ctrl = new userController();
 				echo $user_ctrl->show_cari_tahu();
 				break;
+			case $baseURL.'/getkuota':
+				require_once "controller/userController.php";
+				$user_ctrl = new userController();
+				
+				break;
 			default:
 				echo 'Page not found';
 		}
