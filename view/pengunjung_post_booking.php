@@ -1,10 +1,10 @@
-<link rel="stylesheet" href="style_pengunjung.css">
-<link rel="stylesheet" href="style_home.css">
-<style>
 
-	@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700;900&display=swap');
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Lato:wght@400;500;600;700;900&display=swap');
 	*{
 		line-height: 1.8;
+		font-family : 'Lato', sans-serif;
+		font-weight: 700;
 	}
 	div{
 		text-align: center;
@@ -13,20 +13,24 @@
 	.info{
 		background-color: #003B73;
 		color: white;
-  		width: 600px;
+  		width: 700px;
   		padding: 15px;
   		border-radius: 20px;
 	}
 	.data{
 		margin: 50px;
+		font-size: 18px;
 	}
 
-	.customButton{
+	.backbutton{
 		background-color: white;
 		color: #003B73;
 		border-radius: 10px;
 		border: 2px solid;
 		padding: 5px 15px 5px 15px;
+	}
+	.thanks{
+		font-weight: 300;
 	}
 
 </style>
@@ -35,15 +39,15 @@
 <div class="info">Bukti reservasi ini berlaku sebagai syarat pembayaran tiket masuk tempat wisata FUN. <br>Simpan dan tunjukkan tangkapan layar ini ketika akan melakukan pembayaran.</div>
 
 <div class="data">
-    <label>Nama : <?php  ?></label>
+    <label>Nama : <?php $nama ?></label>
     <br>
-    <label>Tanggal : <?php  ?></label>
+    <label>Tanggal : <?php $tgl ?></label>
     <br>
-    <label>Jumlah Pengunjung : <?php  ?> orang</label>
+    <label>Jumlah Pengunjung : <?php $jml ?> orang</label>
     <br>
-    <label>Kode Booking : <?php  ?></label>
+    <label>Kode Booking : <?php $kode ?></label>
 </div>
 
-<div><input type="submit" name="kembali" value="KEMBALI" class="customButton"></div>
+<div><input type="submit" name="kembali" value="KEMBALI" class="backbutton"></div>
 <br>
-<div>Terimakasih sudah melakukan reservasi, sampai berjumpa di FUN Resort!</div>
+<div class="thanks">Terimakasih sudah melakukan reservasi, sampai berjumpa di FUN Resort!</div>
