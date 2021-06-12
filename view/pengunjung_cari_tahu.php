@@ -45,6 +45,6 @@
         <img class = "about_img" src="src/Tiket Masuk Shanghai Disneyland.jpg">
     </div>
     <div class="footer about_bg_blue about_c_white">
-        <h1>SENIN-JUMAT : 10.00 - 18.00<br>SABTU, MINGGU, DAN HARI LIBUR NASIONAL : 08.00 - 18.00</h1>
+        <h2>SENIN-JUMAT : 10.00 - 18.00<br>SABTU, MINGGU, DAN HARI LIBUR NASIONAL : 08.00 - 18.00</h2>
     </div>
 </div>
