@@ -25,8 +25,8 @@
 				$user_ctrl = new userController();
 				echo $user_ctrl->show_post_booking();
 				break;
-		default:
-			echo 'Page not found';
+			default:
+				echo 'Page not found';
 		}
 	}
 ?>
