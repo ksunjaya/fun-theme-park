@@ -56,5 +56,3 @@ CREATE TABLE Harga_Tiket(
   tanggal DATE PRIMARY KEY,
   harga INT NOT NULL
 );
-
-CREATE TABLE AAA();
