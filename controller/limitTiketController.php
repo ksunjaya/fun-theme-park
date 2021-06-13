@@ -1,6 +1,5 @@
 <?php
 require_once "services/mySQLDB.php";
-//require_once "services/view.php";
 
 class LimitTiketController{
   protected $db;
