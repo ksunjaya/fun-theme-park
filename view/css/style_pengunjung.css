@@ -76,7 +76,7 @@ p {
     font-family: Cairo;
 }
 
-.about_button_reservasi {
+.blue_button {
     margin-top: 10px;
     display: flex;
     text-align: center;
@@ -93,7 +93,7 @@ p {
     transition: 0.5s;
 }
 
-.about_button_reservasi:hover {
+.blue_button:hover {
     transition: 0.5s;
     background-color: #003B73;
     color: white;
@@ -186,4 +186,23 @@ p {
   border: 1px solid black;
   height: 30px;
   width: 100%;
+}
+
+.div2{
+  text-align: center;
+  margin: auto;
+  line-height: 1.8;
+  font-family : 'Lato', sans-serif;
+  font-weight: 700;
+}
+.info{
+  background-color: #003B73;
+  color: white;
+    width: 700px;
+    padding: 15px;
+    border-radius: 20px;
+}
+.data{
+  margin: 50px;
+  font-size: 18px;
 }

@@ -2,7 +2,7 @@
 require_once "services/mySQLDB.php";
 //require_once "services/view.php";
 
-class limitTiketController{
+class LimitTiketController{
   protected $db;
 
   public function __construct()
@@ -10,9 +10,12 @@ class limitTiketController{
     $this->db = new mySQLDB("localhost", "root", "", "fun_resort");
   }
 
-  //kalau return NULL artinya libur / ato belom di set di database nya
-  public function get_kuota(){
+  public function get_kuota_json(){
     $tanggal = $_GET["tanggal"];
+    return json_encode($this->get_kuota($tanggal));
+  }
+  //kalau return NULL artinya libur / ato belom di set di database nya
+  public function get_kuota($tanggal){
     if(!isset($tanggal)) return NULL;
     else{
       $tanggal = $this->db->escapeString($tanggal);
@@ -20,9 +23,20 @@ class limitTiketController{
       $query_result = $this->db->executeSelectQuery($query);
 
       if(count($query_result) > 0){
-        return json_encode($query_result[0]); //harus cuman satu return nya
+        return $query_result[0]; //harus cuman satu return nya
       }else NULL;
     }
+  }
+
+  public function update_tiket($tanggal, $jumlah){
+    $sisa_tiket = $this->get_kuota($tanggal);
+    $sisa_tiket = $sisa_tiket['sisa_tiket'];
+    if($jumlah < $sisa_tiket){
+      $sisa = $sisa_tiket - $jumlah;
+      $query = 'UPDATE limit_tiket SET sisa_tiket='.$sisa.' WHERE tanggal="'.$tanggal.'"';
+      $query_result = $this->db->executeNonSelectQuery($query);
+      return $query_result;
+    }else return false; //kalo pas user ngeload web nya, si tiket tuh masi tersedia. tapi pas dipencet submit, ternyata uda keduluan orang laen
   }
 }
 ?>

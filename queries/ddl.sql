@@ -39,7 +39,7 @@ CREATE TABLE Limit_Tiket(
 );
 
 CREATE TABLE Reservasi(
-	id_reservasi INT(8) AUTO_INCREMENT PRIMARY KEY,
+	id_reservasi INT(10) PRIMARY KEY,
 	jml_orang INT(2) NOT NULL,
 	ktp varchar(16) NOT NULL,
 	tanggal DATE NOT NULL,
