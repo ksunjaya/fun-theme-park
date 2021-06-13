@@ -12,7 +12,9 @@ class LimitTiketController{
 
   public function get_kuota_json(){
     $tanggal = $_GET["tanggal"];
-    return json_encode($this->get_kuota($tanggal));
+    $result = $this->get_kuota($tanggal);
+    if($result == NULL) return NULL;
+    else return json_encode($result);
   }
   //kalau return NULL artinya libur / ato belom di set di database nya
   public function get_kuota($tanggal){
