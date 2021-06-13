@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Lato:wght@400;500;600;700;900&display=swap');
-
 #fun_logo {
     display: block;
     margin-left: auto;
@@ -88,15 +87,16 @@ p {
     margin-right: auto;
     border: 2px solid #003B73;
     border-radius: 15px;
-    color: #003B73;
+    color: white;
+    background-color: #003B73;
     text-decoration: none;
-    transition: 0.5s;
+    transition: 0.1s;
 }
 
 .blue_button:hover {
-    transition: 0.5s;
-    background-color: #003B73;
-    color: white;
+    transition: 0.1s;
+    background-color: white;
+    color: #003B73;
     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
 }
 
@@ -116,93 +116,95 @@ p {
     padding: 10px;
 }
 
-.cairo{
-  font-family: 'Cairo', sans-serif;
+.cairo {
+    font-family: 'Cairo', sans-serif;
 }
 
-.parent-flex{
-  display: flex;
+.parent-flex {
+    display: flex;
 }
 
-.left-container{
-  flex:5;
-  padding: 7% 13%;
+.left-container {
+    flex: 5;
+    padding: 7% 13%;
 }
 
-.left-container #title{
-  font-size: 72px;
-  font-family: 'Lato', sans-serif;
+.left-container #title {
+    font-size: 72px;
+    font-family: 'Lato', sans-serif;
 }
 
-.left-container #about{
-  background-color: #EE4848;
-  color: white;
-  font-weight: 900;
-  text-decoration: none;
-  padding: 13px 20px;
-  border-radius: 15px;
+.left-container #about {
+    background-color: #EE4848;
+    color: white;
+    font-weight: 900;
+    text-decoration: none;
+    padding: 13px 20px;
+    border-radius: 15px;
 }
 
-.right-container{
-  flex:4;
-  height: 100%;
+.right-container {
+    flex: 4;
+    height: 100%;
 }
 
-.right-container .reservasi{
-  text-align: center;
-  margin: 15% 20% 15% 0%;
-  border:5px solid #266E97;
-  border-radius: 15px;
+.right-container .reservasi {
+    text-align: center;
+    margin: 15% 20% 15% 0%;
+    border: 5px solid #266E97;
+    border-radius: 15px;
 }
 
-.right-container .reservasi .form{
-  margin: 1% 9%;
-  text-align:left;
-  font-weight: 600;
-  font-size: 19px;
+.right-container .reservasi .form {
+    margin: 1% 9%;
+    text-align: left;
+    font-weight: 600;
+    font-size: 19px;
 }
 
-.right-container .reservasi .form input{
-  background-color: #DBE9FF;
-  border: 1px solid black;
-  height: 30px;
-  width: 100%;
+.right-container .reservasi .form input {
+    background-color: #DBE9FF;
+    border: 1px solid black;
+    height: 30px;
+    width: 100%;
 }
 
-#tombol-submit{
-  background-color: #003B73;
-  color: white;
-  font-weight: 600;
-  border: 0px;
-  border-radius: 15px;
-  height: 50px;
-  font-size: 100%;
-  width: 40%;
-  margin: 0% 30%;
+#tombol-submit {
+    background-color: #003B73;
+    color: white;
+    font-weight: 600;
+    border: 0px;
+    border-radius: 15px;
+    height: 50px;
+    font-size: 100%;
+    width: 40%;
+    margin: 0% 30%;
 }
 
-.right-container .reservasi .form select{
-  background-color: #DBE9FF;
-  border: 1px solid black;
-  height: 30px;
-  width: 100%;
+.right-container .reservasi .form select {
+    background-color: #DBE9FF;
+    border: 1px solid black;
+    height: 30px;
+    width: 100%;
 }
 
-.div2{
-  text-align: center;
-  margin: auto;
-  line-height: 1.8;
-  font-family : 'Lato', sans-serif;
-  font-weight: 700;
+.div2 {
+    text-align: center;
+    margin: auto;
+    line-height: 1.8;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
 }
-.info{
-  background-color: #003B73;
-  color: white;
+
+.info {
+    background-color: #003B73;
+    color: white;
     width: 700px;
     padding: 15px;
     border-radius: 20px;
 }
-.data{
-  margin: 50px;
-  font-size: 18px;
+
+.data {
+    margin: 50px;
+    font-size: 18px;
 }
