@@ -1,5 +1,4 @@
-<form id = "login-form" class="login-main" action="" method="POST">
-    <div class="login-content bg-white">
+<div class="login-content bg-white">
         <div class="login-h1-box">
             <h1 class="c-dark-blue fs-48">LOGIN</h1>
         </div>
@@ -14,14 +13,4 @@
             </div>
             <a class="login-next-button c-white bg-dark-blue" href=""><span class="material-icons md-48">arrow_forward</span></a>
         </div>
-    </div>
-</form>
-
-<script>
-    function init () {
-        let username = document.getElementById("username");
-        let password = document.getElementById("password");
-        let form = document.getElementById ("login-form");
-    }
-    init ();
-</script>
+</div>
