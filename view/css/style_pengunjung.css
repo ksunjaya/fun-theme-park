@@ -125,7 +125,7 @@ p {
 }
 
 .left-container {
-    flex: 6;
+    flex: 1;
     padding: 7% 13%;
 }
 
@@ -144,7 +144,7 @@ p {
 }
 
 .right-container {
-    flex: 5;
+    flex: 1;
     height: 100%;
 }
 
