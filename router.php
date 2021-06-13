@@ -25,6 +25,11 @@
 				$ht_ctrl = new hargaTiketController();
 				echo $ht_ctrl->get_harga();
 				break;
+			case $baseURL.'/login':
+				require_once "controller/adminController.php";
+				$user_ctrl = new adminController();
+				echo $user_ctrl->show_login();
+				break;
 			default:
 				echo 'Page not found';
 		}
