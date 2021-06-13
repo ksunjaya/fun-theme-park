@@ -53,8 +53,8 @@ CREATE TABLE Harga_Tiket(
 );
 
 CREATE TABLE Transaksi(
-  id_transaksi INT(8) AUTO_INCREMENT PRIMARY KEY,
-  id_reservasi INT(8) NOT NULL,
+  id_transaksi INT(8) PRIMARY KEY,
+  id_reservasi INT(10) NOT NULL,
   tanggal DATE NOT NULL,
   total_harga INT NOT NULL,
   FOREIGN KEY (id_reservasi) REFERENCES Reservasi(id_Reservasi),
