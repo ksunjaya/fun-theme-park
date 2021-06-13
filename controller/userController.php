@@ -3,6 +3,7 @@ require_once "services/mySQLDB.php";
 require_once "services/view.php";
 require_once "reservasiController.php";
 require_once "pengunjungController.php";
+require_once "limitTiketController.php";
 
 class userController{
   protected $db;
@@ -36,11 +37,14 @@ class userController{
     $reservasi_ctrl->add_reservasi($kuota, $jml, $ktp, $tanggal);
     $kode = $reservasi_ctrl->create_unique_id($kuota, $tanggal);
 
+    $limit_ctrl = new LimitTiketController();
+    $result = $limit_ctrl->update_tiket($tanggal, $jml);
     return View::createPengunjungView("pengunjung_post_booking.php", [
       "nama"=> $nama,
       "tanggal"=> $tanggal,
       "jml" => $jml,
-      "kode" => $kode
+      "kode" => $kode,
+      "result" => $result //kalau true berarti berhasil diupdate, kalo false berarti gagal register nya
     ]);
   }
 

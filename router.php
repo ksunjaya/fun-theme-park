@@ -17,12 +17,12 @@
 				break;
 			case $baseURL.'/getkuota':
 				require_once "controller/limitTiketController.php";
-				$lt_ctrl = new limitTiketController();
-				echo $lt_ctrl->get_kuota();
+				$lt_ctrl = new LimitTiketController();
+				echo $lt_ctrl->get_kuota_json();
 				break;
 			case $baseURL.'/getharga':
 				require_once "controller/hargaTiketController.php";
-				$ht_ctrl = new hargaTiketController();
+				$ht_ctrl = new HargaTiketController();
 				echo $ht_ctrl->get_harga();
 				break;
 			default:

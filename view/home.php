@@ -8,7 +8,7 @@
 ?>
 <div class="parent-flex">
   <div class="left-container">
-    <h3 class="blue" id="title">Watch Dreams Come True at the Happiest Place on Earth</h3>
+    <h3 class="blue" id="title">Watch Dream Comes True at the Happiest Place on Earth</h3>
     
     <a id="about" class="cairo" href="about">PELAJARI LEBIH LANJUT</a>
   </div>

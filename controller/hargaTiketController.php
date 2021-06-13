@@ -2,7 +2,7 @@
 require_once "services/mySQLDB.php";
 //require_once "services/view.php";
 
-class hargaTiketController{
+class HargaTiketController{
   protected $db;
 
   public function __construct()
