@@ -204,17 +204,18 @@ p {
     line-height: 2.2;
     font-family: 'Lato', sans-serif;
     font-weight: 700;
+    font-size: 20px;
 }
 
 .info {
     background-color: #003B73;
     color: white;
-    width: 700px;
+    width: 900px;
     padding: 15px;
     border-radius: 20px;
 }
 
 .data {
-    margin: 50px;
-    font-size: 18px;
+    margin: 90px;
+    font-size: 25px;
 }
