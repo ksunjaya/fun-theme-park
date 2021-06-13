@@ -45,7 +45,7 @@
           <tr>
             <td style="width: 20%; padding: 0px;">
               <p style="text-align: center; margin: 0px; line-height: 130%;">JUMLAH PENGUNJUNG</p>
-              <select id="jumlah-pengunjung">
+              <select id="jumlah-pengunjung" name="jml">
 
               </select>
             </td>
@@ -61,7 +61,7 @@
             </td>
           </tr>
         </table>
-
+        <input type="hidden" name="kuota" id="post-kuota" value="">
         <p style="font-size: 15px; margin: 20px 0px;">*Reservasi hanya bisa dilakukan untuk 30 hari kedepan</p>
         <input type="submit" id="tombol-submit" value="RESERVASI">
         <span style="text-align:center">
@@ -187,11 +187,12 @@
       tanggal.style.backgroundColor = "red";
     }
 
-    if(isValid){
-
-    }else{
+    if(!isValid){
       e.preventDefault();
       document.getElementById("err").style.visibility = 'visible';
+    }else{
+      //masukkin kuota ke "post_kuota" untuk ikut dikirim. nantinya ini dipake buat bikin id registrasi
+      document.getElementById("post-kuota").value = document.getElementById("kuota").innerHTML;
     }
   }
 
