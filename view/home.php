@@ -96,16 +96,19 @@
     let ktp = document.getElementById("ktp");
     ktp.addEventListener("input", function(e){
       ktp.style.backgroundColor = "#DBE9FF";
+      document.getElementById("err").style.visibility = 'hidden';
     });
 
     let nama = document.getElementById("nama");
     nama.addEventListener("input", function(e){
       nama.style.backgroundColor = "#DBE9FF";
+      document.getElementById("err").style.visibility = 'hidden';
     });
 
     let telepon = document.getElementById("telepon");
     telepon.addEventListener("input", function(e){
       telepon.style.backgroundColor = "#DBE9FF";
+      document.getElementById("err").style.visibility = 'hidden';
     });
   }
 
@@ -149,6 +152,11 @@
           this.harga = 0;
         }
     });
+
+    //rubah warna background tanggal jadi biru lagi
+    let tanggal_selector = document.getElementById("tanggal");
+    tanggal_selector.style.backgroundColor = "#DBE9FF";
+    document.getElementById("err").style.visibility = 'hidden';
   }
 
   function clear_jumlah_pengunjung(elem){
@@ -160,6 +168,7 @@
     let ktp = document.getElementById("ktp");
     let nama = document.getElementById("nama");
     let telepon = document.getElementById("telepon");
+    let tanggal = document.getElementById("tanggal");
     if(validate_ktp(ktp.value) == false){
       isValid = false;
       ktp.style.backgroundColor = "red";
@@ -173,7 +182,10 @@
       telepon.style.backgroundColor = "red";
     }
 
-    if(harga == 0) isValid = false; //tanggal yg dipilih masi salah
+    if(harga == 0) {
+      isValid = false; //tanggal yg dipilih masi salah
+      tanggal.style.backgroundColor = "red";
+    }
 
     if(isValid){
 
