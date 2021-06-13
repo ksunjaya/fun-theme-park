@@ -160,7 +160,7 @@ p {
 
 .right-container .reservasi {
     text-align: center;
-    margin: 15% 10% 15% 0%;
+    margin: 5% 10% 10% 0%;
     border: 5px solid #266E97;
     border-radius: 15px;
 }
@@ -201,7 +201,7 @@ p {
 .div2 {
     text-align: center;
     margin: auto;
-    line-height: 1.8;
+    line-height: 2.2;
     font-family: 'Lato', sans-serif;
     font-weight: 700;
 }

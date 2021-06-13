@@ -14,7 +14,7 @@
   </div>
   <div class="right-container">
     <div class="reservasi">
-      <h1 class="blue cairo">RESERVASI TIKET</h1>
+      <h1 class="blue cairo" style="margin: 20px 0px;">RESERVASI TIKET</h1>
       <form class="cairo form" action="confirmation" method="POST">
         <label>NOMOR KTP</label><br>
         <input name="ktp" id="ktp" type="text" maxlength="16"><br>

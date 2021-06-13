@@ -1,4 +1,5 @@
-<div class="div2"><h2>RESERVASI TIKET BERHASIL</h2></div>
+<div class="div2"><h1>RESERVASI TIKET BERHASIL</h1></div>
+<br>
 <div class="info div2">Bukti reservasi ini berlaku sebagai syarat pembayaran tiket masuk tempat wisata FUN. <br>Simpan dan tunjukkan tangkapan layar ini ketika akan melakukan pembayaran.</div>
 
 <div class="data div2">
