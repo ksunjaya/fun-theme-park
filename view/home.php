@@ -17,7 +17,7 @@
       <h1 class="blue cairo">RESERVASI TIKET</h1>
       <form class="cairo form" action="confirmation" method="POST">
         <label>NOMOR KTP</label><br>
-        <input name="ktp" id="ktp" type="text"><br>
+        <input name="ktp" id="ktp" type="text" maxlength="16"><br>
 
         <label>NAMA LENGKAP</label><br>
         <input name="nama" id="nama" type="text"><br>
@@ -115,6 +115,9 @@
   function onDateChange(e){
     let kuota = document.getElementById("kuota");
     let select_jumlah = document.getElementById("jumlah-pengunjung");
+    let harga_satuan = document.getElementById("harga"); //<paragraph>
+    let harga_total = document.getElementById("total-harga");
+
     clear_jumlah_pengunjung(select_jumlah); //kosongkan dulu options jumlah orangnya karena setiap hari bisa beda beda jumlah max nya
 
     fetch('getkuota?tanggal='+tanggal.value)
@@ -136,8 +139,6 @@
           }
 
           //sekalian harus fetch si harga nya juga
-          let harga_satuan = document.getElementById("harga"); //<paragraph>
-          let harga_total = document.getElementById("total-harga");
           fetch('getharga?tanggal='+tanggal.value)
             .then(function(response){
               return response.text();
@@ -148,8 +149,10 @@
             });
         }else{
           kuota.innerHTML = 0;
+          harga = 0;
+          harga_satuan.innerHTML = "-";
+          harga_total.innerHTML = "-";    
           kuota.style.color = "red";
-          this.harga = 0;
         }
     });
 
