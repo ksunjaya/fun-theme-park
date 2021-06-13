@@ -16,10 +16,12 @@ body {
     height: 100%;
 }
 
-#login-content {
+.login-content {
     display: flex;
     flex-direction: column;
-    width: 90%;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
     height: 90%;
     border-radius: 30px;
     border: solid 6px #266E97;
@@ -80,7 +82,7 @@ body {
     width: 30%;
 }
 
-.login-content {
+.login-isi {
     display: flex;
     flex-direction: column;
     justify-content: center;
