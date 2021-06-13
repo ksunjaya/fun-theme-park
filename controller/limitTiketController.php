@@ -28,9 +28,7 @@ class LimitTiketController{
     }
   }
 
-  public function update_tiket($tanggal, $jumlah){
-    $sisa_tiket = $this->get_kuota($tanggal);
-    $sisa_tiket = $sisa_tiket['sisa_tiket'];
+  public function update_tiket($sisa_tiket, $tanggal, $jumlah){
     if($jumlah < $sisa_tiket){
       $sisa = $sisa_tiket - $jumlah;
       $query = 'UPDATE limit_tiket SET sisa_tiket='.$sisa.' WHERE tanggal="'.$tanggal.'"';

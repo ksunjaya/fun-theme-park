@@ -28,17 +28,26 @@ class userController{
     $telepon = $this->db->escapeString($_POST['telepon']);
     $tanggal = $this->db->escapeString($_POST['tanggal']);
     $jml = $this->db->escapeString($_POST['jml']);
-    $kuota = $this->db->escapeString($_POST['kuota']);
+    //$kuota = $this->db->escapeString($_POST['kuota']);
     
     $pengunjung_ctrl = new PengunjungController();
-    $pengunjung_ctrl->addUser($ktp, $nama, $telepon); //gausah di cek dulu pengunjungnya uda ada ato belom. buang waktu.
+    $is_user_baru = $pengunjung_ctrl->addUser($ktp, $nama, $telepon); //gausah di cek dulu pengunjungnya uda ada ato belom. buang waktu.
 
-    $reservasi_ctrl = new ReservasiController();
-    $reservasi_ctrl->add_reservasi($kuota, $jml, $ktp, $tanggal);
-    $kode = $reservasi_ctrl->create_unique_id($kuota, $tanggal);
-
+    if(!$is_user_baru){
+      //artinya perlu di update nama sama nomor teleponnya
+      $pengunjung_ctrl->updateUser($ktp, $nama, $telepon);
+    }
+    
     $limit_ctrl = new LimitTiketController();
-    $result = $limit_ctrl->update_tiket($tanggal, $jml);
+    $kuota = $limit_ctrl->get_kuota($tanggal)["sisa_tiket"];
+    $result = $limit_ctrl->update_tiket($kuota, $tanggal, $jml);
+
+    if($result == true){ //artinya kalo berhasil
+      $reservasi_ctrl = new ReservasiController();
+      $reservasi_ctrl->add_reservasi($kuota, $jml, $ktp, $tanggal);
+    }
+
+    $kode = $reservasi_ctrl->create_unique_id($kuota, $tanggal);
     return View::createPengunjungView("pengunjung_post_booking.php", [
       "nama"=> $nama,
       "tanggal"=> $tanggal,

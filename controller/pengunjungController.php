@@ -26,5 +26,13 @@ class PengunjungController{
     $result = $this->db->executeNonSelectQuery($query);
     return $result; //True kalo berhasil, false kalo gagal
   }
+
+  //asumsinya uda di espace string semua
+  public function updateUser($ktp, $nama, $telepon){
+    $query = 'UPDATE Pengunjung SET nama="'.$nama.'", nomor_hp="'.$telepon.'" WHERE ktp="'.$ktp.'"';
+    $query_result = $this->db->executeNonSelectQuery($query);
+
+    return $query_result;
+  }
 }
 ?>
