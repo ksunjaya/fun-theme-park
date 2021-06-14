@@ -148,7 +148,7 @@
               harga_total.innerHTML = format_rupiah(harga);
             });
         }else{
-          kuota.innerHTML = 0;
+          kuota.innerHTML = "Tiket Habis";
           harga = 0;
           harga_satuan.innerHTML = "-";
           harga_total.innerHTML = "-";    
