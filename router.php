@@ -30,8 +30,8 @@
 				$user_ctrl = new adminController();
 				echo $user_ctrl->show_login();
 				break;
-			case $baseURL.'/updatetiket':
-				require_once "controller/updateTiketController.php";
+			case $baseURL.'/showtiket':
+				require_once "controller/tiketController.php";
 				$user_ctrl = new TiketController();
 				echo $user_ctrl->view_tiket();
 				break;
