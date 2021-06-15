@@ -30,6 +30,11 @@
 				$user_ctrl = new adminController();
 				echo $user_ctrl->show_login();
 				break;
+			case $baseURL.'/updatetiket':
+				require_once "controller/updateTiketController.php";
+				$user_ctrl = new UpdateTiketController();
+				echo $user_ctrl->view_tiket();
+				break;
 			default:
 				echo 'Page not found';
 		}
