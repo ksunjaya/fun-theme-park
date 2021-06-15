@@ -52,7 +52,8 @@
 			case $baseURL.'/add-ticket':
 				require_once "controller/adminController.php";
 				$admin_ctrl = new AdminController();
-
+				$admin_ctrl->createTicket();
+				break;
 			default:
 				echo 'Page not found';
 		}

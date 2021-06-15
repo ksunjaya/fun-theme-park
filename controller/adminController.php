@@ -34,7 +34,7 @@ class AdminController{
   }
 
   public function createTicket(){
-    $tanggal = $_POST["tangggl"];
+    $tanggal = $_POST["tanggal"];
     $max_tiket = $_POST["jumlah-tiket"];
     $max_party = $_POST["max-tiket"];
     $harga = $_POST["harga"];
@@ -49,7 +49,7 @@ class AdminController{
         require_once "controller/hargaTiketController.php";
         $hargaTiketCtrl = new HargaTiketController();
         $result = $hargaTiketCtrl->set_harga($tanggal, $harga);
-        if($result == true) header("Location: showticket");
+        if($result == true) header("Location: showtiket");
         else echo "Ada kesalahan pada sistem.";
       }else echo "Ada kesalahan pada sistem."; 
     }else echo "Beberapa attribut belum ke set dengan benar";

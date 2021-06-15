@@ -103,29 +103,29 @@
 ?>
 
 <div class="white">
-    <form method="POST" action="">
+    <form method="POST" action="add-ticket">
         <h1 class="title">SET NEW TICKET</h1>
             <div class="login-box">
                 <label class="fw-700 fs-18 c-dark-blue">DATE</label>
                 <?php
-                echo '<input type="date" class="login-input fw-700 fs-36 bg-light-blue" style="font-size: 25px; font-weight: 500;" min="'.$today.'">';
+                echo '<input name="tanggal" type="date" class="login-input fw-700 fs-36 bg-light-blue" style="font-size: 25px; font-weight: 500;" min="'.$today.'">';
                 ?>
             </div>
             <div class="login-box" style="display: inline-block;">
                 <label class="fw-700 fs-18 c-dark-blue">MAX TICKETS ALLOWED</label>
-                <input type="text" class="login-input fw-700 fs-36 bg-light-blue" style="width: 350px;">
+                <input name="jumlah-tiket" type="number" class="login-input fw-700 fs-36 bg-light-blue" style="width: 350px;">
                 <span class="c-dark-blue" style="font-weight: 500; font-size: 30px;">tickets</span>
             </div>
             <br>
             <div class="login-box" style="display: inline-block;">
                 <label class="fw-700 fs-18 c-dark-blue">MAX TICKETS ALLOWES / PARTY</label>
-                <input type="text" class="login-input fw-700 fs-36 bg-light-blue" style="width: 350px;">
+                <input name="max-tiket" type="number" class="login-input fw-700 fs-36 bg-light-blue" style="width: 350px;">
                 <span class="c-dark-blue" style="font-weight: 500; font-size: 30px;">/ party</span>
             </div>
             <br>
              <div class="login-box" style="display: inline-block;">
                 <label class="fw-700 fs-18 c-dark-blue">PRICE / TICKET</label>
-                <input type="text" class="login-input fw-700 fs-36 bg-light-blue" style="width: 350px;">
+                <input name="harga" type="number" class="login-input fw-700 fs-36 bg-light-blue" style="width: 350px;">
                 <span class="c-dark-blue" style="font-weight: 500; font-size: 30px;">/ ticket</span>
             </div>
 
@@ -135,7 +135,7 @@
                     <a href="" class="back" style="background-color: #cf4a4a; color: white; "><span style="font-size: 30px;"> BACK </span> </a>
                 </div>
                 <div style="margin-right: 10px;">
-                    <a href="" class="next" style="background-color: #2f549e; color: white;"><span> ➔ </span> </a>
+                    <input type="submit" class="next" style="background-color: #2f549e; color: white;" value="➔">
                 </div>
             </div>
 
