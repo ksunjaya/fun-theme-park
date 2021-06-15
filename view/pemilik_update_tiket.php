@@ -118,14 +118,7 @@
 					<th style="width: 200">REMAINING</th>
 					<th style="width: 200">PRICE</th>
 				</tr>
-				<!-- <tr>
-					<td>01-July-2021</td>
-					<td>400</td>
-					<td>5</td>
-					<td>211</td>
-					<td>40.000</td>
-				</tr> -->
-				
+
 				<?php 
 					foreach ($result as $key => $value) {
 			 			echo "<tr>";
@@ -146,7 +139,6 @@
 					<a href="" class="back"><span> < </span> </a>
 				</div>
 				<div>
-					<!-- <input type="submit" name="create" value="SET NEW TICKET" class="create" > -->
 					<a href="add-ticket" class="create">SET NEW TICKET</a>
 				</div>
 				<div>
