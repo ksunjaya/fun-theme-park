@@ -23,7 +23,7 @@
         <input name="nama" id="nama" type="text"><br>
 
         <label>NOMOR TELEPON</label><br>
-        <input name="telepon" id="telepon" type="text"><br>
+        <input name="telepon" id="telepon" type="text" maxlength="16"><br>
         
         <table>
           <tr>
