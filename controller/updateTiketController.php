@@ -3,7 +3,7 @@ require_once "services/mySQLDB.php";
 require_once "services/view_admin.php";
 require_once "model/tiket.php";
 
-class UpdateTiketController{
+class TiketController{
   protected $db;
 
   public function __construct(){
@@ -12,14 +12,13 @@ class UpdateTiketController{
 
   public function view_tiket(){
     $result = $this->getAllTiket();
-    return View::createAdminView('pemilik_update_tiket.php',
-        [
-            "result"=> $result
-        ]);
-}
+    return View::createAdminView('pemilik_update_tiket.php',[
+      "result"=> $result
+    ]);
+  }
 
-public function getAllTiket(){
-    $query = "SELECT * FROM limit_tiket INNER JOIN harga_tiket ORDER BY tanggal";
+  public function getAllTiket(){
+    $query = 'SELECT * FROM limit_tiket INNER JOIN harga_tiket ON limit_tiket.tanggal = harga_tiket.tanggal ORDER BY limit_tiket.tanggal';
     $query_result = $this->db->executeSelectQuery($query);
     $result = [];
 
@@ -27,7 +26,7 @@ public function getAllTiket(){
         $result[] = new Tiket($value['tanggal'], $value['limit_harian'], $value['max_pesanan'], $value['sisa_tiket'], $value['harga']);
     }
     return $result;
-}
+  }
 
 }
 ?>

@@ -32,7 +32,7 @@
 				break;
 			case $baseURL.'/updatetiket':
 				require_once "controller/updateTiketController.php";
-				$user_ctrl = new UpdateTiketController();
+				$user_ctrl = new TiketController();
 				echo $user_ctrl->view_tiket();
 				break;
 			default:
