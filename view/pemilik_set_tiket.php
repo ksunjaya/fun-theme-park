@@ -132,7 +132,7 @@
 
             <div class="buttons">
                 <div style="margin-right: 10px; ">
-                    <a href="" class="back" style="background-color: #cf4a4a; color: white; "><span style="font-size: 30px;"> BACK </span> </a>
+                    <a href="tickets" class="back" style="background-color: #cf4a4a; color: white; "><span style="font-size: 30px;"> BACK </span> </a>
                 </div>
                 <div style="margin-right: 10px;">
                     <input type="submit" class="next" style="background-color: #2f549e; color: white;" value="➔">

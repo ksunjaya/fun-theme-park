@@ -49,7 +49,7 @@ class AdminController{
         require_once "controller/hargaTiketController.php";
         $hargaTiketCtrl = new HargaTiketController();
         $result = $hargaTiketCtrl->set_harga($tanggal, $harga);
-        if($result == true) header("Location: showtiket");
+        if($result == true) header("Location: tickets");
         else echo "Ada kesalahan pada sistem.";
       }else echo "Ada kesalahan pada sistem."; 
     }else echo "Beberapa attribut belum ke set dengan benar";
