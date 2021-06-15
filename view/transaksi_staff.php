@@ -1,6 +1,18 @@
 <?php
-  $today = new DateTime(date("d M Y"));
-  $today = $today->format("d M Y");
+  $raw_today = new DateTime(date("ymd"));
+  $today = $raw_today->format("d M Y");
+
+  require_once "../controller/hargaTiketController.php";
+  $tiket_ctrl = new HargaTiketController();
+  $harga = $tiket_ctrl->get_harga($raw_today->format("ymd"));
+
+  function format_harga($harga){
+    $result = "";
+    for($i = strlen($harga)-3; $i >= 0; $i -= 3){
+      $result = substr($harga, 0, $i).'.'.substr($harga, $i, strlen($harga));
+    }
+    return $result;
+  }
 ?>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Lato:wght@400;500;600;700;900&display=swap');
@@ -89,7 +101,7 @@
   </div>
   <div style="flex:1;">
     <p class="float-right" style="font-size: 20px; margin: 5px;">Harga/Tiket</p>
-    <p class="float-right bold" style="font-size: 30px; margin: 5px;">Rp. 10.000</p>
+    <p class="float-right bold" style="font-size: 30px; margin: 5px;"><?php echo 'Rp. '.format_harga($harga) ?></p>
   </div>
 </div>
 

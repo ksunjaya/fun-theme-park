@@ -23,7 +23,7 @@
 			case $baseURL.'/getharga':
 				require_once "controller/hargaTiketController.php";
 				$ht_ctrl = new HargaTiketController();
-				echo $ht_ctrl->get_harga();
+				echo $ht_ctrl->_request_harga();
 				break;
 			case $baseURL.'/login':
 				require_once "controller/adminController.php";

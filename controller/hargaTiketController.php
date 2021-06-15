@@ -10,8 +10,12 @@ class HargaTiketController{
     $this->db = new mySQLDB("localhost", "root", "", "fun_resort");
   }
 
-  public function get_harga(){
+  public function _request_harga(){
     $tanggal = $_GET["tanggal"];
+    return $this->get_harga($tanggal);
+  }
+
+  public function get_harga($tanggal){
     if(isset($tanggal)){
       $tanggal = $this->db->escapeString($tanggal);
       $query = 'SELECT harga FROM harga_tiket WHERE tanggal="'.$tanggal.'"';
