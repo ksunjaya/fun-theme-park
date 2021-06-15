@@ -24,5 +24,16 @@ class HargaTiketController{
       return $query_result[0]["harga"];
     }
   }
+
+  public function set_harga($tanggal, $harga){
+    //asumsi uda ada tanggal sama harga nya
+    $tanggal = $this->db->escapeString($tanggal);
+    $harga = $this->db->escapeString($harga);
+
+    $query = 'INSERT INTO harga_tiket VALUES("'.$tanggal.'",'.$harga.' )';
+    $query_result = $this->db->executeNonSelectQuery($query);
+
+    return $query_result;
+  }
 }
 ?>
