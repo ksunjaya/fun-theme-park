@@ -95,13 +95,21 @@
     }
 </style>
 
+<?php
+    //buat set html date supaya pemilik gabisa milih tanggal sebelumnya
+    $today = new DateTime(date("Y-m-d"));
+    $today->modify('+1 day');
+    $today = $today->format("Y-m-d");
+?>
 
 <div class="white">
     <form method="POST" action="">
         <h1 class="title">SET NEW TICKET</h1>
             <div class="login-box">
                 <label class="fw-700 fs-18 c-dark-blue">DATE</label>
-                <input type="date" class="login-input fw-700 fs-36 bg-light-blue" style="font-size: 25px; font-weight: 500;">
+                <?php
+                echo '<input type="date" class="login-input fw-700 fs-36 bg-light-blue" style="font-size: 25px; font-weight: 500;" min="'.$today.'">';
+                ?>
             </div>
             <div class="login-box" style="display: inline-block;">
                 <label class="fw-700 fs-18 c-dark-blue">MAX TICKETS ALLOWED</label>

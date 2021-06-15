@@ -37,7 +37,7 @@
 				break;
 			case $baseURL.'/add-ticket':
 				require_once "controller/services/view.php";
-				echo View::createAdminView("add_ticket.php", []);
+				echo View::createAdminView("pemilik_set_tiket.php", []);
 				break;
 			default:
 				echo 'Page not found';	
