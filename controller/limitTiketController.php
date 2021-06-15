@@ -49,5 +49,15 @@ class LimitTiketController{
 
     return $query_result; //TRUE kalo berhasil
   }
+
+  public function count_all(){
+    $query = 'SELECT COUNT(tanggal) AS "count" FROM limit_tiket';
+    $query_result = $this->db->executeSelectQuery($query);
+
+    if($query == false) return false;
+    else{
+      return $query_result[0]['count'];
+    }
+  }
 }
 ?>

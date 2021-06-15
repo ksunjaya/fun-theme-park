@@ -1,4 +1,6 @@
 <?php
+define("MAX", 6); //jumlah row maksimum per halaman
+
 require_once "services/mySQLDB.php";
 require_once "services/view.php";
 require_once "model/tiket.php";
@@ -16,14 +18,28 @@ class AdminController{
 
   //=====untuk page melihat tiket=======
   public function view_tiket(){
-    $result = $this->getAllTiket();
+    //buat urusin pagination
+  	require_once "controller/limitTiketController.php";
+    $limitCtrl = new LimitTiketController();
+    $last_page = ($limitCtrl->count_all()) / MAX;
+    $page = 0;    //by default akan ke halaman 1
+	  if(isset($_GET["page"])) $page = $_GET["page"];
+
+    //fetch
+    $result = $this->getAllTiket($page, MAX);
     return View::createAdminView('pemilik_update_tiket.php',[
-      "result"=> $result
+      "result"=> $result,
+      "page"=> $page,
+      "last_page"=>$last_page
     ]);
   }
 
-  public function getAllTiket(){
-    $query = 'SELECT * FROM limit_tiket INNER JOIN harga_tiket ON limit_tiket.tanggal = harga_tiket.tanggal ORDER BY limit_tiket.tanggal';
+  private function getAllTiket($page, $count){
+    $page *= MAX;
+    $query = 'SELECT * 
+              FROM limit_tiket INNER JOIN harga_tiket ON limit_tiket.tanggal = harga_tiket.tanggal 
+              ORDER BY limit_tiket.tanggal
+              LIMIT '.$page.','.$count;
     $query_result = $this->db->executeSelectQuery($query);
     $result = [];
 

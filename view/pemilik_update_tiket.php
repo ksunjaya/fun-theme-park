@@ -104,12 +104,6 @@
 	}
 
 </style>
-
-<?php
-	//buat urusin pagination
-	$page = 1; //by default akan ke halaman 1
-	if(isset($_GET["page"])) $page = $_GET["page"];
-?>
 <div class="white">
 	<form method="POST" action="">
 		<h1 class="title">TICKETS</h1>
@@ -141,14 +135,24 @@
 			<div class="buttons">
 				<div>
 					<?php
-						if($page > 1) echo '<a href="" class="back"><span> < </span> </a>'; //kalau di halaman 1 ga perlu tampilin tombol back
+						if($page > 0) {
+							//kalau di halaman 1 ga perlu tampilin tombol back
+							$href = 'tickets?page='.($page - 1);
+							echo '<a href="'.$href.'" class="back"><span> < </span> </a>'; 
+						}
 					?>
 				</div>
 				<div>
 					<a href="add-ticket" class="create">SET NEW TICKET</a>
 				</div>
 				<div>
-					<a href="" class="next"><span> > </span> </a>
+					<?php
+						if($page < $last_page-1){
+							//kalau halaman terkahir ga perlu tombol next
+							$href = 'tickets?page='.($page + 1);
+							echo '<a href="'.$href.'" class="next"><span> > </span> </a>'; 
+						} 
+					?>
 				</div>
 			</div>
 			
