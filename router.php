@@ -27,16 +27,20 @@
 				break;
 			case $baseURL.'/login':
 				require_once "controller/adminController.php";
-				$user_ctrl = new adminController();
+				$user_ctrl = new AdminController();
 				echo $user_ctrl->show_login();
 				break;
 			case $baseURL.'/showtiket':
-				require_once "controller/tiketController.php";
-				$user_ctrl = new TiketController();
+				require_once "controller/adminController.php";
+				$user_ctrl = new AdminController();
 				echo $user_ctrl->view_tiket();
 				break;
+			case $baseURL.'/add-ticket':
+				require_once "controller/services/view.php";
+				echo View::createAdminView("add_ticket.php", []);
+				break;
 			default:
-				echo 'Page not found';
+				echo 'Page not found';	
 		}
 	}else if($_SERVER["REQUEST_METHOD"] == "POST"){
 		switch($url){
@@ -45,6 +49,10 @@
 				$user_ctrl = new userController();
 				echo $user_ctrl->show_post_booking();
 				break;
+			case $baseURL.'/add-ticket':
+				require_once "controller/adminController.php";
+				$admin_ctrl = new AdminController();
+
 			default:
 				echo 'Page not found';
 		}

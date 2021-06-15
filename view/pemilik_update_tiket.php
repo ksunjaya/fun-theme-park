@@ -75,7 +75,7 @@
 		font-family: Cairo;
 		font-weight: 700;
 		margin: 15px;
-
+		text-decoration: none;
 	}
 
 	.back, .next{
@@ -146,7 +146,8 @@
 					<a href="" class="back"><span> < </span> </a>
 				</div>
 				<div>
-					<input type="submit" name="create" value="SET NEW TICKET" class="create" >
+					<!-- <input type="submit" name="create" value="SET NEW TICKET" class="create" > -->
+					<a href="add-ticket" class="create">SET NEW TICKET</a>
 				</div>
 				<div>
 					<a href="" class="next"><span> > </span> </a>

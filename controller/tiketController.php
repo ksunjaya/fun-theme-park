@@ -1,6 +1,9 @@
 <?php
+//OBSELETE
+//PAKE adminController.php
+//File ini nantinya bakal dihapus
 require_once "services/mySQLDB.php";
-require_once "services/view_admin.php";
+require_once "services/view.php";
 require_once "model/tiket.php";
 
 class TiketController{
