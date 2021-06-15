@@ -38,8 +38,16 @@ class Tiket{
 	}
 
   public function getHarga(){
-		return $this->harga;
+		return 'Rp. '.$this->format_harga($this->harga);
 	}
+
+	private function format_harga($harga){
+    $result = "";
+    for($i = strlen($harga)-3; $i >= 0; $i -= 3){
+      $result = substr($harga, 0, $i).'.'.substr($harga, $i, strlen($harga));
+    }
+    return $result;
+  }
 }
 
 ?>
