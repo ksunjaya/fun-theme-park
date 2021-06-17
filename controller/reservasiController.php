@@ -27,16 +27,18 @@ class ReservasiController{
   public function get_reservasi($kode_reservasi, $tanggal){
     $kode_reservasi = $this->db->escapeString($kode_reservasi);
     $tanggal = $this->db->escapeString($tanggal);
-    $query = 'SELECT reservasi.jml_orang, pengunjung.nama
+    $query = 'SELECT reservasi.jml_orang, pengunjung.nama, reservasi.tanggal, reservasi.selesai
               FROM reservasi INNER JOIN pengunjung ON reservasi.ktp = pengunjung.ktp 
-              WHERE reservasi.id_reservasi="'.$kode_reservasi.'" AND reservasi.tanggal="'.$tanggal.'"';
+              WHERE reservasi.id_reservasi="'.$kode_reservasi.'"'; //AND reservasi.tanggal="'.$tanggal.'"';
     $query_result = $this->db->executeSelectQuery($query);
     $details = array();
     if(count($query_result) == 0) $details["status"] = false; //kasi tau artinya gagal;
     else{
       $details["status"] = true;
+      $details["tanggal"] = $query_result[0]["tanggal"];
       $details["jumlah"] = $query_result[0]["jml_orang"];
       $details["nama"] = $query_result[0]["nama"];
+      $details["selesai"] = $query_result[0]["selesai"];
     }
 
     return $details;
@@ -46,6 +48,11 @@ class ReservasiController{
     $format_tanggal = new DateTime($tanggal);
     $format_tanggal = $format_tanggal->format('ymd'); //6 digit
     return $format_tanggal.''.$nomor;
+  }
+
+  public function set_selesai($id){
+    $id = $this->db->escapeString($id);
+    
   }
 }
 ?>

@@ -1,3 +1,10 @@
+/*
+  PENTING! Tolong jalanin query ini buat modify table nya : 
+
+  ALTER TABLE reservasi ADD selesai INT(1) NOT NULL;
+  ALTER TABLE transaksi MODIFY id_transaksi varchar(12);
+*/
+
 /*Pengunjung (KTP, nama, nomor_hp)
 Karyawan  (KTP, nama, username, password)
 Pemilik  (KTP, nama, username, password)
@@ -43,6 +50,7 @@ CREATE TABLE Reservasi(
 	jml_orang INT(2) NOT NULL,
 	ktp varchar(16) NOT NULL,
 	tanggal DATE NOT NULL,
+  selesai INT(1) NOT NULL,
   FOREIGN KEY (ktp) REFERENCES Pengunjung(ktp),
   FOREIGN KEY (tanggal) REFERENCES Limit_Tiket(tanggal)
 );
@@ -53,7 +61,7 @@ CREATE TABLE Harga_Tiket(
 );
 
 CREATE TABLE Transaksi(
-  id_transaksi INT(8) PRIMARY KEY,
+  id_transaksi VARCHAR(12) PRIMARY KEY,
   id_reservasi INT(10) NOT NULL,
   tanggal DATE NOT NULL,
   total_harga INT NOT NULL,

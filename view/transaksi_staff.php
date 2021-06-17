@@ -89,6 +89,17 @@
       let total_harga_text = document.getElementById("harga");
       total_harga_text.value = (<?php echo $harga ?> * jumlah_text.value).toLocaleString('en-US', {style: 'currency',currency: 'IDR'});
     });
+
+    let kode_reservasi = document.getElementById("kode-reservasi");
+    kode_reservasi.addEventListener("keyup", function(event) {
+      if(kode_reservasi.value.length >= 6){
+        tombol_cari.click();
+      }else{
+        let status_text = document.getElementById("status");
+        clear_all();
+        status_text.style.visibility = "hidden";
+      }
+    });
   }
 
   function get_registrasi(e){
@@ -99,27 +110,57 @@
     let jumlah_text = document.getElementById("jumlah");
     let total_harga_text = document.getElementById("harga");
     let id = document.getElementById("kode-reservasi").value;
+
+    //cek dulu tanggal di kode reservasi nya uda bener ato belom
+    let hari_ini = <?php echo $raw_today->format("ymd"); ?>;
+    if(id.substr(0, 6) != hari_ini){
+      not_found("Tanggal pada kode reservasi salah!", "#ff6700");
+      return;
+    }
+    //klo uda bener, baru lanjut cek di database
     const loadRegistrasi = async() => {
       let url = 'get-reservasi?id='+id+'&tanggal='+<?php echo $raw_today->format("Ymd") ?>;
       let res = await fetch(url);
       let data_registrasi = await res.json();
 
       if(data_registrasi["status"] == true){
-        status_text.style.color = "#34832D";
-        status_text.innerHTML = "Data pemesan berhasil ditemukan!";
-        //====isi"in semua form nya===
-        nama_text.value = data_registrasi["nama"];
-        jumlah_text.value = data_registrasi["jumlah"];
-        jumlah_text.max = data_registrasi["jumlah"];
-        total_harga_text.value = (<?php echo $harga ?> * data_registrasi["jumlah"]).toLocaleString('en-US', {style: 'currency',currency: 'IDR'});
+        if(data_registrasi["selesai"] == 0){
+          btn.style.disabled = false;
+          status_text.style.color = "#34832D";
+          status_text.innerHTML = "Data pemesan berhasil ditemukan!";
+          //====isi"in semua form nya===
+          nama_text.value = data_registrasi["nama"];
+          jumlah_text.value = data_registrasi["jumlah"];
+          jumlah_text.max = data_registrasi["jumlah"];
+          total_harga_text.value = (<?php echo $harga ?> * data_registrasi["jumlah"]).toLocaleString('en-US', {style: 'currency',currency: 'IDR'});
+        }else{
+          //artinya kode registrasi ini udah pernah diregister sebelumnya.
+          not_found("Pembeli sudah menyelesaikan transaksinya.", "#ff6700");
+        }
       }else{
-        status_text.style.color = "red";
-        status_text.innerHTML = "Data pemesan untuk hari ini gagal ditemukan, pastikan kode reservasi sudah benar!";
+        not_found("Data pemesan untuk hari ini gagal ditemukan, pastikan kode reservasi sudah benar!", "red");
       }
     };
     loadRegistrasi();
 
     status_text.style.visibility = "visible";
+  }
+
+  function not_found(message, color){
+    let status_text = document.getElementById("status");
+    status_text.style.color = color;
+    status_text.innerHTML = message;
+    status_text.style.visibility = "visible";
+    clear_all();
+  }
+
+  function clear_all(){
+    let nama_text = document.getElementById("nama");
+    let jumlah_text = document.getElementById("jumlah");
+    let total_harga_text = document.getElementById("harga");
+    nama_text.value = "";
+    jumlah_text.value = "";
+    total_harga_text.value = "";
   }
   init();
 </script>

@@ -5,9 +5,6 @@
 
 	if($_SERVER["REQUEST_METHOD"] == "GET"){
 		switch($url){
-			case $baseURL:
-				header("Location: home");
-				break;
 			case $baseURL.'/home':
 				require_once "controller/userController.php";
 				$user_ctrl = new userController();
