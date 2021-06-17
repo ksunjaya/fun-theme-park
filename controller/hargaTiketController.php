@@ -21,7 +21,8 @@ class HargaTiketController{
       $query = 'SELECT harga FROM harga_tiket WHERE tanggal="'.$tanggal.'"';
       $query_result = $this->db->executeSelectQuery($query);
 
-      return $query_result[0]["harga"];
+      if(count($query_result) > 0) return $query_result[0]["harga"];
+      else echo "INTERNAL ERROR : Harga tiket untuk tanggal ".$tanggal." tidak dapat ditemukan.";
     }
   }
 

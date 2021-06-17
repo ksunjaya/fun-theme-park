@@ -19,6 +19,29 @@ class ReservasiController{
     return $query_result;
   }
 
+  public function HTTP_GET_reservasi(){
+    if(isset($_GET["id"]) && isset($_GET["tanggal"]))
+      return json_encode($this->get_reservasi($_GET["id"], $_GET["tanggal"]));
+  }
+
+  public function get_reservasi($kode_reservasi, $tanggal){
+    $kode_reservasi = $this->db->escapeString($kode_reservasi);
+    $tanggal = $this->db->escapeString($tanggal);
+    $query = 'SELECT reservasi.jml_orang, pengunjung.nama
+              FROM reservasi INNER JOIN pengunjung ON reservasi.ktp = pengunjung.ktp 
+              WHERE reservasi.id_reservasi="'.$kode_reservasi.'" AND reservasi.tanggal="'.$tanggal.'"';
+    $query_result = $this->db->executeSelectQuery($query);
+    $details = array();
+    if(count($query_result) == 0) $details["status"] = false; //kasi tau artinya gagal;
+    else{
+      $details["status"] = true;
+      $details["jumlah"] = $query_result[0]["jml_orang"];
+      $details["nama"] = $query_result[0]["nama"];
+    }
+
+    return $details;
+  }
+
   public function create_unique_id($nomor, $tanggal){
     $format_tanggal = new DateTime($tanggal);
     $format_tanggal = $format_tanggal->format('ymd'); //6 digit

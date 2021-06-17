@@ -2,7 +2,7 @@
   $raw_today = new DateTime(date("ymd"));
   $today = $raw_today->format("d M Y");
 
-  require_once "../controller/hargaTiketController.php";
+  require_once "controller/hargaTiketController.php";
   $tiket_ctrl = new HargaTiketController();
   $harga = $tiket_ctrl->get_harga($raw_today->format("ymd"));
 
@@ -14,73 +14,10 @@
     return $result;
   }
 ?>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Lato:wght@400;500;600;700;900&display=swap');
-  *{
-    font-family: 'Cairo', sans-serif;
-    line-height: 100%;
-  } 
-  
-  body{
-    background-color: #DBE9FF;
-  }
-
-  .blue-button{
-    background-color: #003B73;
-    border:2px solid #003B73;
-    color: white;
-    font-weight: 900;
-    text-decoration: none;
-    padding: 8px 30px;
-    border-radius: 15px;
-    transition: 0.1s; 
-  }
-
-  .float-right{
-    float:right;
-  }
-  
-  .bold{
-    font-weight: 700;
-  }
-
-  .welcome{
-    margin: 16px;
-    font-size: 28px;
-  }
-
-  .white-box{
-    background-color: white;
-    margin: 3%;
-    border-radius: 20px;
-  }
-
-  .bg-white{
-    background-color: white;
-  }
-
-  label{
-    font-size: 20px;
-  }
-
-  .text-input{
-    background-color: #DBE9FF;
-    border: 0px;
-    margin: 5px 0px;
-    border-radius: 5px;
-    font-size: 20px;
-  }
-
-  .search{
-    margin: 5px 0px;
-    background-color: #003B73;
-    border-radius: 5px;
-  }
-</style>
 
 <div id="header" style="display:flex; align-items: center; margin: 18px 50px;">
   <div style="flex: 1;">
-    <a href="../home"><img src="../src/logo.png" style="width:140px;"></a>
+    <a href="home"><img src="src/logo.png" style="width:140px;"></a>
   </div>
   <div style="flex:6; text-align: center;">
     <p class="welcome">Welcome</p>
@@ -113,7 +50,7 @@
     <br>
     <input id="kode-reservasi" name="kode" type="input" maxlength="10" class="text-input" style="width:85%; height: 20%; text-align:center;">
     <a href="cari-reservasi" id="cari" class="blue-button float-right" style="margin: 1% 0px;">Cari</a>
-    <p id="status" class="bold" style="margin:8px 0px; font-size:20px;">Kode Reservasi Berhasil Ditemukan!</p>
+    <p id="status" class="bold" style="margin:8px 0px; font-size:20px;visibility:hidden;"></p>
 
     <div style="display: flex; justify-content:center; margin: 20px 0px;">
       <table style="align-self:center; font-size: 20px;">
@@ -125,7 +62,7 @@
         <tr>
           <td>Jumlah Tiket</td>
           <td style="padding: 0em 2em;"></td>
-          <td><input type="number" class="text-input" name="jumlah" id="jumlah" style="width: 20%;text-align:center;"><label style="margin-left: 12px;">tiket</label></td>
+          <td><input type="number" class="text-input" name="jumlah" id="jumlah" style="width: 20%;text-align:center;" min=1><label style="margin-left: 12px;">tiket</label></td>
         </tr>
         <tr>
           <td>Total Harga</td>
@@ -146,10 +83,43 @@
   function init(){
     let tombol_cari = document.getElementById("cari");
     tombol_cari.addEventListener("click", get_registrasi);
+
+    let jumlah_text = document.getElementById("jumlah");
+    jumlah_text.addEventListener("input", function(e){
+      let total_harga_text = document.getElementById("harga");
+      total_harga_text.value = (<?php echo $harga ?> * jumlah_text.value).toLocaleString('en-US', {style: 'currency',currency: 'IDR'});
+    });
   }
 
   function get_registrasi(e){
     e.preventDefault(); //biar ga redirect
+
+    let status_text = document.getElementById("status");
+    let nama_text = document.getElementById("nama");
+    let jumlah_text = document.getElementById("jumlah");
+    let total_harga_text = document.getElementById("harga");
+    let id = document.getElementById("kode-reservasi").value;
+    const loadRegistrasi = async() => {
+      let url = 'get-reservasi?id='+id+'&tanggal='+<?php echo $raw_today->format("Ymd") ?>;
+      let res = await fetch(url);
+      let data_registrasi = await res.json();
+
+      if(data_registrasi["status"] == true){
+        status_text.style.color = "#34832D";
+        status_text.innerHTML = "Data pemesan berhasil ditemukan!";
+        //====isi"in semua form nya===
+        nama_text.value = data_registrasi["nama"];
+        jumlah_text.value = data_registrasi["jumlah"];
+        jumlah_text.max = data_registrasi["jumlah"];
+        total_harga_text.value = (<?php echo $harga ?> * data_registrasi["jumlah"]).toLocaleString('en-US', {style: 'currency',currency: 'IDR'});
+      }else{
+        status_text.style.color = "red";
+        status_text.innerHTML = "Data pemesan untuk hari ini gagal ditemukan, pastikan kode reservasi sudah benar!";
+      }
+    };
+    loadRegistrasi();
+
+    status_text.style.visibility = "visible";
   }
   init();
 </script>

@@ -37,5 +37,23 @@ class View {
         ob_end_clean();
         return $include;
     }
+
+    public static function createStaffView ($view, $param)
+    {
+        foreach ($param as $key => $value)
+        {
+            $$key = $value;
+        }
+        ob_start();
+        include 'view/'.$view;
+        $content = ob_get_contents();
+        ob_end_clean();
+
+        ob_start();
+        include 'view/layout/layout_staff.php';
+        $include = ob_get_contents();
+        ob_end_clean();
+        return $include;
+    }
 }
 ?>

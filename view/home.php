@@ -1,6 +1,6 @@
 <?php
   $today = new DateTime(date("Y-m-d"));
-  $today->modify('+1 day');
+  //$today->modify('+1 day');
   $today = $today->format("Y-m-d");
   $next_month = new DateTime($today);
   $next_month->modify('+30 days');

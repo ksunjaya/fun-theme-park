@@ -5,6 +5,9 @@
 
 	if($_SERVER["REQUEST_METHOD"] == "GET"){
 		switch($url){
+			case $baseURL:
+				header("Location: home");
+				break;
 			case $baseURL.'/home':
 				require_once "controller/userController.php";
 				$user_ctrl = new userController();
@@ -38,6 +41,16 @@
 			case $baseURL.'/add-ticket':
 				require_once "controller/services/view.php";
 				echo View::createAdminView("pemilik_set_tiket.php", []);
+				break;
+			case $baseURL.'/staff':
+				require_once "controller/staffController.php";
+				$staff_ctrl = new StaffController();
+				echo $staff_ctrl->viewAll();
+				break;
+			case $baseURL.'/get-reservasi':
+				require_once "controller/reservasiController.php";
+				$reservasiCtrl = new ReservasiController();
+				echo $reservasiCtrl->HTTP_GET_reservasi();
 				break;
 			default:
 				echo 'Page not found';	

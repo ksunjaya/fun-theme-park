@@ -1,6 +1,6 @@
 <?php
   require_once "services/mySQLDB.php";
-  
+  require_once "services/view.php";
   class StaffController{
     protected $db;
 
@@ -22,6 +22,10 @@
       }else $result["status"] = false;
 
       return $result;
+    }
+
+    public function viewAll(){
+      return View::createStaffView("transaksi_staff.php", []);
     }
   }
 ?>
