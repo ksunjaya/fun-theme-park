@@ -27,12 +27,3 @@
         </div>
     </div>
 </form>
-
-<script>
-    function init () {
-        let username = document.getElementById("username");
-        let password = document.getElementById("password");
-        let form = document.getElementById ("login-form");
-    }
-    init ();
-</script>

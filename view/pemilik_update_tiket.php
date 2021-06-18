@@ -66,16 +66,32 @@
 	}
 
 	.create{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		width: 246px;
+		height: 69px;
 		background-color: #DBE9FF;
+		border-radius: 30px;
+		margin: 15px;
+		text-decoration: none;
 		color: #1A6793;
-		border: none;
-		border-radius: 20px;
-		padding: 12px 14px 12px 14px;
+		border: solid 3px #DBE9FF;
+		transition: 0.1s;
+	}
+
+	.create:hover {
+		background-color: white;
+		transition: 0.1s;
+		box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+		cursor: pointer;
+	}
+
+	.create h2 {
 		font-size: 20px;
 		font-family: Cairo;
 		font-weight: 700;
-		margin: 15px;
-		text-decoration: none;
 	}
 
 	.back, .next{
@@ -101,6 +117,15 @@
 		font-weight: 600;
 		position: fixed;
 		bottom: 70px;
+	}
+
+	.footer-button {
+		text-decoration: none;
+		color: black;
+	}
+	.footer-button:hover {
+		font-weight: 700;
+		text-decoration: underline;
 	}
 
 </style>
@@ -143,7 +168,9 @@
 					?>
 				</div>
 				<div>
-					<a href="add-ticket" class="create">SET NEW TICKET</a>
+					<a href="add-ticket" class="create">
+						<h2>SET NEW TICKET</h2>
+					</a>
 				</div>
 				<div>
 					<?php
@@ -158,8 +185,8 @@
 			
 			
 			<div class="navs">
-				<a href=""><p style="line-height: 6;">HOME</p></a>
-				<a href=""><p>SIGN OUT</p></a>
+				<a class = "footer-button"href="" style="margin-bottom: 40px;"><p>HOME</p></a>
+				<a class = "footer-button"href=""><p>SIGN OUT</p></a>
 			</div>
 			
 		</div>
