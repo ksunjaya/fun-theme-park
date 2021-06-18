@@ -182,14 +182,14 @@
         color: #1A6793;
     }
     
-    .main-margin h2 {
+    .button h2 {
         font-size: 24px;
         font-weight: 700;
         color: #1A6793;
     }
     
-    .main-margin {
-        margin-bottom: 20px;
+    .main-margin-button {
+        margin-bottom: 40px;
     }
     
     .footer-button {
