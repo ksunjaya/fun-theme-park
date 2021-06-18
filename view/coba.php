@@ -18,7 +18,7 @@
             </div>
             <div class="login-box" style="margin-bottom: 20px;">
                 <label class="fw-700 fs-18 c-dark-blue">PASSWORD</label>
-                <input name="username" id = "password" class="login-input fw-700 fs-36 bg-light-blue" type="password">
+                <input name="username" id = "password" class="login-input fw-700 fs-36 bg-light-blue" type="text">
             </div>
             <div class="login-box" style="margin-bottom: 20px;">
                 <label class="fw-700 fs-18 c-dark-blue">PHOTO</label>
@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="footer-box-button" style="height: 15%;">
-            <a href = "main" id="login" class="login-back-button c-white" style = "margin-right:20px;" href=""><span class="material-icons md-48">arrow_back</span></a>
+            <a href = "main" class="login-back-button c-white" style = "margin-right:20px;" href=""><span class="material-icons md-48">arrow_back</span></a>
             <button type="submit" id="login" class="login-next-button c-white bg-dark-blue" href=""><span class="material-icons md-48">arrow_forward</span></button>
         </div>
     </div>
