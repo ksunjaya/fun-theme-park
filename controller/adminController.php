@@ -16,6 +16,10 @@ class AdminController{
     return View::createAdminView("login_page.php", []);
   }
 
+  public function show_main(){
+    return View::createAdminView("pemilik_main.php", []);
+  }
+
   //=====untuk page melihat tiket=======
   public function view_tiket(){
     //buat urusin pagination
