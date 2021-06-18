@@ -45,7 +45,7 @@
 				echo View::createAdminView("pemilik_set_tiket.php", []);
 				break;
 			case $baseURL.'/staff':
-				require_once "controller/staffController.php";
+				require_once "controller/staffTransaksiController.php";
 				$staff_ctrl = new StaffController();
 				echo $staff_ctrl->viewAll();
 				break;
@@ -54,8 +54,14 @@
 				$reservasiCtrl = new ReservasiController();
 				echo $reservasiCtrl->HTTP_GET_reservasi();
 				break;
+			case $baseURL.'/staffaccount':
+				require_once "controller/staffAccountController.php";
+				$staffCtrl = new StaffAccountController();
+				echo $staffCtrl->view_account();
+				break;
 			default:
-				echo 'Page not found';	
+				echo '404 Not Found';
+				break;
 		}
 	}else if($_SERVER["REQUEST_METHOD"] == "POST"){
 		switch($url){
@@ -69,6 +75,15 @@
 				$admin_ctrl = new AdminController();
 				$admin_ctrl->createTicket();
 				break;
+			case $baseURL.'/login':
+				require_once "controller/accountController.php";
+				$account_controller = new AccountController();
+				$status = $account_controller->post_login();
+				if($status == false){
+					header("Location: login?status=failed");
+				}else{
+					
+				}
 			default:
 				echo 'Page not found';
 		}

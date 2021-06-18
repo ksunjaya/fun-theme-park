@@ -1,4 +1,6 @@
-
+<?php
+	require_once "model/staff.php";
+?>
 <style type="text/css">
 
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Lato:wght@400;500;600;700;900&display=swap');
@@ -116,7 +118,7 @@
 					<th>USERNAME</th>
 					<th>ACTIONS</th>
 				</tr>
-				<tr>
+				<!--<tr>
 					<td>1234123412341234</td>
 					<td>Wombat</td>
 					<td>womwom</td>
@@ -169,7 +171,7 @@
 						<input type="submit" name="update" value="UPDATE">
 						<input type="submit" name="delete" value="DELETE">
 					</td>
-				</tr>
+				</tr> -->
 				
 				<?php 
 					foreach ($result as $key => $value) {
