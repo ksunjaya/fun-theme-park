@@ -4,6 +4,15 @@
             <h1 class="c-dark-blue fs-48">LOGIN</h1>
         </div>
         <div class="login-isi" style="height: 30%;">
+            <div class="<?php
+                                if (isset ($_GET['status']) && $_GET['status'] == 'failed'){
+                                    echo 'error-text';
+                                }else{
+                                    echo 'error-text-none';
+                                }
+                        ?>" style="margin-bottom: 50px;">
+                <h2>MOHON MAAF, TERDAPAT KESALAHAN USERNAME / PASSWORD</h2>
+            </div>
             <div class="login-box" style="margin-bottom: 50px;">
                 <label class="fw-700 fs-18 c-dark-blue">USERNAME</label>
                 <input name="username" id = "username" class="login-input fw-700 fs-36 bg-light-blue" type="text">

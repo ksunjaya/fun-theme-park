@@ -207,3 +207,15 @@
     .footer-button:hover {
         text-decoration: underline;
     }
+    
+    .error-text-none {
+        display: none;
+    }
+    
+    .errot-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: red;
+    }
