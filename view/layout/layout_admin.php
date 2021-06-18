@@ -25,11 +25,14 @@
 </head>
 <body>
     <?php
+        $url = $_SERVER['REDIRECT_URL'];
+        $baseURL = $_SERVER['REQUEST_URI']; 
+	    $baseURL = dirname($baseURL);
         session_start();
-        if(isset($_SESSION["role"]) && $_SESSION["role"] == "admin"){
+        if($url == $baseURL.'/login' || (isset($_SESSION["role"]) && $_SESSION["role"] == "admin")){
             echo $content;
         }else{
-            header("Location: not-found");
+            header("Location: login");
         }
     ?>
     

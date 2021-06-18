@@ -10,6 +10,8 @@
     }
 
     public function log_out(){
+      session_start();
+
       $_SESSION["nama"] = null;
       unset($_SESSION["nama"]);
       $_SESSION["role"] = null;
