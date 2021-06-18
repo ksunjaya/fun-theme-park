@@ -24,11 +24,12 @@
         if($is_karyawan_found){
           $nama = $this->get_nama($username, "Karyawan");
           $this->start_session($nama, "staff");
+          return "karyawan";
         }else{
           return false; //login gagal
         }
       }
-      return true; //login sukses
+ 
     }
 
     private function start_session($name, $role){

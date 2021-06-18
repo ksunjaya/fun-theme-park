@@ -63,9 +63,6 @@
 				echo '404 Not Found';
 				break;
 		}
-			default:
-				echo 'Page not found';	
-		}
 	}else if($_SERVER["REQUEST_METHOD"] == "POST"){
 		switch($url){
 			case $baseURL.'/confirmation':
@@ -81,10 +78,11 @@
 			case $baseURL.'/login':
 				require_once "controller/accountController.php";
 				$account_controller = new AccountController();
-				if($account_controller->post_login() == true){
-					
-				}else{
+				$status = $account_controller->post_login();
+				if($status == false){
 					header("Location: login?status=failed");
+				}else{
+					
 				}
 			default:
 				echo 'Page not found';

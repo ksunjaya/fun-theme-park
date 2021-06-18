@@ -1,6 +1,6 @@
 <?php 
-require_once "controller/services/mysqlDB.php";
-require_once "controller/services/view.php";
+require_once "services/mysqlDB.php";
+require_once "services/view.php";
 require_once "model/staff.php";
 
 class StaffAccountController{
@@ -12,7 +12,7 @@ class StaffAccountController{
 
 	public function view_account(){
 		$result = $this->getAllStaff();
-		return View::createView('pemilik_staff_account.php',
+		return View::createAdminView('pemilik_staff_account.php',
 			[
 				"result"=> $result
 			]);
