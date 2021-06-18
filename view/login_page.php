@@ -8,9 +8,9 @@
                                 if (isset ($_GET['status']) && $_GET['status'] == 'failed'){
                                     echo 'error-text';
                                 }else{
-                                    echo 'error-text';
+                                    echo 'error-text-none';
                                 }
-                        ?>" style="margin-bottom: 50px;">
+                        ?>" style="margin-bottom: 25px;">
                 <h2>MOHON MAAF, TERDAPAT KESALAHAN USERNAME / PASSWORD</h2>
             </div>
             <div class="login-box" style="margin-bottom: 50px;">
