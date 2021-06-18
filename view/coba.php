@@ -18,7 +18,7 @@
             </div>
             <div class="login-box" style="margin-bottom: 25px;">
                 <label class="fw-700 fs-18 c-dark-blue">PASSWORD</label>
-                <input name="username" id = "password" class="login-input fw-700 fs-36 bg-light-blue" type="text">
+                <input name="username" id = "password" class="login-input fw-700 fs-36 bg-light-blue" type="password">
             </div>
             <div class="login-box">
                 <label class="fw-700 fs-18 c-dark-blue">PHOTO</label>
