@@ -12,7 +12,7 @@
                 <label class="fw-700 fs-18 c-dark-blue">PASSWORD</label>
                 <input id = "password" class="login-input fw-700 fs-36 bg-light-blue" type="password">
             </div>
-            <a class="login-next-button c-white bg-dark-blue" href=""><span class="material-icons md-48">arrow_forward</span></a>
+            <button type="submit" id="login" class="login-next-button c-white bg-dark-blue" href=""><span class="material-icons md-48">arrow_forward</span></button>
         </div>
     </div>
 </form>
