@@ -28,6 +28,10 @@ class StaffAccountController{
 		}
 		return $result;
 	}
+
+    public function view_update_pass(){
+		return View::createView('pemilik_update_staff_password.php', []);
+	}
 }
 
  ?>

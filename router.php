@@ -100,6 +100,11 @@
 				}else{
 					header("Location: staff"); //halaman staff;
 				}
+			case $baseURL.'/update':
+				require_once "controller/staffAccountController.php";
+				$staffCtrl = new StaffAccountController();
+				echo $staffCtrl->view_update_pass();
+				header('Location: updatepass');
 				break;
 			default:
 				echo 'Page not found';

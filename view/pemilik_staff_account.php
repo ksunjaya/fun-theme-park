@@ -118,60 +118,6 @@
 					<th>USERNAME</th>
 					<th>ACTIONS</th>
 				</tr>
-				<!--<tr>
-					<td>1234123412341234</td>
-					<td>Wombat</td>
-					<td>womwom</td>
-					<td class="action">
-						<input type="submit" name="update" value="UPDATE">
-						<input type="submit" name="delete" value="DELETE">
-					</td>
-				</tr>
-				<tr>
-					<td>1234123412341234</td>
-					<td>Dodo</td>
-					<td>doremi123</td>
-					<td class="action">
-						<input type="submit" name="update" value="UPDATE">
-						<input type="submit" name="delete" value="DELETE">
-					</td>
-				</tr>
-				<tr>
-					<td>1234123412341234</td>
-					<td>Dodo</td>
-					<td>doremi123</td>
-					<td class="action">
-						<input type="submit" name="update" value="UPDATE">
-						<input type="submit" name="delete" value="DELETE">
-					</td>
-				</tr>
-				<tr>
-					<td>1234123412341234</td>
-					<td>Dodo</td>
-					<td>doremi123</td>
-					<td class="action">
-						<input type="submit" name="update" value="UPDATE">
-						<input type="submit" name="delete" value="DELETE">
-					</td>
-				</tr>
-				<tr>
-					<td>1234123412341234</td>
-					<td>Dodo</td>
-					<td>doremi123</td>
-					<td class="action">
-						<input type="submit" name="update" value="UPDATE">
-						<input type="submit" name="delete" value="DELETE">
-					</td>
-				</tr>
-				<tr>
-					<td>1234123412341234</td>
-					<td>Dodo</td>
-					<td>doremi123</td>
-					<td class="action">
-						<input type="submit" name="update" value="UPDATE">
-						<input type="submit" name="delete" value="DELETE">
-					</td>
-				</tr> -->
 				
 				<?php 
 					foreach ($result as $key => $value) {
@@ -180,8 +126,14 @@
 			 			echo "<td>".$value->getNama()."</td>";
 			 			echo "<td>".$value->getUsername()."</td>";
 			 			echo "<td class ='action'> 
-			 				<input type='submit' name='update' value='UPDATE'>
+						<form method='POST' action='update' style='display:inline;'>
+							<input type='submit' name='update' value='UPDATE'>
+							<input type='hidden' name='user' value='". $value->getUsername() ."'>
+						</form>
+						<form method='POST' action='delete' style='display:inline;'>
 							<input type='submit' name='delete' value='DELETE'>
+							<input type='hidden' name='ktp' value='". $value->getKtp() ."'>
+						</form>
 							</td>";
 						echo "</tr>";
 					}
