@@ -24,7 +24,7 @@
     <p class="welcome bold">Willy Wonka</p>
   </div>
   <div style="flex:1;">
-    <a class="blue-button float-right" href="signout">SIGN OUT</a>
+    <a class="blue-button float-right" href="logout">SIGN OUT</a>
   </div>
 </div>
 

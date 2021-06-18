@@ -24,6 +24,14 @@
     </style>
 </head>
 <body>
-    <?php echo $content; ?>
+    <?php
+        session_start();
+        if(isset($_SESSION["role"]) && $_SESSION["role"] == "admin"){
+            echo $content;
+        }else{
+            header("Location: not-found");
+        }
+    ?>
+    
 </body>
 </html>

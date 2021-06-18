@@ -66,6 +66,7 @@
 				echo $staffCtrl->view_account();
 				break;
 			case $baseURL.'/not-found':
+				echo '404 Not Found';
 				break;
 			default:
 				echo '404 Not Found';
