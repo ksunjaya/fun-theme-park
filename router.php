@@ -41,6 +41,11 @@
 				$user_ctrl = new AdminController();
 				echo $user_ctrl->show_main();
 				break;
+			case $baseURL.'/log':
+				require_once "controller/adminController.php";
+				$user_ctrl = new AdminController();
+				echo $user_ctrl->show_log();
+				break;
 			case $baseURL.'/create':
 				require_once "controller/adminController.php";
 				$user_ctrl = new AdminController();

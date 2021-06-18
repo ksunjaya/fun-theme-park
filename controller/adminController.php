@@ -20,6 +20,10 @@ class AdminController{
     return View::createAdminView("pemilik_main.php", []);
   }
 
+  public function show_log(){
+    return View::createAdminView("pemilik_log.php", []);
+  }
+
   public function show_create(){
     return View::createAdminView("coba.php", []);
   }

@@ -245,3 +245,15 @@
         text-align: center;
         color: red;
     }
+    
+    .log-isi {
+        display: flex;
+        align-items: center;
+    }
+    
+    .log-isi-kiri {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 35%;
+    }
