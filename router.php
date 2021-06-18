@@ -30,10 +30,21 @@
 				$user_ctrl = new AdminController();
 				echo $user_ctrl->show_login();
 				break;
+			case $baseURL.'/logout':
+				require_once "controller/accountController.php";
+				$account_controller = new AccountController();
+				$account_controller->log_out();
+				header("Location: login");
+				break;
 			case $baseURL.'/main':
 				require_once "controller/adminController.php";
 				$user_ctrl = new AdminController();
 				echo $user_ctrl->show_main();
+				break;
+			case $baseURL.'/create':
+				require_once "controller/adminController.php";
+				$user_ctrl = new AdminController();
+				echo $user_ctrl->show_create();
 				break;
 			case $baseURL.'/tickets':
 				require_once "controller/adminController.php";
@@ -59,6 +70,9 @@
 				$staffCtrl = new StaffAccountController();
 				echo $staffCtrl->view_account();
 				break;
+			case $baseURL.'/not-found':
+				echo '404 Not Found';
+				break;
 			default:
 				echo '404 Not Found';
 				break;
@@ -79,10 +93,12 @@
 				require_once "controller/accountController.php";
 				$account_controller = new AccountController();
 				$status = $account_controller->post_login();
-				if($status == false){
+				if($status == 0){
 					header("Location: login?status=failed");
+				}else if($status == 1){
+					header("Location: main"); //halaman admin;
 				}else{
-					
+					header("Location: staff"); //halaman staff;
 				}
 			case $baseURL.'/update':
 				require_once "controller/staffAccountController.php";

@@ -6,7 +6,19 @@
     protected $db;
 
     public function __construct(){
-      $this->db = new MySQLDB("hostname", "root", "", "fun_resort");
+      $this->db = new MySQLDB("localhost", "root", "", "fun_resort");
+    }
+
+    public function log_out(){
+      session_start();
+
+      $_SESSION["nama"] = null;
+      unset($_SESSION["nama"]);
+      $_SESSION["role"] = null;
+      unset($_SESSION["role"]);
+      session_unset();
+
+      session_destroy();
     }
 
     public function post_login(){
@@ -18,15 +30,16 @@
       if($is_pemilik_found){
         $nama = $this->get_nama($username, "Pemilik");
         $this->start_session($nama, "admin");
+        return 1;
       }else{
         //kita coba login atas nama karyawan
         $is_karyawan_found = $this->find_karyawan($username, $password);
         if($is_karyawan_found){
           $nama = $this->get_nama($username, "Karyawan");
           $this->start_session($nama, "staff");
-          return "karyawan";
+          return 2;
         }else{
-          return false; //login gagal
+          return 0; //login gagal
         }
       }
  
@@ -45,7 +58,7 @@
 
       $query_result = $this->db->executeSelectQuery($query);
 
-      if(count($query_result[0]["jumlah"]) > 0) return true;
+      if($query_result[0]["jumlah"] > 0) return true;
       else return false;
     }
 
@@ -56,7 +69,7 @@
 
       $query_result = $this->db->executeSelectQuery($query);
 
-      if(count($query_result[0]["jumlah"]) > 0) return true;
+      if($query_result[0]["jumlah"] > 0) return true;
       else return false;
     }
 
@@ -70,5 +83,6 @@
       else return false;
     }
 
+    
   }
 ?>
