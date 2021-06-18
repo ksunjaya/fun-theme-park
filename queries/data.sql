@@ -67,3 +67,6 @@ VALUES (21070498, 3, '2233114112112003', '2021-07-04');
 
 INSERT INTO Transaksi
 VALUES (20210002, 21070498, '2021-07-04', 180000);
+
+UPDATE Pemilik set password = PASSWORD(password);
+UPDATE Karyawan SET password=PASSWORD(password);
