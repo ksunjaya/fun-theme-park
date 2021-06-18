@@ -21,7 +21,7 @@
   </div>
   <div style="flex:6; text-align: center;">
     <p class="welcome">Welcome</p>
-    <p class="welcome bold">Willy Wonka</p>
+    <p class="welcome bold"><?php echo $_SESSION["name"]; ?></p>
   </div>
   <div style="flex:1;">
     <a class="blue-button float-right" href="logout">SIGN OUT</a>

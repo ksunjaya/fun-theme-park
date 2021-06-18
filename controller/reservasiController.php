@@ -13,7 +13,7 @@ class ReservasiController{
   //yang diambil dari sisa tiket pada tanggal itu
   public function add_reservasi($nomor, $jumlah_orang, $ktp, $tanggal){
     $id = $this->create_unique_id($nomor, $tanggal);
-    $query = 'INSERT INTO reservasi VALUES("'.$id.'", '.$jumlah_orang.', "'.$ktp.'", "'.$tanggal.'")';
+    $query = 'INSERT INTO reservasi VALUES("'.$id.'", '.$jumlah_orang.', "'.$ktp.'", "'.$tanggal.'", 0)';
 
     $query_result = $this->db->executeNonSelectQuery($query);
     return $query_result;

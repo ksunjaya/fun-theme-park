@@ -44,6 +44,13 @@ class View {
         {
             $$key = $value;
         }
+
+        //==cek valid user==
+        session_start();
+        if(!isset($_SESSION["name"])){
+            header("Location: login");
+        }
+
         ob_start();
         include 'view/'.$view;
         $content = ob_get_contents();
