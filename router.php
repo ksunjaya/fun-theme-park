@@ -35,6 +35,11 @@
 				$user_ctrl = new AdminController();
 				echo $user_ctrl->show_main();
 				break;
+			case $baseURL.'/create':
+				require_once "controller/adminController.php";
+				$user_ctrl = new AdminController();
+				echo $user_ctrl->show_create();
+				break;
 			case $baseURL.'/tickets':
 				require_once "controller/adminController.php";
 				$user_ctrl = new AdminController();
@@ -59,6 +64,7 @@
 				$staffCtrl = new StaffAccountController();
 				echo $staffCtrl->view_account();
 				break;
+			
 			default:
 				echo '404 Not Found';
 				break;
