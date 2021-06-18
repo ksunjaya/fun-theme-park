@@ -54,6 +54,15 @@
 				$reservasiCtrl = new ReservasiController();
 				echo $reservasiCtrl->HTTP_GET_reservasi();
 				break;
+			case $baseURL.'/staffaccount':
+				require_once "controller/staffAccountController.php";
+				$staffCtrl = new StaffAccountController();
+				echo $staffCtrl->view_account();
+				break;
+			default:
+				echo '404 Not Found';
+				break;
+		}
 			default:
 				echo 'Page not found';	
 		}
