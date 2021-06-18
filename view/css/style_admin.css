@@ -226,12 +226,12 @@
         color: black;
         text-decoration: none;
         font-size: 18px;
-        font-weight: 600;
+        font-weight: 500;
     }
     
     .footer-button:hover {
         text-decoration: underline;
-        font-weight: 600;
+        font-weight: 700;
     }
     
     .error-text-none {
