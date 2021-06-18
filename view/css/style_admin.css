@@ -90,6 +90,13 @@
         align-items: center;
     }
     
+    .footer-box-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    
     .login-input {
         border: 3px transparent;
         height: 80px;
@@ -104,7 +111,6 @@
     .login-box {
         display: flex;
         flex-direction: column;
-        margin-bottom: 50px;
         position: relative;
     }
     
@@ -144,7 +150,6 @@
         height: 100px;
         cursor: pointer;
         border-radius: 30px;
-        margin-top: 40px;
         font-size: 40px;
         text-decoration: none;
         font-weight: 500;
