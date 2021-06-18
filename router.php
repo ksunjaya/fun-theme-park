@@ -45,7 +45,7 @@
 				echo View::createAdminView("pemilik_set_tiket.php", []);
 				break;
 			case $baseURL.'/staff':
-				require_once "controller/staffController.php";
+				require_once "controller/staffTransaksiController.php";
 				$staff_ctrl = new StaffController();
 				echo $staff_ctrl->viewAll();
 				break;
@@ -69,6 +69,14 @@
 				$admin_ctrl = new AdminController();
 				$admin_ctrl->createTicket();
 				break;
+			case $baseURL.'/login':
+				require_once "controller/accountController.php";
+				$account_controller = new AccountController();
+				if($account_controller->post_login() == true){
+					
+				}else{
+					header("Location: login?status=failed");
+				}
 			default:
 				echo 'Page not found';
 		}
