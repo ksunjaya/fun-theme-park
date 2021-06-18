@@ -60,10 +60,6 @@
 				echo $staffCtrl->view_account();
 				break;
 			default:
-				echo '404 Not Found';
-				break;
-		}
-			default:
 				echo 'Page not found';	
 		}
 	}else if($_SERVER["REQUEST_METHOD"] == "POST"){
