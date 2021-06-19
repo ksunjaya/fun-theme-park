@@ -89,8 +89,7 @@
 				echo View::createPengunjungView("error_page.php", ["error_code"=>404]);
 				break;
 			default:
-				echo "not found";
-				//header("Location: not-found");
+				header("Location: not-found");
 				break;
 		}
 	}else if($_SERVER["REQUEST_METHOD"] == "POST"){
