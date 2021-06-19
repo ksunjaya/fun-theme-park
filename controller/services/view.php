@@ -26,6 +26,17 @@ class View {
         {
             $$key = $value;
         }
+
+        session_start();
+        //kalau mo ke login, langsung dibolehin aja.
+        if(!isset($login)){
+            if(isset($_SESSION["role"]) && $_SESSION["role"] == "admin"){
+                $nama_user = $_SESSION["name"];
+            }else{
+                header("Location: forbidden");
+            }  
+        }
+
         ob_start();
         include 'view/'.$view;
         $content = ob_get_contents();

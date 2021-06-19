@@ -25,16 +25,7 @@
 </head>
 <body>
     <?php
-        $url = $_SERVER['REDIRECT_URL'];
-        $baseURL = $_SERVER['REQUEST_URI']; 
-	    $baseURL = dirname($baseURL);
-        session_start();
-        //kalau mo ke login, langsung dibolehin aja.
-        if($url == $baseURL.'/login' || (isset($_SESSION["role"]) && $_SESSION["role"] == "admin")){
-            echo $content;
-        }else{
-            header("Location: forbidden");
-        }
+        echo $content;
     ?>
     
 </body>

@@ -13,7 +13,7 @@ class AdminController{
   }
 
   public function show_login(){
-    return View::createAdminView("login_page.php", []);
+    return View::createAdminView("login_page.php", ["login" => true]);
   }
 
   public function show_main(){
