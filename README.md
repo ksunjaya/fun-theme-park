@@ -45,3 +45,6 @@ Password : dordor2021
 - Sharon Kezia F, 6181901006
 - Kevin Sunjaya, 6181901008
 - Vincent Kurniawan, 6181901024
+
+## Licenses
+Gambar-gambar pada folder src diambil dari Google.
