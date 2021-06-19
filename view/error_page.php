@@ -23,4 +23,6 @@
 </div>
 
 <!-- yang ini tolong dibikin center pake CSS pengunjung, terus dibikin blue button -->
-<a href="home" style="margin: auto; display: block;">Take Me Home!</a>
+<div class="error-cont">
+    <a class = "error-button" href="home">Take Me Home!</a>
+</div>
