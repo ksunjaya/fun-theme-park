@@ -28,13 +28,21 @@ class View {
         }
 
         session_start();
-        //kalau mo ke login, langsung dibolehin aja.
         if(!isset($login)){
             if(isset($_SESSION["role"]) && $_SESSION["role"] == "admin"){
                 $nama_user = $_SESSION["name"];
             }else{
                 header("Location: forbidden");
             }  
+        }else{
+            //kalau mau ke login tapi sebenernya uda login, langsung redirect ke halamannya masing-masing
+            if(isset($_SESSION["role"])){
+                if($_SESSION["role"] == "admin"){
+                    header("Location: main");
+                }else{
+                    header("Location: staff");
+                }
+            }
         }
 
         ob_start();

@@ -10,7 +10,7 @@
            <a href = "log"class="button"><h2>VIEW TRANSACTION</h2></a>
         </div>
         <div class="login-isi" style="height: 25%;">
-            <a href = "logout"class="footer-button">SIGN OUT</a>
+            <a href = "logout" class="footer-button">SIGN OUT</a>
         </div>
     </div>
 </div>

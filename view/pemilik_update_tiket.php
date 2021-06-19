@@ -185,8 +185,8 @@
 			
 			
 			<div class="navs">
-				<a class = "footer-button"href="" style="margin-bottom: 40px;"><p>HOME</p></a>
-				<a class = "footer-button"href=""><p>SIGN OUT</p></a>
+				<a class = "footer-button"href="main" style="margin-bottom: 40px;"><p>HOME</p></a>
+				<a class = "footer-button"href="logout"><p>SIGN OUT</p></a>
 			</div>
 			
 		</div>
