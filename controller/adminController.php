@@ -20,15 +20,12 @@ class AdminController{
     return View::createAdminView("pemilik_main.php", []);
   }
 
+  //=====untuk page log transaksi======
   public function show_log(){
     return View::createAdminView("pemilik_log.php", []);
   }
 
-  public function show_create(){
-    return View::createAdminView("coba.php", []);
-  }
-
-  //=====untuk page melihat tiket=======
+  //=====untuk page tiket=======
   public function view_tiket(){
     //buat urusin pagination
   	require_once "controller/limitTiketController.php";

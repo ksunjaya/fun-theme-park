@@ -1,4 +1,5 @@
 <?php
+  //untuk urusan log in, log out, entitas karyawan dan pemilik
   require_once "services/view.php";
   require_once "services/mySQLDB.php";
 

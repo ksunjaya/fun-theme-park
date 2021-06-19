@@ -7,6 +7,7 @@
 
 	if($_SERVER["REQUEST_METHOD"] == "GET"){
 		switch($url){
+			//=========USER============
 			case $baseURL.'/home':
 				require_once "controller/userController.php";
 				$user_ctrl = new userController();
@@ -17,6 +18,7 @@
 				$user_ctrl = new userController();
 				echo $user_ctrl->show_cari_tahu();
 				break;
+			//=========SERVICES==========
 			case $baseURL.'/getkuota':
 				require_once "controller/limitTiketController.php";
 				$lt_ctrl = new LimitTiketController();
@@ -27,6 +29,7 @@
 				$ht_ctrl = new HargaTiketController();
 				echo $ht_ctrl->_request_harga();
 				break;
+			//=========PRIVILEGES=========
 			case $baseURL.'/login':
 				require_once "controller/adminController.php";
 				$user_ctrl = new AdminController();
@@ -38,20 +41,25 @@
 				$account_controller->log_out();
 				header("Location: login");
 				break;
+			//============ADMIN============
 			case $baseURL.'/main':
 				require_once "controller/adminController.php";
 				$user_ctrl = new AdminController();
 				echo $user_ctrl->show_main();
 				break;
-			case $baseURL.'/log':
+			case $baseURL.'/log-transaksi':
 				require_once "controller/adminController.php";
 				$user_ctrl = new AdminController();
 				echo $user_ctrl->show_log();
 				break;
-			case $baseURL.'/create':
-				require_once "controller/adminController.php";
-				$user_ctrl = new AdminController();
-				echo $user_ctrl->show_create();
+			case $baseURL.'/staff-list':
+				require_once "controller/staffAccountController.php";
+				$staffCtrl = new StaffAccountController();
+				echo $staffCtrl->view_account();
+				break;
+			case $baseURL.'/add-staff':
+				require_once "controller/services/view.php";
+				echo View::createAdminView("coba.php", []);
 				break;
 			case $baseURL.'/tickets':
 				require_once "controller/adminController.php";
@@ -62,6 +70,7 @@
 				require_once "controller/services/view.php";
 				echo View::createAdminView("pemilik_set_tiket.php", []);
 				break;
+			//=======STAFF's PAGE ==========
 			case $baseURL.'/staff':
 				require_once "controller/staffTransaksiController.php";
 				$staff_ctrl = new StaffController();
@@ -72,16 +81,17 @@
 				$reservasiCtrl = new ReservasiController();
 				echo $reservasiCtrl->HTTP_GET_reservasi();
 				break;
-			case $baseURL.'/staffaccount':
-				require_once "controller/staffAccountController.php";
-				$staffCtrl = new StaffAccountController();
-				echo $staffCtrl->view_account();
+			//=========ERROR PAGE============
+			case $baseURL.'/forbidden':
+				require_once "controller/services/view.php";
+				echo View::createPengunjungView("error_page.php", ["error_code"=>403]);
 				break;
 			case $baseURL.'/not-found':
-				echo '404 Not Found';
+				require_once "controller/services/view.php";
+				echo View::createPengunjungView("error_page.php", ["error_code"=>404]);
 				break;
 			default:
-				echo '404 Not Found';
+				header("Location: not-found");
 				break;
 		}
 	}else if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -114,7 +124,8 @@
 				header('Location: updatepass');
 				break;
 			default:
-				echo 'Page not found';
+				header("Location: not-found");
+				break;
 		}
 	}
 ?>
