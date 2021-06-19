@@ -100,6 +100,9 @@
         status_text.style.visibility = "hidden";
       }
     });
+
+    let btn_submit = document.getElementById("btn-submit");
+    btn_submit.addEventListener("click", form_submit);
   }
 
   function get_registrasi(e){
@@ -125,10 +128,9 @@
 
       if(data_registrasi["status"] == true){
         if(data_registrasi["selesai"] == 0){
-          btn.style.disabled = false;
           status_text.style.color = "#34832D";
           status_text.innerHTML = "Data pemesan berhasil ditemukan!";
-          //====isi"in semua form nya===
+          //====isi"in semua form nya====
           nama_text.value = data_registrasi["nama"];
           jumlah_text.value = data_registrasi["jumlah"];
           jumlah_text.max = data_registrasi["jumlah"];
@@ -146,6 +148,9 @@
     status_text.style.visibility = "visible";
   }
 
+  function form_submit(e){
+
+  }
   function not_found(message, color){
     let status_text = document.getElementById("status");
     status_text.style.color = color;
@@ -162,5 +167,6 @@
     jumlah_text.value = "";
     total_harga_text.value = "";
   }
+
   init();
 </script>
