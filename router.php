@@ -1,6 +1,4 @@
 <?php
-//TODO LIST
-//2) Pindahin session control diluar layout, biar bisa nampilin nama nya di layout. Alternatif urus di view admin
 	$url = $_SERVER['REDIRECT_URL'];
 	$baseURL = $_SERVER['REQUEST_URI']; 
 	$baseURL = dirname($baseURL);
