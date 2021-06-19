@@ -48,7 +48,7 @@ class View {
         //==cek valid user==
         session_start();
         if(!isset($_SESSION["name"])){
-            header("Location: login");
+            header("Location: forbidden");
         }
 
         ob_start();
