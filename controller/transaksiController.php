@@ -35,9 +35,10 @@ class TransaksiController{
         //masukin query
         $query = 'INSERT INTO Transaksi VALUES ("'.$id_transaksi.'", '.$id_reservasi.', "'.$tanggal.'", '.$total_harga.')';
         $query_result = $this->db->executeNonSelectQuery($query);
-        $result = array();
-        $result["status"] = $query_result;
-        return $query_result;
+
+        //update reservasi, set ke "done"
+        $query_result2 = $reservasi_ctrl->set_selesai($id_reservasi);
+        return $query_result && $query_result2;
     }  
 }
 ?>
