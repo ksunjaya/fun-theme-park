@@ -48,7 +48,7 @@
 			case $baseURL.'/log-transaksi':
 				require_once "controller/adminController.php";
 				$user_ctrl = new AdminController();
-				echo $user_ctrl->show_log();
+				echo $user_ctrl->view_log();
 				break;
 			case $baseURL.'/staff-list':
 				require_once "controller/staffAccountController.php";

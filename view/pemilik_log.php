@@ -50,36 +50,16 @@
                                         <th>TOTAL TICKET</th>
                                         <th>TOTAL PRICE</th>
                                     </tr>
-                                    <tr>
-                                        <td>DUMMY</td>
-                                        <td>DUMMY</td>
-                                        <td>DUMMY</td>
-                                        <td>DUMMY</td>
-                                    </tr>
-                                    <tr>
-                                        <td>DUMMY</td>
-                                        <td>DUMMY</td>
-                                        <td>DUMMY</td>
-                                        <td>DUMMY</td>
-                                    </tr>
-                                    <tr>
-                                        <td>DUMMY</td>
-                                        <td>DUMMY</td>
-                                        <td>DUMMY</td>
-                                        <td>DUMMY</td>
-                                    </tr>
-                                    <tr>
-                                        <td>DUMMY</td>
-                                        <td>DUMMY</td>
-                                        <td>DUMMY</td>
-                                        <td>DUMMY</td>
-                                    </tr>
-                                    <tr>
-                                        <td>DUMMY</td>
-                                        <td>DUMMY</td>
-                                        <td>DUMMY</td>
-                                        <td>DUMMY</td>
-                                    </tr>
+                                    <?php 
+                                        foreach ($result as $key => $value) {
+                                            echo "<tr>";
+                                            echo "<td>".$value->getDate()."</td>";
+                                            echo "<td>".$value->getIDBooking()."</td>";
+                                            echo "<td>".$value->getTotalTicket()."</td>";
+                                            echo "<td>".$value->getTotalPrice()."</td>";
+                                            echo "</tr>";
+                                        }
+                                    ?>
                                 </table>
                             </div>
                         </div>
