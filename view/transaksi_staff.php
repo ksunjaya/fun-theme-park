@@ -149,8 +149,10 @@
   }
 
   function form_submit(e){
-
+    e.preventDefault();
+    
   }
+
   function not_found(message, color){
     let status_text = document.getElementById("status");
     status_text.style.color = color;

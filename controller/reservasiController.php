@@ -24,6 +24,13 @@ class ReservasiController{
       return json_encode($this->get_reservasi($_GET["id"], $_GET["tanggal"]));
   }
 
+  //cek apakah kode reservasi valid ato engga, cuman dipake pas staff pencet "print tiket"
+  //karena hanya meng return true ato false tanpa info detailnya.
+  public function is_valid($kode_reservasi, $tanggal){
+    $result = $this->get_reservasi($kode_reservasi, $tanggal);
+    return $result["status"] == true;
+  }
+
   public function get_reservasi($kode_reservasi, $tanggal){
     $kode_reservasi = $this->db->escapeString($kode_reservasi);
     $tanggal = $this->db->escapeString($tanggal);
