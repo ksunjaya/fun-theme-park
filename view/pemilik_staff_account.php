@@ -1,8 +1,8 @@
 <?php
 	require_once "model/staff.php";
 ?>
-<style type="text/css">
 
+<!-- <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Lato:wght@400;500;600;700;900&display=swap');
 	body {
 	    background-color: #DBE9FF;
@@ -100,19 +100,15 @@
 		bottom: 70px;
 	}
 
-</style>
+</style> -->
 
 
-<div class="white">
+<!-- <div class="white">
 	<form method="POST" action="">
 		<h1 class="title">STAFF ACCOUNT</h1>
 		<div>
 			<table>
 				<tr>
-					<!-- <th style="width: 300;">NOMOR INDUK</th>
-					<th style="width: 350;">NAMA LENGKAP</th>
-					<th style="width: 250;">USERNAME</th>
-					<th style="width: 300;">ACTIONS</th> -->
 					<th>NOMOR INDUK</th>
 					<th>NAMA LENGKAP</th>
 					<th>USERNAME</th>
@@ -120,23 +116,23 @@
 				</tr>
 				
 				<?php 
-					foreach ($result as $key => $value) {
-			 			echo "<tr>";
-			 			echo "<td>".$value->getKtp()."</td>";
-			 			echo "<td>".$value->getNama()."</td>";
-			 			echo "<td>".$value->getUsername()."</td>";
-			 			echo "<td class ='action'> 
-						<form method='POST' action='update' style='display:inline;'>
-							<input type='submit' name='update' value='UPDATE'>
-							<input type='hidden' name='user' value='". $value->getUsername() ."'>
-						</form>
-						<form method='POST' action='delete' style='display:inline;'>
-							<input type='submit' name='delete' value='DELETE'>
-							<input type='hidden' name='ktp' value='". $value->getKtp() ."'>
-						</form>
-							</td>";
-						echo "</tr>";
-					}
+					// foreach ($result as $key => $value) {
+			 		// 	echo "<tr>";
+			 		// 	echo "<td>".$value->getKtp()."</td>";
+			 		// 	echo "<td>".$value->getNama()."</td>";
+			 		// 	echo "<td>".$value->getUsername()."</td>";
+			 		// 	echo "<td class ='action'> 
+					// 	<form method='POST' action='update' style='display:inline;'>
+					// 		<input type='submit' name='update' value='UPDATE'>
+					// 		<input type='hidden' name='user' value='". $value->getUsername() ."'>
+					// 	</form>
+					// 	<form method='POST' action='delete' style='display:inline;'>
+					// 		<input type='submit' name='delete' value='DELETE'>
+					// 		<input type='hidden' name='ktp' value='". $value->getKtp() ."'>
+					// 	</form>
+					// 		</td>";
+					// 	echo "</tr>";
+					// }
 		 				
 				 ?>
 				
@@ -163,7 +159,106 @@
 			
 		</div>
 	</form>
+</div> -->
+
+
+
+<div class="login-content bg-white" style="width: 90%;">
+	<div>
+		<div class="login-h1-box" style="height: 10%;">
+            <h1 class="c-dark-blue fs-48">STAFF ACCOUNT</h1>
+        </div>
+		<div>
+			<table>
+				<tr>
+					<th>NOMOR INDUK</th>
+					<th>NAMA LENGKAP</th>
+					<th>USERNAME</th>
+					<th>ACTIONS</th>
+				</tr>
+				<?php 
+					foreach ($result as $key => $value) {
+			 			echo "<tr>";
+			 			echo "<td>".$value->getKtp()."</td>";
+			 			echo "<td id='username'>".$value->getNama()."</td>";
+			 			echo "<td>".$value->getUsername()."</td>";
+			 			echo "<td class ='action'> 
+						<form method='POST' action='update' style='display:inline;'>
+							<input type='submit' name='update' value='UPDATE'>
+							<input type='hidden' name='user' value='". $value->getUsername() ."'>
+						</form>
+						<form method='POST' action='delete' style='display:inline;' id='deletestaff'>
+							<input type='submit' name='delete' value='DELETE' id='delete'>
+							<input type='hidden' name='user' value='". $value->getUsername() ."' id='user'>
+						</form>
+							</td>";
+						echo "</tr>";
+					}
+				?>
+			</table>
+			
+			<div class="buttons">
+				<div>
+					<a href="" class="back"><span> < </span> </a>
+				</div>
+				<div>
+					<input type="submit" name="create" value="CREATE ACCOUNT" class="create" >
+				</div>
+				<div>
+					<a href="" class="next"><span> > </span> </a>
+				</div>
+			</div>
+			
+			
+			<div class="navs">
+				<a href=""><p style="line-height: 6;">HOME</p></a>
+				<a href=""><p>SIGN OUT</p></a>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+<div id="page"></div>
+    <div id="alertbox">
+        <div id="head"></div>
+        <div id="body"></div>
+        <div id="body1"></div>
+        <div id="foot"></div>
+    </div>
 </div>
 
 
 
+<script>
+    let btn = document.getElementById('delete');
+    btn.addEventListener('click', popup);  
+    
+    function popup(e){
+        e.preventDefault();
+        let page = document.getElementById('page');
+        let alertbox = document.getElementById('alertbox');
+        page.style.display = "block";
+        alertbox.style.display = "block";
+        let head = document.getElementById('head');
+        head.innerHTML = "YOU ARE ABOUT TO DELETE ACCOUNT WITH USERNAME";
+        let username = document.getElementById('user').value;
+        document.getElementById('body').innerHTML = '"' + username + '"';
+        document.getElementById('body1').innerHTML =  "ARE YOU SURE?";
+        document.getElementById('foot').innerHTML = '<button id="no">NO</button><button id="yes">YES</button>';
+        document.getElementById('yes').addEventListener('click',confirm);
+        document.getElementById('no').addEventListener('click',cancel);
+    }
+
+    function confirm(){
+        document.getElementById('alertbox').style.display = "none";
+        document.getElementById('page').style.display = "none";
+        let form = document.getElementById('deletestaff');
+        form.submit();
+    }
+
+    function cancel(){
+    	document.getElementById('alertbox').style.display = "none";
+        document.getElementById('page').style.display = "none";
+    }
+</script>

@@ -30,7 +30,7 @@ class StaffAccountController{
 	}
 
     public function view_update_pass(){
-		return View::createView('pemilik_update_staff_password.php', []);
+		return View::createAdminView('pemilik_update_staff_password.php', []);
 	}
 }
 
