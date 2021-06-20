@@ -121,6 +121,12 @@
 				echo $staffCtrl->view_update_pass();
 				header('Location: updatepass');
 				break;
+			//===============STAFF================
+			case $baseURL.'/post-ticket':
+				require_once "controller/transaksiController.php";
+				$transaksi_ctrl = new TransaksiController();
+				echo $transaksi_ctrl->_POST_AddTransaksi(true);
+				break;
 			default:
 				header("Location: not-found");
 				break;
