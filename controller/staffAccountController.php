@@ -74,10 +74,6 @@ class StaffAccountController{
 			$this->db->executeNonSelectQuery($query);
 		}
 	}
-
-	// public function view_create_account(){
-	// 	return View::createAdminView('pemilik_staff_create_account.php', []);
-	// }
 }
 
  ?>

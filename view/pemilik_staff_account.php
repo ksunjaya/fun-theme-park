@@ -175,12 +175,8 @@
 				</div>
 			</div>
 			<div class="navs">
-				<div>
-					<a href="main" class="footer-button ">HOME</a>
-				</div>
-				<div>
-					<a href="logout " class="footer-button ">SIGN OUT</a>
-				</div>
+				<a href="main" class="footer-button ">HOME</a>
+				<a href="logout " class="footer-button ">SIGN OUT</a>
 			</div>
 		</div>	
 	</div>
