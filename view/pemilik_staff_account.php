@@ -103,73 +103,14 @@
 </style> -->
 
 
-<!-- <div class="white">
-	<form method="POST" action="">
-		<h1 class="title">STAFF ACCOUNT</h1>
-		<div>
-			<table>
-				<tr>
-					<th>NOMOR INDUK</th>
-					<th>NAMA LENGKAP</th>
-					<th>USERNAME</th>
-					<th>ACTIONS</th>
-				</tr>
-				
-				<?php 
-					// foreach ($result as $key => $value) {
-			 		// 	echo "<tr>";
-			 		// 	echo "<td>".$value->getKtp()."</td>";
-			 		// 	echo "<td>".$value->getNama()."</td>";
-			 		// 	echo "<td>".$value->getUsername()."</td>";
-			 		// 	echo "<td class ='action'> 
-					// 	<form method='POST' action='update' style='display:inline;'>
-					// 		<input type='submit' name='update' value='UPDATE'>
-					// 		<input type='hidden' name='user' value='". $value->getUsername() ."'>
-					// 	</form>
-					// 	<form method='POST' action='delete' style='display:inline;'>
-					// 		<input type='submit' name='delete' value='DELETE'>
-					// 		<input type='hidden' name='ktp' value='". $value->getKtp() ."'>
-					// 	</form>
-					// 		</td>";
-					// 	echo "</tr>";
-					// }
-		 				
-				 ?>
-				
 
-			</table>
-			
-			<div class="buttons">
-				<div>
-					<a href="" class="back"><span> < </span> </a>
-				</div>
-				<div>
-					<input type="submit" name="create" value="CREATE ACCOUNT" class="create" >
-				</div>
-				<div>
-					<a href="" class="next"><span> > </span> </a>
-				</div>
-			</div>
-			
-			
-			<div class="navs">
-				<a href=""><p style="line-height: 6;">HOME</p></a>
-				<a href=""><p>SIGN OUT</p></a>
-			</div>
-			
-		</div>
-	</form>
-</div> -->
-
-
-
-<div class="login-content bg-white" style="width: 90%;">
-	<div>
+<div class="login-main">
+	<div class="login-content bg-white" style="width: 90%;">
 		<div class="login-h1-box" style="height: 10%;">
             <h1 class="c-dark-blue fs-48">STAFF ACCOUNT</h1>
         </div>
-		<div>
-			<table>
+		<div class="login-isi" style="height: 70%; flex-direction: row; align-items: flex-start;">
+			<table style="margin-top: 40px; width: 1200px;">
 				<tr>
 					<th>NOMOR INDUK</th>
 					<th>NAMA LENGKAP</th>
@@ -196,41 +137,68 @@
 					}
 				?>
 			</table>
-			
-			<div class="buttons">
+		</div>
+		<div class="footer-box-button" style="height: 10%;">	
+			<!-- <div class="buttons">
 				<div>
 					<a href="" class="back"><span> < </span> </a>
 				</div>
 				<div>
-					<input type="submit" name="create" value="CREATE ACCOUNT" class="create" >
+					<a href="create-account" class="create" ><span>CREATE ACCOUNT<span></a>
 				</div>
 				<div>
 					<a href="" class="next"><span> > </span> </a>
 				</div>
+			</div> -->
+
+			<div class="buttons">
+				<div>
+					<?php
+						if($page > 0) {
+							//kalau di halaman 1 ga perlu tampilin tombol back
+							$href = 'staff-list?page='.($page - 1);
+							echo '<a href="'.$href.'" class="back"><span> < </span> </a>'; 
+						}
+					?>
+				</div>
+				<div>
+					<a href="create-account" class="create" ><span>CREATE ACCOUNT<span></a>
+				</div>
+				<div>
+					<?php
+						if($page < $last_page-1){
+							//kalau halaman terkahir ga perlu tombol next
+							$href = 'staff-list?page='.($page + 1);
+							echo '<a href="'.$href.'" class="next"><span> > </span> </a>'; 
+						} 
+					?>
+				</div>
 			</div>
-			
-			
 			<div class="navs">
-				<a href=""><p style="line-height: 6;">HOME</p></a>
-				<a href=""><p>SIGN OUT</p></a>
+				<div>
+					<a href="main" class="footer-button ">HOME</a>
+				</div>
+				<div>
+					<a href="logout " class="footer-button ">SIGN OUT</a>
+				</div>
 			</div>
-			
-		</div>
+		</div>	
 	</div>
 </div>
 
-<div id="page"></div>
+<div id="page">
     <div id="alertbox">
-        <div id="head"></div>
-        <div id="body"></div>
-        <div id="body1"></div>
-        <div id="foot"></div>
+        <div id="alertboxhead"></div>
+        <div id="alertboxbody"></div>
+        <div id="alertboxbody1"></div>
+        <div id="alertboxfoot" style="margin-top: 40px;"></div>
     </div>
 </div>
 
 
 
 <script>
+    
     let btn = document.getElementById('delete');
     btn.addEventListener('click', popup);  
     
@@ -240,12 +208,12 @@
         let alertbox = document.getElementById('alertbox');
         page.style.display = "block";
         alertbox.style.display = "block";
-        let head = document.getElementById('head');
+        let head = document.getElementById('alertboxhead');
         head.innerHTML = "YOU ARE ABOUT TO DELETE ACCOUNT WITH USERNAME";
         let username = document.getElementById('user').value;
-        document.getElementById('body').innerHTML = '"' + username + '"';
-        document.getElementById('body1').innerHTML =  "ARE YOU SURE?";
-        document.getElementById('foot').innerHTML = '<button id="no">NO</button><button id="yes">YES</button>';
+        document.getElementById('alertboxbody').innerHTML = '"' + username + '"';
+        document.getElementById('alertboxbody1').innerHTML =  "ARE YOU SURE?";
+        document.getElementById('alertboxfoot').innerHTML = '<button id="no">NO</button><button id="yes">YES</button>';
         document.getElementById('yes').addEventListener('click',confirm);
         document.getElementById('no').addEventListener('click',cancel);
     }

@@ -68,6 +68,10 @@
 				require_once "controller/services/view.php";
 				echo View::createAdminView("pemilik_set_tiket.php", []);
 				break;
+			case $baseURL.'/create-account':
+				require_once "controller/services/view.php";
+				echo View::createAdminView("pemilik_staff_create_account.php", []);
+				break;
 			//=======STAFF's PAGE ==========
 			case $baseURL.'/staff':
 				require_once "controller/staffTransaksiController.php";
@@ -119,7 +123,18 @@
 				require_once "controller/staffAccountController.php";
 				$staffCtrl = new StaffAccountController();
 				echo $staffCtrl->view_update_pass();
-				header('Location: updatepass');
+				break;
+			case $baseURL.'/updatepass':
+				require_once "controller/staffAccountController.php";
+				$staffCtrl = new StaffAccountController();
+				echo $staffCtrl->updatePass();
+				header('Location: staff-list');
+				break;
+			case $baseURL.'/delete':
+				require_once "controller/staffAccountController.php";
+				$staffCtrl = new StaffAccountController();
+				echo $staffCtrl->deletePass();
+				header('Location: staff-list');
 				break;
 			default:
 				header("Location: not-found");

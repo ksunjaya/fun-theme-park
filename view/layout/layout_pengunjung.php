@@ -9,5 +9,5 @@
         <a href="home"><img id = "fun_logo" src="src/logo.png"></a>
     </div>
 	<?php echo $content; ?>
-</body>
+</body> 
 </html>

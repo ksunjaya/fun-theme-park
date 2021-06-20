@@ -151,7 +151,7 @@
 
             <div class="footer-box-button" style="height: 15%;">
                 <div style="margin-right: 10px; ">
-                    <a href="staffaccount" class="back" style="background-color: #cf4a4a; color: white; "><span style="font-size: 30px;"> BACK </span> </a>
+                    <a href="staff-list" class="back" style="background-color: #cf4a4a; color: white; "><span style="font-size: 30px;"> BACK </span> </a>
                 </div>
                 <div style="margin-right: 10px;">
                     <input type="submit" class="next" style="background-color: #2f549e; color: white;" value="➔" id="update">
@@ -161,11 +161,11 @@
 </form> 
 
 
-<div id="page"></div>
+<div id="page">
     <div id="alertbox">
-        <div id="head"></div>
-        <div id="body"></div>
-        <div id="foot"></div>
+        <div id="alertboxhead"></div>
+        <div id="alertboxbody"></div>
+        <div id="alertboxfoot"></div>
     </div>
 </div>
 
@@ -229,11 +229,11 @@
         let alertbox = document.getElementById('alertbox');
         page.style.display = "block";
         alertbox.style.display = "block";
-        let head = document.getElementById('head');
+        let head = document.getElementById('alertboxhead');
         head.innerHTML = "PASSWORD SUCCESSFULLY UPDATED FOR USERNAME";
         let username = document.getElementById('username').value;
-        document.getElementById('body').innerHTML = '"' + username + '"';
-        document.getElementById('foot').innerHTML = '<button id="ok">OK</button>';
+        document.getElementById('alertboxbody').innerHTML = '"' + username + '"';
+        document.getElementById('alertboxfoot').innerHTML = '<button id="ok">OK</button>';
         document.getElementById('ok').addEventListener('click',confirm);
     }
 
