@@ -150,7 +150,27 @@
 
   function form_submit(e){
     e.preventDefault();
-    
+    let kode_reservasi = document.getElementById("kode-reservasi");
+    let harga = document.getElementById("harga");
+    let jumlah = document.getElementById("jumlah");
+    let input = {
+      "kode_reservasi" : kode_reservasi.value,
+      "harga" : <?php echo $harga ?> * jumlah.value
+    };
+
+    let config = {
+      method: "post",
+      headers:{
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(input)
+    }
+    console.log(input);
+    fetch('post-ticket', config)
+    .then(function(res){return res.text();})
+    .then(function(data){
+      console.log(data);
+    });
   }
 
   function not_found(message, color){

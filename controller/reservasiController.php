@@ -60,7 +60,7 @@ class ReservasiController{
   public function set_selesai($id){
     $id = $this->db->escapeString($id);
     
-    $query = 'UPDATE transaksi SET selesai=1 WHERE id_reservasi="'.$id.'"';
+    $query = 'UPDATE reservasi SET selesai=1 WHERE id_reservasi="'.$id.'"';
     $query_result = $this->db->executeNonSelectQuery($query);
     
     return $query_result;

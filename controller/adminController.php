@@ -4,6 +4,7 @@ define("MAX", 6); //jumlah row maksimum per halaman
 require_once "services/mySQLDB.php";
 require_once "services/view.php";
 require_once "model/tiket.php";
+require_once"model/log.php";
 class AdminController{
   protected $db;
 
@@ -21,7 +22,8 @@ class AdminController{
   }
 
   //=====untuk page log transaksi======
-  public function show_log(){
+  public function view_log(){
+    
     return View::createAdminView("pemilik_log.php", []);
   }
 
@@ -54,6 +56,21 @@ class AdminController{
 
     foreach ($query_result as $key => $value) {
         $result[] = new Tiket($value['tanggal'], $value['limit_harian'], $value['max_pesanan'], $value['sisa_tiket'], $value['harga']);
+    }
+    return $result;
+  }
+
+  private function getAllLogTransaksi($page, $count){
+    $page *= MAX;
+    $query = 'SELECT transaksi.id_reservasi, transaksi.tanggal, transaksi.total_harga, reservasi.jml_orang
+              FROM transaksi INNER JOIN reservasi ON transaksi.id_reservasi = reservasi.id_reservasi 
+              ORDER BY transaksi.tanggal
+              LIMIT '.$page.','.$count;
+    $query_result = $this->db->executeSelectQuery($query);
+    $result = [];
+
+    foreach ($query_result as $key => $value) {
+        $result[] = new Log($value['tanggal'], $value['id_reservasi'], $value['jml_orang'], $value['total_harga']);
     }
     return $result;
   }
