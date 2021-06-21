@@ -14,11 +14,11 @@ class Log{
 	}
 
 	public function getRawDate(){
-		return $this->tanggal;
+		return $this->date;
 	}
 
 	public function getDate(){
-		$formatted = strtotime($this->tanggal);
+		$formatted = strtotime($this->date);
 		$formatted = date('j F Y', $formatted);
 		return $formatted;
 	}

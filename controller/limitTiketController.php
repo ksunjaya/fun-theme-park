@@ -59,9 +59,5 @@ class LimitTiketController{
       return $query_result[0]['count'];
     }
   }
-
-  public function count_log () {
-    
-  }
 }
 ?>

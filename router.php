@@ -108,6 +108,11 @@
 				$admin_ctrl = new AdminController();
 				$admin_ctrl->createTicket();
 				break;
+			case $baseURL.'/log-transaksi-filter':
+				require_once "controller/adminController.php";
+				$admin_ctrl = new AdminController();
+				echo $admin_ctrl->view_log();
+				break;
 			case $baseURL.'/login':
 				require_once "controller/accountController.php";
 				$account_controller = new AccountController();
@@ -136,6 +141,7 @@
 				echo $staffCtrl->deletePass();
 				header('Location: staff-list');
 				break;
+			
 			//===============STAFF================
 			case $baseURL.'/post-ticket':
 				require_once "controller/transaksiController.php";

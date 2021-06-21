@@ -1,4 +1,4 @@
-<form id="log-form" class="login-main" action="login" method="POST">
+<form id="log-form" class="login-main" action="log-transaksi-filter" method="POST">
         <div class="login-content bg-white" style="width: 90%;">
             <div class="login-h1-box" style="height: 15%;">
                 <h1 class="c-dark-blue fs-48">LOG</h1>
@@ -19,7 +19,7 @@
                             <input type="date" name="dateUntil">
                         </div>
                         <div class="footer-box-button" style="margin-bottom: 25px;">
-                            <button type="submit" id="login" class="login-next-button c-white bg-dark-blue" href=""><span class="material-icons md-48">arrow_forward</span></button>
+                            <button type="submit" class="login-next-button c-white bg-dark-blue" href=""><span class="material-icons md-48">arrow_forward</span></button>
                         </div>
                         <div class="login-h1-box" style="margin-bottom: 25px;">
                             <h1 class="c-dark-blue fs-48">SUMMARY</h1>

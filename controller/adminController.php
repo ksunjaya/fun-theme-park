@@ -39,7 +39,15 @@ class AdminController{
 
   //=====untuk page log transaksi======
   public function view_log(){
-    return View::createAdminView("pemilik_log.php", []);
+    $page = 0;
+    if(isset($_GET["page"])) $page = $_GET["page"];
+    $result = $this->getLogTransaksi($page, MAX);
+    $last_page = count ($result) / MAX;
+    return View::createAdminView('pemilik_log.php',[
+      "result"=> $result,
+      "page"=> $page,
+      "last_page"=>$last_page
+    ]);
   }
 
   //=====untuk page tiket, OOP nya masih belum bagus tapi uda jalan=======
@@ -76,11 +84,19 @@ class AdminController{
   }
 
   private function getLogTransaksi($page, $count){
+    
     $page *= MAX;
     $query = 'SELECT transaksi.id_reservasi, transaksi.tanggal, transaksi.total_harga, reservasi.jml_orang
               FROM transaksi INNER JOIN reservasi ON transaksi.id_reservasi = reservasi.id_reservasi 
               ORDER BY transaksi.tanggal
               LIMIT '.$page.','.$count;
+    if (isset($_POST['dateFrom']) && $_POST['dateFrom'] != "" && isset($_POST['dateUntil']) && $_POST['dateUntil'] != ""){
+      $query = 'SELECT transaksi.id_reservasi, transaksi.tanggal, transaksi.total_harga, reservasi.jml_orang
+              FROM transaksi INNER JOIN reservasi ON transaksi.id_reservasi = reservasi.id_reservasi 
+              WHERE transaksi.tanggal >= '.$_POST['dateFrom'].' AND transaksi.tanggal <= '.$_POST['dateUntil'].'
+              ORDER BY transaksi.tanggal
+              LIMIT '.$page.','.$count;
+    }
     $query_result = $this->db->executeSelectQuery($query);
     $result = [];
 
