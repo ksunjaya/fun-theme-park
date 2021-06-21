@@ -72,7 +72,12 @@
                                             echo "<td>".$value->getDate()."</td>";
                                             echo "<td>".$value->getIDBooking()."</td>";
                                             echo "<td>".$value->getTotalTicket()."</td>";
-                                            echo "<td>".$value->getTotalPrice()."</td>";
+                                            $sum = $value->getTotalPrice();
+                                            $y = "";
+                                            for($i = strlen($sum)-3; $i >= 0; $i -= 3){
+                                                $y = substr($sum, 0, $i).'.'.substr($sum, $i, strlen($sum));
+                                            }
+                                            echo "<td>Rp. ".$y."</td>";
                                             echo "</tr>";
                                         }
                                     ?>

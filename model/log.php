@@ -32,16 +32,8 @@ class Log{
 	}
 
     public function getTotalPrice(){
-            return 'Rp. '.$this->format_harga($this->totalPrice);
+            return $this->totalPrice;
 	}
-
-	private function format_harga($harga){
-    $result = "";
-    for($i = strlen($harga)-3; $i >= 0; $i -= 3){
-      $result = substr($harga, 0, $i).'.'.substr($harga, $i, strlen($harga));
-    }
-    return $result;
-  }
 }
 
 ?>

@@ -75,7 +75,7 @@ class AdminController{
     return $result;
   }
 
-  private function getAllLogTransaksi($page, $count){
+  private function getLogTransaksi($page, $count){
     $page *= MAX;
     $query = 'SELECT transaksi.id_reservasi, transaksi.tanggal, transaksi.total_harga, reservasi.jml_orang
               FROM transaksi INNER JOIN reservasi ON transaksi.id_reservasi = reservasi.id_reservasi 
