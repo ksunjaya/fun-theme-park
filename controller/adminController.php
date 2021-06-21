@@ -41,7 +41,22 @@ class AdminController{
   public function view_log(){
     $page = 0;
     if(isset($_GET["page"])) $page = $_GET["page"];
-    $result = $this->getLogTransaksi($page, MAX);
+
+    $query = 'SELECT transaksi.id_reservasi, transaksi.tanggal, transaksi.total_harga, reservasi.jml_orang
+              FROM transaksi INNER JOIN reservasi ON transaksi.id_reservasi = reservasi.id_reservasi 
+              ORDER BY transaksi.tanggal';
+
+    if (isset($_POST['dateFrom']) && $_POST['dateFrom'] != "" && isset($_POST['dateUntil']) && $_POST['dateUntil'] != ""){
+      $dateFrom = $_POST['dateFrom'];
+      $dateUntil = $_POST['dateUntil'];
+      $this->db->escapeString($dateFrom);
+      $this->db->escapeString($dateUntil);
+      $query = 'SELECT transaksi.id_reservasi, transaksi.tanggal, transaksi.total_harga, reservasi.jml_orang
+              FROM transaksi INNER JOIN reservasi ON transaksi.id_reservasi = reservasi.id_reservasi 
+              WHERE transaksi.tanggal >= '."'".$dateFrom."'".' AND transaksi.tanggal <= '."'".$dateUntil."'".'
+              ORDER BY transaksi.tanggal';
+    }
+    $result = $this->getLogTransaksi($page, MAX, $query);
     $last_page = count ($result) / MAX;
     return View::createAdminView('pemilik_log.php',[
       "result"=> $result,
@@ -83,20 +98,9 @@ class AdminController{
     return $result;
   }
 
-  private function getLogTransaksi($page, $count){
-    
+  private function getLogTransaksi($page, $count, $query){
+    $query .= ' LIMIT '.$page.','.$count;
     $page *= MAX;
-    $query = 'SELECT transaksi.id_reservasi, transaksi.tanggal, transaksi.total_harga, reservasi.jml_orang
-              FROM transaksi INNER JOIN reservasi ON transaksi.id_reservasi = reservasi.id_reservasi 
-              ORDER BY transaksi.tanggal
-              LIMIT '.$page.','.$count;
-    if (isset($_POST['dateFrom']) && $_POST['dateFrom'] != "" && isset($_POST['dateUntil']) && $_POST['dateUntil'] != ""){
-      $query = 'SELECT transaksi.id_reservasi, transaksi.tanggal, transaksi.total_harga, reservasi.jml_orang
-              FROM transaksi INNER JOIN reservasi ON transaksi.id_reservasi = reservasi.id_reservasi 
-              WHERE transaksi.tanggal >= '.$_POST['dateFrom'].' AND transaksi.tanggal <= '.$_POST['dateUntil'].'
-              ORDER BY transaksi.tanggal
-              LIMIT '.$page.','.$count;
-    }
     $query_result = $this->db->executeSelectQuery($query);
     $result = [];
 
