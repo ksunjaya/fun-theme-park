@@ -65,6 +65,18 @@ class AdminController{
     ]);
   }
 
+  private function getLogTransaksi($page, $count, $query){
+    $query .= ' LIMIT '.$page.','.$count;
+    $page *= MAX;
+    $query_result = $this->db->executeSelectQuery($query);
+    $result = [];
+
+    foreach ($query_result as $key => $value) {
+        $result[] = new Log($value['tanggal'], $value['id_reservasi'], $value['jml_orang'], $value['total_harga']);
+    }
+    return $result;
+  }
+
   //=====untuk page tiket, OOP nya masih belum bagus tapi uda jalan=======
   public function view_tiket(){
     //buat urusin pagination
@@ -98,17 +110,7 @@ class AdminController{
     return $result;
   }
 
-  private function getLogTransaksi($page, $count, $query){
-    $query .= ' LIMIT '.$page.','.$count;
-    $page *= MAX;
-    $query_result = $this->db->executeSelectQuery($query);
-    $result = [];
-
-    foreach ($query_result as $key => $value) {
-        $result[] = new Log($value['tanggal'], $value['id_reservasi'], $value['jml_orang'], $value['total_harga']);
-    }
-    return $result;
-  }
+  
 
   public function createTicket(){
     $tanggal = $_POST["tanggal"];
