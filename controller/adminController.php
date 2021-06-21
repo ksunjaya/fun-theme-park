@@ -4,7 +4,7 @@ define("MAX", 6); //jumlah row maksimum per halaman
 require_once "services/mySQLDB.php";
 require_once "services/view.php";
 require_once "model/tiket.php";
-require_once"model/log.php";
+require_once "model/log.php";
 class AdminController{
   protected $db;
 
@@ -21,13 +21,28 @@ class AdminController{
     return View::createAdminView("pemilik_main.php", []);
   }
 
+  //=====untuk page staff list=======
+  public function view_staff_accounts(){
+    require_once "controller/staffAccountController.php";
+    $staff_acc_controller = new StaffAccountController();
+    $last_page = ($staff_acc_controller->count_all()) / MAX;
+    $page = 0; //set default nya dulu mo ada request dari GET ato engga
+    if(isset($_GET["page"])) $page = $_GET["page"];
+
+    $result = $staff_acc_controller->getAllStaff();
+    return View::createAdminView('pemilik_staff_account.php',[
+			"result"=> $result,
+      "page"=>$page,
+      "last_page"=>$last_page
+		]);
+  }
+
   //=====untuk page log transaksi======
   public function view_log(){
-    
     return View::createAdminView("pemilik_log.php", []);
   }
 
-  //=====untuk page tiket=======
+  //=====untuk page tiket, OOP nya masih belum bagus tapi uda jalan=======
   public function view_tiket(){
     //buat urusin pagination
   	require_once "controller/limitTiketController.php";
