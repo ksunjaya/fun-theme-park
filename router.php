@@ -51,9 +51,9 @@
 				echo $user_ctrl->view_log();
 				break;
 			case $baseURL.'/staff-list':
-				require_once "controller/staffAccountController.php";
-				$staffCtrl = new StaffAccountController();
-				echo $staffCtrl->view_account();
+				require_once "controller/adminController.php";
+				$admin_ctrl = new AdminController();
+				echo $admin_ctrl->view_staff_accounts();
 				break;
 			case $baseURL.'/add-staff':
 				require_once "controller/services/view.php";

@@ -1,5 +1,9 @@
 <?php 
-require_once "services/mysqlDB.php";
+/*
+Kelas ini digunakan untuk control panel administrator, dimana admin bisa liat, edit, dan delete.
+Dependencies : mySQLDB.php, view.php, model/staff.php
+*/
+require_once "services/mySQLDB.php";
 require_once "services/view.php";
 require_once "model/staff.php";
 
@@ -10,24 +14,13 @@ class StaffAccountController{
 		$this->db = new MySQLDB("localhost","root","","fun_resort");
 	}
 
-	public function view_account(){
-		$result = $this->getAllStaff();
-		return View::createAdminView('pemilik_staff_account.php',
-			[
-				"result"=> $result
-			]);
+	public function count_all(){
+		$query = 'SELECT COUNT(ktp) AS "count" FROM karyawan';
+		$query_result = $this->db->executeSelectQuery($query);
 
-		// //buat urusin pagination
-		// $last_page = ($this->count_all()) / MAX;
-		// $page = 0;    //by default akan ke halaman 1
-		// if(isset($_GET["page"])) $page = $_GET["page"];
-		// //fetch
-		// $result = $this->getAllStaff($page, MAX);
-		// return View::createAdminView('pemilik_staff_account.php',[
-		// 	"result"=> $result,
-		//   	"page"=> $page,
-		//   	"last_page"=>$last_page
-		// ]);
+		if($query == false) return false;
+    	else 				return $query_result[0]['count'];
+    
 	}
 
 	public function getAllStaff(){
@@ -41,16 +34,6 @@ class StaffAccountController{
 		}
 		return $result;
 	}
-
-	// public function count_all(){
-	// 	$query = 'SELECT COUNT(ktp) AS "count" FROM karyawan';
-	// 	$query_result = $this->db->executeSelectQuery($query);
-	
-	// 	if($query == false) return false;
-	// 	else{
-	// 	  return $query_result[0]['count'];
-	// 	}
-	// }
 
 	public function view_update_pass(){
 		$username = $_POST['user'];
