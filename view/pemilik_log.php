@@ -66,7 +66,7 @@
                         <div class="log-kanan-footer">
                             <div class="log-kanan-footer-kiri">
                                 <div>
-                                    <a href="logout " class="footer-button ">HOME</a>
+                                    <a href="main " class="footer-button ">HOME</a>
                                 </div>
                                 <div>
                                     <a href="logout " class="footer-button ">SIGN OUT</a>
@@ -74,8 +74,8 @@
                             </div>
                             <div class="log-kanan-footer-kanan">
 
-                                <button type="submit " id="login " class="login-next-button log-table-next-button " href=" " style="margin-right: 25px;"><span class="material-icons md-48">arrow_back</span></button>
-                                <button type="submit " id="login " class="login-next-button log-table-next-button " href=" "><span class="material-icons md-48 ">arrow_forward</span></button>
+                                <button type="submit " id="login " class="login-next-button log-table-next-button " href=" " style="margin-right: 25px;"><span class="material-icons md-48">chevron_left</span></button>
+                                <button type="submit " id="login " class="login-next-button log-table-next-button " href=" "><span class="material-icons md-48 ">chevron_right</span></button>
                             </div>
                         </div>
                     </div>

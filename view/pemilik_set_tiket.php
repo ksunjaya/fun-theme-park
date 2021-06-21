@@ -16,9 +16,12 @@
         border-radius: 30px;
         border: solid 6px #266E97;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
     }
     .title{
+        margin-top: 40px;
+        margin-bottom: 40px;
         color: #1A6793;
         font-size: 48px;
         text-align: center;
@@ -28,10 +31,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        position: fixed;
-        top: 80%;
-        left: 50%;
-        transform: translate(-50%);
     }
 
     .back, .next{
@@ -93,6 +92,9 @@
         top: 5px;
         left: 15px;
     }
+    .login-back-button {
+        border: solid 3px #EE4848;
+    }
 </style>
 
 <?php
@@ -102,46 +104,35 @@
     $today = $today->format("Y-m-d");
 ?>
 
-<div class="white">
-    <form method="POST" action="add-ticket">
-        <h1 class="title">SET NEW TICKET</h1>
-            <div class="login-box">
-                <label class="fw-700 fs-18 c-dark-blue">DATE</label>
-                <?php
-                echo '<input name="tanggal" type="date" class="login-input fw-700 fs-36 bg-light-blue" style="font-size: 25px; font-weight: 500;" min="'.$today.'">';
-                ?>
-            </div>
-            <div class="login-box" style="display: inline-block;">
-                <label class="fw-700 fs-18 c-dark-blue">MAX TICKETS ALLOWED</label>
-                <input name="jumlah-tiket" type="number" class="login-input fw-700 fs-36 bg-light-blue" style="width: 350px;">
-                <span class="c-dark-blue" style="font-weight: 500; font-size: 30px;">tickets</span>
-            </div>
-            <br>
-            <div class="login-box" style="display: inline-block;">
-                <label class="fw-700 fs-18 c-dark-blue">MAX TICKETS ALLOWES / PARTY</label>
-                <input name="max-tiket" type="number" class="login-input fw-700 fs-36 bg-light-blue" style="width: 350px;">
-                <span class="c-dark-blue" style="font-weight: 500; font-size: 30px;">/ party</span>
-            </div>
-            <br>
-             <div class="login-box" style="display: inline-block;">
-                <label class="fw-700 fs-18 c-dark-blue">PRICE / TICKET</label>
-                <input name="harga" type="number" class="login-input fw-700 fs-36 bg-light-blue" style="width: 350px;">
-                <span class="c-dark-blue" style="font-weight: 500; font-size: 30px;">/ ticket</span>
-            </div>
-
-
-            <div class="buttons">
-                <div style="margin-right: 10px; ">
-                    <a href="tickets" class="back" style="background-color: #cf4a4a; color: white; "><span style="font-size: 30px;"> BACK </span> </a>
-                </div>
-                <div style="margin-right: 10px;">
-                    <input type="submit" class="next" style="background-color: #2f549e; color: white;" value="➔">
-                </div>
-            </div>
-
-            
-    </form>
-</div>
+<form method = "POST" action="add-ticket" class="white">
+    <h1 class="title">SET NEW TICKET</h1>    
+    <div class="login-box">
+        <label class="fw-700 fs-18 c-dark-blue">DATE</label>
+        <?php
+        echo '<input name="tanggal" type="date" class="login-input fw-700 fs-36 bg-light-blue" style="width: 440px;font-size: 25px; font-weight: 500;" min="'.$today.'">';
+        ?>
+    </div>
+    <div class="login-box" style="display: inline-block;">
+        <label class="fw-700 fs-18 c-dark-blue">MAX TICKETS ALLOWED</label>
+        <input name="jumlah-tiket" type="number" class="login-input fw-700 fs-36 bg-light-blue" style="width: 350px;">
+        <span class="c-dark-blue" style="font-weight: 500; font-size: 30px;">tickets</span>
+    </div>
+    <div class="login-box" style="display: inline-block;">
+        <label class="fw-700 fs-18 c-dark-blue">MAX TICKETS ALLOWES / PARTY</label>
+        <input name="max-tiket" type="number" class="login-input fw-700 fs-36 bg-light-blue" style="width: 350px;">
+        <span class="c-dark-blue" style="font-weight: 500; font-size: 30px;">/ party</span>
+    </div>
+    <div class="login-box" style="display: inline-block;">
+        <label class="fw-700 fs-18 c-dark-blue">PRICE / TICKET</label>
+        <input name="harga" type="number" class="login-input fw-700 fs-36 bg-light-blue" style="width: 350px;">
+        <span class="c-dark-blue" style="font-weight: 500; font-size: 30px;">/ ticket</span>
+    </div>
+    <div class="buttons">
+        <a class="login-back-button c-white" href="tickets" style="width: 94px; height:94px; margin-right:10px;"><span class="material-icons md-48">arrow_back</span></a>
+        <button type="submit" class="login-next-button c-white bg-dark-blue" ><span class="material-icons md-48">arrow_forward</span></button>
+        
+    </div>
+</form>
 
 
 
