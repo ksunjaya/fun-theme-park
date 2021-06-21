@@ -77,7 +77,9 @@
   </form>
   </div>
   </div>
-  <div id="nomor-tiket-container" style="flex: 4;"></div>
+  <div id="struk-container" class="white-box struk-container">
+   
+  </div>
 </div>
 
 <script>
@@ -114,6 +116,9 @@
     let jumlah_text = document.getElementById("jumlah");
     let total_harga_text = document.getElementById("harga");
     let id = document.getElementById("kode-reservasi").value;
+    let post_result = document.getElementById("post-result");
+
+    post_result.style.visibility="hidden"; //buat ilangin status transaksi sebelumnya
 
     //cek dulu tanggal di kode reservasi nya uda bener ato belom
     let hari_ini = <?php echo $raw_today->format("ymd"); ?>;
@@ -179,11 +184,31 @@
     .then(function(data){
       if(data == "true"){
         //berhasil
-        clear_all();
+        
         document.getElementById("status").style.visibility = "hidden";
         kode_reservasi.value = "";
         post_result.innerHTML = "Transaksi Berhasil!";
         post_result.style.color = "#34832D";
+
+        //tampilin struk nya di sebelah kanan
+        let struk_container = document.getElementById("struk-container");
+        //buang dulu semua elemen dari struk sebelumnya
+        while(struk_container.lastElementChild){
+          struk_container.removeChild(struk_container.lastElementChild);
+        }
+        console.log(jumlah.value);
+        for(let i = 0; i < jumlah.value; i++){
+          let new_p = document.createElement("p");
+          let txt = document.createTextNode(input["kode_reservasi"] + "-" + (i+1));
+          new_p.appendChild(txt);
+          new_p.style.margin = "5%";
+          struk_container.appendChild(new_p);
+
+          let line = document.createElement("hr");
+          struk_container.appendChild(line);
+        }
+        
+        clear_all();
       }else{
         //tidak berhasil
         post_result.innerHTML = "Pembeli sudah melakukan transaksi sebelumnya!";
