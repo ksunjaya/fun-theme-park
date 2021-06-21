@@ -47,7 +47,6 @@ class ReservasiController{
       $details["nama"] = $query_result[0]["nama"];
       $details["selesai"] = $query_result[0]["selesai"];
     }
-
     return $details;
   }
 

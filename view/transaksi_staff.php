@@ -73,6 +73,7 @@
     </div>
 
     <input type="submit" class="blue-button" id="btn-submit" value="Cetak" style="margin: 0% 40% 0% 40%;">
+    <p id="post-result" style="text-align: center; margin-right: 5%;font-weight: 800; color: #34832D; visibility: hidden">Transaksi berhasil!</p>
   </form>
   </div>
   </div>
@@ -90,7 +91,7 @@
       total_harga_text.value = (<?php echo $harga ?> * jumlah_text.value).toLocaleString('en-US', {style: 'currency',currency: 'IDR'});
     });
 
-    let kode_reservasi = document.getElementById("kode-reservasi");
+    /*let kode_reservasi = document.getElementById("kode-reservasi");
     kode_reservasi.addEventListener("keyup", function(event) {
       if(kode_reservasi.value.length >= 6){
         tombol_cari.click();
@@ -99,7 +100,7 @@
         clear_all();
         status_text.style.visibility = "hidden";
       }
-    });
+    });*/
 
     let btn_submit = document.getElementById("btn-submit");
     btn_submit.addEventListener("click", form_submit);
@@ -129,7 +130,7 @@
       if(data_registrasi["status"] == true){
         if(data_registrasi["selesai"] == 0){
           status_text.style.color = "#34832D";
-          status_text.innerHTML = "Data pemesan berhasil ditemukan!";
+          status_text.innerHTML = "Reservasi berhasil ditemukan!";
           //====isi"in semua form nya====
           nama_text.value = data_registrasi["nama"];
           jumlah_text.value = data_registrasi["jumlah"];
@@ -153,11 +154,18 @@
     let kode_reservasi = document.getElementById("kode-reservasi");
     let harga = document.getElementById("harga");
     let jumlah = document.getElementById("jumlah");
+    let post_result = document.getElementById("post-result");
     let input = {
       "kode_reservasi" : kode_reservasi.value,
       "harga" : <?php echo $harga ?> * jumlah.value
     };
-
+    
+    if(input["kode_reservasi"] == "" || input["harga"] == ""){
+      post_result.innerHTML = "Pastikan seluruh data sudah terinput dengan baik!";
+      post_result.style.color = "red";
+      post_result.style.visibility="visible";
+      return;
+    }
     let config = {
       method: "post",
       headers:{
@@ -165,11 +173,23 @@
       },
       body: JSON.stringify(input)
     }
-    console.log(input);
+
     fetch('post-ticket', config)
     .then(function(res){return res.text();})
     .then(function(data){
-      console.log(data);
+      if(data == "true"){
+        //berhasil
+        clear_all();
+        document.getElementById("status").style.visibility = "hidden";
+        kode_reservasi.value = "";
+        post_result.innerHTML = "Transaksi Berhasil!";
+        post_result.style.color = "#34832D";
+      }else{
+        //tidak berhasil
+        post_result.innerHTML = "Pembeli sudah melakukan transaksi sebelumnya!";
+        post_result.style.color = "red";
+      }
+      post_result.style.visibility="visible";
     });
   }
 

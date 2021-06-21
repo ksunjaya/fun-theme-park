@@ -1,7 +1,7 @@
 <?php
 
 class View {
-    //yang ini khusus buat pengunjung aja, ntar bikin function baru buat admin
+
     public static function createPengunjungView ($view, $param)
     {
         foreach ($param as $key => $value)
