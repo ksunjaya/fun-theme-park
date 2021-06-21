@@ -45,7 +45,7 @@
 						$href = 'tickets?page='.($page + 1);
 						echo '<a href="'.$href.'" class="login-next-button log-table-next-button" style="width: 80px; height: 80px; margin-left: 15px;"><span class="material-icons md-48">chevron_right</span></a>';
 						// echo '<a href="'.$href.'" class="next"><span> > </span> </a>'; 
-					} 
+					}
 				?>
 			</div>
 			

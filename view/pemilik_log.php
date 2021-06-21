@@ -10,13 +10,13 @@
                             <h2>FROM</h2>
                         </div>
                         <div class="log-kiri-row">
-                            <input type="date" id="dateFrom">
+                            <input type="date" name="dateFrom">
                         </div>
                         <div class="log-kiri-row">
                             <h2>UNTIL</h2>
                         </div>
                         <div class="log-kiri-row" style="margin-bottom: 25px;">
-                            <input type="date" id="dateFrom">
+                            <input type="date" name="dateUntil">
                         </div>
                         <div class="footer-box-button" style="margin-bottom: 25px;">
                             <button type="submit" id="login" class="login-next-button c-white bg-dark-blue" href=""><span class="material-icons md-48">arrow_forward</span></button>
@@ -26,11 +26,27 @@
                         </div>
                         <div class="log-kiri-row log-txt-biru" style="margin-bottom: 25px;">
                             <label class="fw-700 fs-18 c-dark-blue">TOTAL INCOME</label>
-                            <h3>Rp. 2,590,000</h3>
+                            <h3>Rp. <?php
+                                $sum = 0;
+                                foreach ($result as $key => $value){
+                                    $sum+=$value->getTotalPrice();
+                                }
+                                $x = "";
+                                for($i = strlen($sum)-3; $i >= 0; $i -= 3){
+                                    $x = substr($sum, 0, $i).'.'.substr($sum, $i, strlen($sum));
+                                }
+                                echo $x;
+                            ?></h3>
                         </div>
                         <div class="log-kiri-row log-txt-biru ">
                             <label class="fw-700 fs-18 c-dark-blue ">TOTAL CUSTOMER</label>
-                            <h3>38</h3>
+                            <h3><?php
+                                $sum2 = 0;
+                                foreach ($result as $key => $value){
+                                    $sum2+=$value->getTotalTicket();
+                                }
+                                echo $sum2;
+                            ?></h3>
                         </div>
                     </div>
                 </div>
@@ -73,9 +89,20 @@
                                 </div>
                             </div>
                             <div class="log-kanan-footer-kanan">
-
-                                <button type="submit " id="login " class="login-next-button log-table-next-button " href=" " style="margin-right: 25px;"><span class="material-icons md-48">chevron_left</span></button>
-                                <button type="submit " id="login " class="login-next-button log-table-next-button " href=" "><span class="material-icons md-48 ">chevron_right</span></button>
+                                <?php
+                                if($page > 0) {
+                                    //kalau di halaman 1 ga perlu tampilin tombol back
+                                    $href = 'tickets?page='.($page - 1);
+                                    echo '<a class="login-next-button log-table-next-button " href="'.$href.'" style="margin-right: 25px;"><span class="material-icons md-48">chevron_left</span></a>'; 
+                                }
+                                if($page < $last_page-1){
+                                    //kalau halaman terkahir ga perlu tombol next
+                                    $href = 'tickets?page='.($page + 1);
+                                    echo '<a class="login-next-button log-table-next-button " href="'.$href.'"><span class="material-icons md-48">chevron_right</span></a>'; 
+                                    // echo '<a href="'.$href.'" class="next"><span> > </span> </a>'; 
+                                }
+                                ?>
+        
                             </div>
                         </div>
                     </div>
