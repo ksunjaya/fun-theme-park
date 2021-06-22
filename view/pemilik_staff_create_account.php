@@ -34,7 +34,7 @@
 </div> -->
 
 <!-- Revisi: -->
-<form id = "login-form" class="login-main" method="POST">
+<form id = "login-form" class="login-main">
     <div class="login-content bg-white">
         <div class="login-h1-box" style="height: 10%; margin-top:10px; margin-bottom:10px;">
             <h1 class="c-dark-blue fs-48">CREATE</h1>
@@ -88,9 +88,9 @@ function onSubmit(e){
 
     let password = document.querySelectorAll("input[type='password']");
     formData.append("password", password.value);
-    
+
     //====POST=====
-    fetch('upload-staff-picture?username=' + 'ksunjaya'.value, {
+    fetch('add-staff', {
         method: 'POST',
         body: formData
     })
@@ -100,18 +100,16 @@ function onSubmit(e){
     })
     .then(response =>{
         if(response["result"] == true){
-            let file_name = response["file_name"];
-            console.log("from inside : " + file_name);
-            //lanjut submit form
-            
+            window.location = "staff-list";
         }else if(response["result"] == "error_copy"){
-
+            console.err("Server error : unable to copy files");
         }else if(response["result"] == "format_error"){
-            
+            console.err("Only .jpeg and .png are allowed");
         }else if(response["result"] == "no_pic"){
-
+            console.err("Please select a picture first!");
         }else{
-
+            //internal database error
+            console.err("Error : internal database error");
         }
     });
 

@@ -59,11 +59,29 @@ class StaffAccountController{
 	}
 
 	public function add_staff(){
+		//init
+		$ktp = $this->db->escapeString($_POST["ktp"]);
+		$nama = $this->db->escapeString($_POST["fullname"]);
+		$username = $this->db->escapeString($_POST["username"]);
+		$password = $this->db->escapeString($_POST["password"]);
+
+		//coba upload foto
+		$result = $this->upload_file($username); //folder_name adalah username
+
+		//kalau berhasil upload foto
+		if($result['result'] == true){
+			$file_name = $this->db->escapeString($result["file_name"]);
+			$query = 'INSERT INTO karyawan VALUES ("'.$ktp.'", "'.$nama.'", "'.$username.'", PASSWORD("'.$password.'"), "'.$file_name.'")';
+			$query_result = $this->db->executeNonSelectQuery($query);
+
+			$result['result'] = $query_result;
+		}
 		
+		return json_encode($result);
 	}
-	//folder_name adalah username
-	private function upload_file(){
-		$folder_name = $this->db->escapeString($_POST["username"]);
+
+	private function upload_file($folder_name){
+		//$folder_name = $this->db->escapeString($_POST["username"]);
 
 		$upload_dir = dirname(__DIR__)."\\uploads\\";
 		//kalau belum ada foldernya, harus dibikin dulu
@@ -81,14 +99,14 @@ class StaffAccountController{
 				$newname = $upload_dir.$folder_name.'\\'.$result["name"];
 				if(move_uploaded_file($result["temp_dir"], $newname)){
 			 		$result["result"] =  true;
-					
+					$result["file_name"] = $newname;
 				}else{
 			 		$result["result"] = "error_copy";
 				}
 			}else $result["result"] = "format_error";
 		  }else $result["result"] = "no_pic";
 		}
-		return json_encode($result);
+		return $result;
 	}
 
 

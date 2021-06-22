@@ -140,12 +140,12 @@
 				echo $staffCtrl->deletePass();
 				header('Location: staff-list');
 				break;
-			case $baseURL.'/upload-staff-picture':
+			case $baseURL.'/add-staff':
 				require_once "controller/staffAccountController.php";
 				$staffCtrl = new StaffAccountController();
-				echo $staffCtrl->upload_file();
+				echo $staffCtrl->add_staff();
 				break;
-			//===============STAFF================
+			//=============STAFF================
 			case $baseURL.'/post-ticket':
 				require_once "controller/transaksiController.php";
 				$transaksi_ctrl = new TransaksiController();

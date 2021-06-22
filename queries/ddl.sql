@@ -3,6 +3,7 @@
   PENTING! Tolong jalanin query ini buat modify table nya : 
 
   ALTER TABLE karyawan ADD UNIQUE(username);
+  ALTER TABLE karyawan ADD photo_location varchar(100);
 */
 
 /*Pengunjung (KTP, nama, nomor_hp)
