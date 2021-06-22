@@ -57,6 +57,26 @@ class StaffAccountController{
 			$this->db->executeNonSelectQuery($query);
 		}
 	}
+
+	public function upload_file($folder_name){
+		if($_SERVER["REQUEST_METHOD"] == "POST"){
+		  $result = array();
+		  if($_FILES['upfile']['name'] != ""){
+			if(substr($_FILES['upfile']['name'], -4, 4) == ".jpg" || substr($_FILES['upfile']['name'], -4, 4) == ".png"){
+				$result["name"] = $_FILES['upfile']['name'];
+				$result["temp_dir"] = $_FILES['upfile']['tmp_name'];
+
+				$newname = dirname(dirname(__DIR__))."\\uploads\\".$result["name"];
+				if(move_uploaded_file($result["temp_dir"], $newname)){
+			 		$result["result"] = "true";
+				}else{
+			 		$result["result"] = "error";
+				}
+			}else $result["result"] = "format_error";
+		  }else $result["result"] = "no_pic";
+		}
+		return json_encode($result);
+	}
 }
 
  ?>
