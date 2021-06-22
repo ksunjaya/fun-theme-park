@@ -97,6 +97,13 @@ body {
     flex-direction: column;
 }
 
+.footer2-box-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 .login-input {
     border: 3px transparent;
     height: 80px;
