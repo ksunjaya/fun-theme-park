@@ -193,7 +193,7 @@
 
 
 
-<script>
+<script defer>
     
     let btn = document.getElementById('delete');
     btn.addEventListener('click', popup);  
