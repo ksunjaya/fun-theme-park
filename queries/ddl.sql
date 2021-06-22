@@ -1,8 +1,8 @@
 /*
+  22 JUNI!
   PENTING! Tolong jalanin query ini buat modify table nya : 
 
-  ALTER TABLE reservasi ADD selesai INT(1) NOT NULL;
-  ALTER TABLE transaksi MODIFY id_transaksi varchar(12);
+  ALTER TABLE karyawan ADD UNIQUE(username);
 */
 
 /*Pengunjung (KTP, nama, nomor_hp)
@@ -28,7 +28,8 @@ CREATE TABLE Karyawan
   ktp varchar(16) PRIMARY KEY, 
   nama varchar(50) NOT NULL, 
   username varchar(25) NOT NULL,
-  password varchar(50) NOT NULL
+  password varchar(50) NOT NULL,
+  UNIQUE(username)
 );
 
 CREATE TABLE Pemilik (
