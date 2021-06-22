@@ -58,7 +58,14 @@ class StaffAccountController{
 		}
 	}
 
+	//folder_name adalah username
 	public function upload_file($folder_name){
+		$upload_dir = dirname(dirname(__DIR__))."\\uploads\\";
+		//kalau belum ada foldernya, harus dibikin dulu
+		if(!file_exists($upload_dir.$folder_name)){
+			mkdir($upload_dir.$folder_name, 0777, true);
+		}
+
 		if($_SERVER["REQUEST_METHOD"] == "POST"){
 		  $result = array();
 		  if($_FILES['upfile']['name'] != ""){
@@ -66,9 +73,10 @@ class StaffAccountController{
 				$result["name"] = $_FILES['upfile']['name'];
 				$result["temp_dir"] = $_FILES['upfile']['tmp_name'];
 
-				$newname = dirname(dirname(__DIR__))."\\uploads\\".$result["name"];
+				$newname = $upload_dir.$folder_name.'\\'.$result["name"];
 				if(move_uploaded_file($result["temp_dir"], $newname)){
-			 		$result["result"] = "true";
+			 		$result["result"] =  true;
+					$result["file_name"] = $newname;
 				}else{
 			 		$result["result"] = "error";
 				}

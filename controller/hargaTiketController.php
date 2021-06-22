@@ -22,7 +22,7 @@ class HargaTiketController{
       $query_result = $this->db->executeSelectQuery($query);
 
       if(count($query_result) > 0) return $query_result[0]["harga"];
-      else echo "INTERNAL ERROR : Harga tiket untuk tanggal ".$tanggal." tidak dapat ditemukan.";
+      else return false;//echo "INTERNAL ERROR : Harga tiket untuk tanggal ".$tanggal." tidak dapat ditemukan.";
     }
   }
 

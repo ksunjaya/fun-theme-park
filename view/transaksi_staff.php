@@ -6,6 +6,12 @@
   $tiket_ctrl = new HargaTiketController();
   $harga = $tiket_ctrl->get_harga($raw_today->format("ymd"));
 
+  if($harga == false){
+    require_once "controller/services/view.php";
+		echo View::createPengunjungView("error_page.php", ["error_code"=>001]);
+    exit();
+  }
+  
   function format_harga($harga){
     $result = "";
     for($i = strlen($harga)-3; $i >= 0; $i -= 3){

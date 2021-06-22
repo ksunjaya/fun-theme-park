@@ -172,17 +172,22 @@
 
 <script>
 function init(){
-    login-form.addEventListener("submit", onSubmit);
+    //login-form.addEventListener("submit", onSubmit);
+    
+    let photo = document.getElementById("photo");
+    photo.addEventListener("change", onFileUpload);
 }
 
-function onSubmit(e){
+function onFileUpload(e){
+    let username_text = document.getElementById("username");
+
     let formData = new FormData();
     let fileField = document.querySelector("input[type='file']");
 
     let status = true;
     formData.append('upfile', fileField.files[0]);
 
-    fetch('upload-staff-picture', {
+    fetch('upload-staff-picture?username=' + username_text.value, {
         method: 'POST',
         body: formData
     })
@@ -190,7 +195,12 @@ function onSubmit(e){
     .catch(error => {
         console.error("Error when uploading image : ", error);
         status = false;
+    })
+    .then(response =>{
+        
     });
+
+    if(status==false) e.preventDefault();
 }
 
 init();

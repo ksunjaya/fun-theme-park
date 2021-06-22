@@ -9,6 +9,10 @@
         $title = "Oops, the gate is closed!";
         $message = "Our kingdom doesn't allowed you to enter this page. Please contact our guardians if this was a mistake.";
         $translation = "Saat ini Anda tidak memiliki akses untuk melihat halaman ini.";
+    }else if($error_code == 001){
+        $title = "Internal Server Error (001)";
+        $message = "Server couldn't found today's ticket price. Please contact your administrator to solve this error.";
+        $translation = "Pemilik belum menentukan harga tiket untuk hari ini. Mohon hubungi pemilik(administrator) untuk melengkapi administrasi hari ini.";
     }
 ?>
 
