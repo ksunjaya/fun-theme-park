@@ -20,8 +20,8 @@
         align-items: center;
     }
     .title{
-        margin-top: 40px;
-        margin-bottom: 40px;
+        margin-top: 25px;
+        margin-bottom: 25px;
         color: #1A6793;
         font-size: 48px;
         text-align: center;

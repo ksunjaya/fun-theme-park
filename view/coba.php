@@ -1,4 +1,4 @@
-<form id = "login-form" class="login-main" action="create" method="POST">
+<form id = "login-form" class="login-main" action="createaccount" method="POST">
     <div class="login-content bg-white">
         <div class="login-h1-box" style="height: 10%;">
             <h1 class="c-dark-blue fs-48">CREATE</h1>
@@ -25,9 +25,9 @@
                 <input name="photo" id = "photo" class="login-input fw-700 fs-36 bg-light-blue" type="file">
             </div>
         </div>
-        <div class="footer-box-button" style="height: 15%;">
-            <a href = "main" class="login-back-button c-white" style = "margin-right:20px;" href=""><span class="material-icons md-48">arrow_back</span></a>
-            <button type="submit" id="login" class="login-next-button c-white bg-dark-blue" href=""><span class="material-icons md-48">arrow_forward</span></button>
+        <div class="footer2-box-button" style="height: 15%;">
+            <a href = "staff-list" class="login-back-button c-white" style = "margin-right:20px;" href=""><span class="material-icons md-48">arrow_back</span></a>
+            <button type="submit" class="login-next-button c-white bg-dark-blue" href=""><span class="material-icons md-48">arrow_forward</span></button>
         </div>
     </div>
 </form>
