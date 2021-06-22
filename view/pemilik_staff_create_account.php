@@ -168,13 +168,10 @@
 
 <script>
 function init(){
-    //login-form.addEventListener("submit", onSubmit);
-    
-    let photo = document.getElementById("photo");
-    photo.addEventListener("change", onFileUpload);
+    login-form.addEventListener("submit", onSubmit);
 }
 
-function onFileUpload(e){
+function onSubmit(e){
     let username_text = document.getElementById("username");
 
     let formData = new FormData();
