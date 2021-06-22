@@ -39,7 +39,42 @@ class AdminController{
 
   //=====untuk page log transaksi======
   public function view_log(){
-    return View::createAdminView("pemilik_log.php", []);
+    $page = 0;
+    if(isset($_GET["page"])) $page = $_GET["page"];
+
+    $query = 'SELECT transaksi.id_reservasi, transaksi.tanggal, transaksi.total_harga, reservasi.jml_orang
+              FROM transaksi INNER JOIN reservasi ON transaksi.id_reservasi = reservasi.id_reservasi 
+              ORDER BY transaksi.tanggal';
+
+    if (isset($_POST['dateFrom']) && $_POST['dateFrom'] != "" && isset($_POST['dateUntil']) && $_POST['dateUntil'] != ""){
+      $dateFrom = $_POST['dateFrom'];
+      $dateUntil = $_POST['dateUntil'];
+      $this->db->escapeString($dateFrom);
+      $this->db->escapeString($dateUntil);
+      $query = 'SELECT transaksi.id_reservasi, transaksi.tanggal, transaksi.total_harga, reservasi.jml_orang
+              FROM transaksi INNER JOIN reservasi ON transaksi.id_reservasi = reservasi.id_reservasi 
+              WHERE transaksi.tanggal >= '."'".$dateFrom."'".' AND transaksi.tanggal <= '."'".$dateUntil."'".'
+              ORDER BY transaksi.tanggal';
+    }
+    $result = $this->getLogTransaksi($page, MAX, $query);
+    $last_page = count ($result) / MAX;
+    return View::createAdminView('pemilik_log.php',[
+      "result"=> $result,
+      "page"=> $page,
+      "last_page"=>$last_page
+    ]);
+  }
+
+  private function getLogTransaksi($page, $count, $query){
+    $query .= ' LIMIT '.$page.','.$count;
+    $page *= MAX;
+    $query_result = $this->db->executeSelectQuery($query);
+    $result = [];
+
+    foreach ($query_result as $key => $value) {
+        $result[] = new Log($value['tanggal'], $value['id_reservasi'], $value['jml_orang'], $value['total_harga']);
+    }
+    return $result;
   }
 
   //=====untuk page tiket, OOP nya masih belum bagus tapi uda jalan=======
@@ -75,20 +110,7 @@ class AdminController{
     return $result;
   }
 
-  private function getAllLogTransaksi($page, $count){
-    $page *= MAX;
-    $query = 'SELECT transaksi.id_reservasi, transaksi.tanggal, transaksi.total_harga, reservasi.jml_orang
-              FROM transaksi INNER JOIN reservasi ON transaksi.id_reservasi = reservasi.id_reservasi 
-              ORDER BY transaksi.tanggal
-              LIMIT '.$page.','.$count;
-    $query_result = $this->db->executeSelectQuery($query);
-    $result = [];
-
-    foreach ($query_result as $key => $value) {
-        $result[] = new Log($value['tanggal'], $value['id_reservasi'], $value['jml_orang'], $value['total_harga']);
-    }
-    return $result;
-  }
+  
 
   public function createTicket(){
     $tanggal = $_POST["tanggal"];

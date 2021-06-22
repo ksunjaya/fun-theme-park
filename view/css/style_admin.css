@@ -20,7 +20,6 @@ body {
 .login-content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     width: 40%;
     height: 90%;
@@ -95,6 +94,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
+    flex-direction: column;
 }
 
 .login-input {
@@ -415,30 +415,30 @@ th {
     border-color: #DBE9FF;
 }
 
-
-
-
-table, tr, td, th {
+table,
+tr,
+td,
+th {
     border: 1px solid black;
     border-collapse: collapse;
     text-align: center;
-  }
+}
 
 table {
     width: 1200;
 }
 
-th{
+th {
     height: 65px;
     font-size: 25px;
 }
 
-tr{
+tr {
     height: 55px;
     font-size: 20px;
 }
 
-.action input{
+.action input {
     background-color: #DBE9FF;
     color: #1A6793;
     border: none;
@@ -449,30 +449,37 @@ tr{
     font-weight: 600;
 }
 
-.buttons{
+.buttons {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
-    position: fixed;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%);
-    bottom: 150px;;
 }
 
-.create{
+.create {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 200px;
     background-color: #DBE9FF;
     color: #1A6793;
-    border: none;
-    border-radius: 20px;
-    padding: 12px 14px 12px 14px;
+    border: solid 3px #DBE9FF;
+    border-radius: 30px;
     font-size: 20px;
     font-family: Cairo;
     font-weight: 700;
-    margin: 15px;
     text-decoration: none;
+    transition: 0.1s;
 }
+
+.create:hover {
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+    transition: 0.1s;
+    background-color: white;
+    cursor: pointer;
+    border: solid 3px #1A6793;
+}
+
 
 /* .create:hover{
     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
@@ -482,7 +489,8 @@ tr{
     border: solid 3px #1A6793;
 } */
 
-.back, .next{
+.back,
+.next {
     background-color: #DBE9FF;
     color: #1A6793;
     border: none;
@@ -494,27 +502,27 @@ tr{
     text-decoration: none;
 }
 
-.navs{
+.navs {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    margin-top: 20px;
 }
 
-#page{
+#page {
     display: none;
     position: fixed;
     top: 0px;
     left: 0px;
     width: 100%;
-    
 }
 
-#alertbox{
+#alertbox {
     display: none;
     position: fixed;
     background: #DBE9FF;
-    border-radius: 15px; 
+    border-radius: 15px;
     width: 600px;
     height: 350px;
     margin-top: 200px;
@@ -524,7 +532,7 @@ tr{
     transform: translate(-50%);
 }
 
-#alertboxhead{
+#alertboxhead {
     text-align: center;
     margin: 10px;
     margin-top: 50px;
@@ -533,27 +541,27 @@ tr{
     font-weight: 500;
 }
 
-#alertboxbody{
+#alertboxbody {
     text-align: center;
     color: #1A6793;
     font-size: 30px;
     font-weight: 700;
 }
 
-#alertboxbody1{
+#alertboxbody1 {
     text-align: center;
     color: black;
     font-size: 40px;
     font-weight: 700;
 }
 
-#alertboxfoot{
+#alertboxfoot {
     text-align: center;
     margin-top: 100px;
 }
-      
-#ok{
-    background-color: #2f549e;    
+
+#ok {
+    background-color: #2f549e;
     color: white;
     border: none;
     border-radius: 30px;
@@ -562,8 +570,9 @@ tr{
     font-family: Cairo;
     font-weight: 600;
 }
-      
-#yes, #no{
+
+#yes,
+#no {
     color: white;
     border: none;
     border-radius: 30px;
@@ -572,13 +581,13 @@ tr{
     font-family: Cairo;
     font-weight: 600;
 }
-      
-#yes{
+
+#yes {
     background-color: green;
     margin-left: 5px;
 }
 
-#no{
+#no {
     background-color: red;
     margin-right: 5px;
 }

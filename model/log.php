@@ -14,11 +14,11 @@ class Log{
 	}
 
 	public function getRawDate(){
-		return $this->tanggal;
+		return $this->date;
 	}
 
 	public function getDate(){
-		$formatted = strtotime($this->tanggal);
+		$formatted = strtotime($this->date);
 		$formatted = date('j F Y', $formatted);
 		return $formatted;
 	}
@@ -32,16 +32,8 @@ class Log{
 	}
 
     public function getTotalPrice(){
-            return 'Rp. '.$this->format_harga($this->totalPrice);
+            return $this->totalPrice;
 	}
-
-	private function format_harga($harga){
-    $result = "";
-    for($i = strlen($harga)-3; $i >= 0; $i -= 3){
-      $result = substr($harga, 0, $i).'.'.substr($harga, $i, strlen($harga));
-    }
-    return $result;
-  }
 }
 
 ?>
