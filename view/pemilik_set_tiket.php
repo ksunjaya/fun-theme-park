@@ -95,6 +95,8 @@
     .login-back-button {
         border: solid 3px #EE4848;
     }
+
+
 </style>
 
 <?php
@@ -128,8 +130,8 @@
         <span class="c-dark-blue" style="font-weight: 500; font-size: 30px;">/ ticket</span>
     </div>
     <div class="buttons">
-        <a class="login-back-button c-white" href="tickets" style="width: 94px; height:94px; margin-right:10px;"><span class="material-icons md-48">arrow_back</span></a>
-        <button type="submit" class="login-next-button c-white bg-dark-blue" ><span class="material-icons md-48">arrow_forward</span></button>
+        <a class="login-back-button c-white" href="tickets" style="width: 94px; height:94px; margin-right:10px;"><span class="txtButton">BACK</span></a>
+        <button type="submit" class="login-next-button c-white bg-dark-blue" ><span class="txtButton">NEXT</span></button>
         
     </div>
 </form>
