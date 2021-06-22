@@ -136,6 +136,9 @@
 				echo $staffCtrl->deletePass();
 				header('Location: staff-list');
 				break;
+			//Admin's staff account list : add account
+			case $baseURL.'/upload-staff-picture':
+				break;
 			//===============STAFF================
 			case $baseURL.'/post-ticket':
 				require_once "controller/transaksiController.php";

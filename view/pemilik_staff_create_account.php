@@ -169,3 +169,29 @@
         </div>
     </div>
 </form>
+
+<script>
+function init(){
+    login-form.addEventListener("submit", onSubmit);
+}
+
+function onSubmit(e){
+    let formData = new FormData();
+    let fileField = document.querySelector("input[type='file']");
+
+    let status = true;
+    formData.append('upfile', fileField.files[0]);
+
+    fetch('upload-staff-picture', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .catch(error => {
+        console.error("Error when uploading image : ", error);
+        status = false;
+    });
+}
+
+init();
+</script>
