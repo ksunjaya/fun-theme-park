@@ -134,7 +134,7 @@
 <!-- Revisi: -->
 <form id = "login-form" class="login-main" action="createaccount" method="POST">
     <div class="login-content bg-white">
-        <div class="login-h1-box" style="height: 10%;">
+        <div class="login-h1-box" style="height: 10%; margin-top:10px; margin-bottom:10px;">
             <h1 class="c-dark-blue fs-48">CREATE</h1>
         </div>
         <div class="login-isi" style="height: 70%;">
