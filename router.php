@@ -2,7 +2,6 @@
 	$url = $_SERVER['REDIRECT_URL'];
 	$baseURL = $_SERVER['REQUEST_URI']; 
 	$baseURL = dirname($baseURL);
-//jaldkfjadfladfadjlkjaf
 	if($_SERVER["REQUEST_METHOD"] == "GET"){
 		switch($url){
 			//=========USER============
@@ -141,8 +140,10 @@
 				echo $staffCtrl->deletePass();
 				header('Location: staff-list');
 				break;
-			//Admin's staff account list : add account
 			case $baseURL.'/upload-staff-picture':
+				require_once "controller/staffAccountController.php";
+				$staffCtrl = new StaffAccountController();
+				echo $staffCtrl->upload_file();
 				break;
 			//===============STAFF================
 			case $baseURL.'/post-ticket':

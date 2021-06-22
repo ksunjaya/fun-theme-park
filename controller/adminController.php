@@ -24,6 +24,7 @@ class AdminController{
 
   //=====untuk page staff list=======
   public function view_staff_accounts(){
+    require_once "staffAccountController.php";
     $staff_acc_controller = new StaffAccountController();
     $last_page = ($staff_acc_controller->count_all()) / MAX;
     $page = 0; //set default nya dulu mo ada request dari GET ato engga
@@ -38,11 +39,11 @@ class AdminController{
   }
 
   public function upload_photo(){
-    $staff_acc_controller = new StaffAccountController();
+    /*$staff_acc_controller = new StaffAccountController();
     $folder_name = $_GET["username"];
-		return $staff_acc_controller->upload_file($folder_name);
+		return $staff_acc_controller->upload_file($folder_name);*/
   }
-  
+
   //=====untuk page log transaksi======
   public function view_log(){
     $page = 0;

@@ -58,9 +58,14 @@ class StaffAccountController{
 		}
 	}
 
+	public function add_staff(){
+		
+	}
 	//folder_name adalah username
-	public function upload_file($folder_name){
-		$upload_dir = dirname(dirname(__DIR__))."\\uploads\\";
+	private function upload_file(){
+		$folder_name = $this->db->escapeString($_POST["username"]);
+
+		$upload_dir = dirname(__DIR__)."\\uploads\\";
 		//kalau belum ada foldernya, harus dibikin dulu
 		if(!file_exists($upload_dir.$folder_name)){
 			mkdir($upload_dir.$folder_name, 0777, true);
@@ -76,15 +81,17 @@ class StaffAccountController{
 				$newname = $upload_dir.$folder_name.'\\'.$result["name"];
 				if(move_uploaded_file($result["temp_dir"], $newname)){
 			 		$result["result"] =  true;
-					$result["file_name"] = $newname;
+					
 				}else{
-			 		$result["result"] = "error";
+			 		$result["result"] = "error_copy";
 				}
 			}else $result["result"] = "format_error";
 		  }else $result["result"] = "no_pic";
 		}
 		return json_encode($result);
 	}
+
+
 }
 
  ?>

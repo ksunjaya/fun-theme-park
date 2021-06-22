@@ -34,7 +34,7 @@
 </div> -->
 
 <!-- Revisi: -->
-<form id = "login-form" class="login-main" action="createaccount" method="POST">
+<form id = "login-form" class="login-main" method="POST">
     <div class="login-content bg-white">
         <div class="login-h1-box" style="height: 10%; margin-top:10px; margin-bottom:10px;">
             <h1 class="c-dark-blue fs-48">CREATE</h1>
@@ -54,7 +54,7 @@
             </div>
             <div class="login-box" style="margin-bottom: 20px;">
                 <label class="fw-700 fs-18 c-dark-blue">PASSWORD</label>
-                <input name="username" id = "password" class="login-input fw-700 fs-36 bg-light-blue" type="text">
+                <input name="password" id = "password" class="login-input fw-700 fs-36 bg-light-blue" type="password">
             </div>
             <div class="login-box" style="margin-bottom: 20px;">
                 <label class="fw-700 fs-18 c-dark-blue">PHOTO</label>
@@ -63,40 +63,59 @@
         </div>
         <div class="footer2-box-button" style="height: 15%;">
             <a href = "staff-list" class="login-back-button c-white" style = "margin-right:20px;" href=""><span class="material-icons md-48">arrow_back</span></a>
-            <button type="submit" class="login-next-button c-white bg-dark-blue" href=""><span class="material-icons md-48">arrow_forward</span></button>
+            <button type="submit" id="btn-submit" class="login-next-button c-white bg-dark-blue" href=""><span class="material-icons md-48">arrow_forward</span></button>
         </div>
     </div>
 </form>
 
 <script>
 function init(){
-    login-form.addEventListener("submit", onSubmit);
+    document.getElementById("btn-submit").addEventListener("click", onSubmit);
 }
 
 function onSubmit(e){
-    let username_text = document.getElementById("username");
-
+    e.preventDefault();
+    //=====lengkapin formData=====
     let formData = new FormData();
-    let fileField = document.querySelector("input[type='file']");
 
-    let status = true;
+    let fileField = document.querySelector("input[type='file']");
     formData.append('upfile', fileField.files[0]);
 
-    fetch('upload-staff-picture?username=' + username_text.value, {
+    let input_type_text = document.querySelectorAll("input[type='text']");
+    for(let i = 0; i < input_type_text.length; i++){
+        formData.append(input_type_text[i].name, input_type_text[i].value);
+    }
+
+    let password = document.querySelectorAll("input[type='password']");
+    formData.append("password", password.value);
+    
+    //====POST=====
+    fetch('upload-staff-picture?username=' + 'ksunjaya'.value, {
         method: 'POST',
         body: formData
     })
     .then(response => response.json())
     .catch(error => {
-        console.error("Error when uploading image : ", error);
-        status = false;
+        console.error("Error when uploading image : ", error);  
     })
     .then(response =>{
-        
+        if(response["result"] == true){
+            let file_name = response["file_name"];
+            console.log("from inside : " + file_name);
+            //lanjut submit form
+            
+        }else if(response["result"] == "error_copy"){
+
+        }else if(response["result"] == "format_error"){
+            
+        }else if(response["result"] == "no_pic"){
+
+        }else{
+
+        }
     });
 
-    if(status==false) e.preventDefault();
-}
+}   
 
 init();
 </script>
