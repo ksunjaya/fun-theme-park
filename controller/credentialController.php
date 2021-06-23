@@ -15,11 +15,11 @@ class CredentialController{
   }
 
   //==GET==
-  public function show_login(){
+  public function show_login($err = 0){
     session_start();
-    if(!isset($_SESSION["role"])) return View::createAdminView("login_page.php", []); //berarti belom login, tunjukkin halaman login
-    else if($_SESSION["role"] == "admin") return View::createAdminView("pemilik_main.php", []);
-    else if($_SESSION["role"] == "staff") return View::createStaffView("transaksi_staff.php", []);
+    if(!isset($_SESSION["role"])) return View::createLoginView("login_page.php", $err); //berarti belom login, tunjukkin halaman login
+    else if($_SESSION["role"] == "admin") header("Location: main"); //return View::createAdminView("pemilik_main.php", []);
+    else if($_SESSION["role"] == "staff") header("Location: staff"); //return View::createStaffView("transaksi_staff.php", []);
   }
 
   //==POST==
@@ -44,7 +44,7 @@ class CredentialController{
         header("Location: staff");
       }else{
         //berarti gagal
-        header("Location: login?status=failed"); 
+        header("Location: login?err=1"); 
       }
     }
   }
@@ -52,8 +52,8 @@ class CredentialController{
   public function log_out(){
     session_start();
 
-    $_SESSION["nama"] = null;
-    unset($_SESSION["nama"]);
+    $_SESSION["name"] = null;
+    unset($_SESSION["name"]);
     $_SESSION["role"] = null;
     unset($_SESSION["role"]);
     session_unset();
@@ -62,10 +62,15 @@ class CredentialController{
   }
 
   //returns none, admin, and staff
-  public function get_credential(){
+  public static function get_credential(){
     session_start();
     if(!isset($_SESSION["role"])) return "none";
     else return $_SESSION["role"];
+  }
+
+  public static function get_nama(){
+    @session_start();
+    return $_SESSION["name"];
   }
 }
 ?>

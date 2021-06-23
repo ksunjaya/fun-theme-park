@@ -30,7 +30,10 @@
 			case $baseURL.'/login':
 				require_once "controller/credentialController.php";
 				$credential_ctrl = new CredentialController();
-				echo $credential_ctrl->show_login();
+				if(isset($_GET["err"]) && $_GET["err"] == 1)
+					echo $credential_ctrl->show_login(1);
+				else 
+					echo $credential_ctrl->show_login(0);
 				break;
 			case $baseURL.'/logout':
 				require_once "controller/credentialController.php";
@@ -113,17 +116,10 @@
 				echo $admin_ctrl->view_log();
 				break;
 			case $baseURL.'/login':
-				require_once "controller/accountController.php";
-				$account_controller = new AccountController();
-				$status = $account_controller->post_login();
-				
-				if($status == 0){
-					header("Location: login?status=failed");
-				}else if($status == 1){
-					header("Location: main"); //halaman admin;
-				}else if($status == 2){
-					header("Location: staff"); //halaman staff;
-				}
+				require_once "controller/credentialController.php";
+				$account_controller = new CredentialController();
+				$account_controller->login();
+				break;
 			case $baseURL.'/update':
 				require_once "controller/karyawanController.php";
 				$staffCtrl = new KaryawanController();

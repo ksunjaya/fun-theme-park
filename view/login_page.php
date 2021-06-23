@@ -5,7 +5,7 @@
         </div>
         <div class="login-isi" style="height: 30%;">
             <div class="<?php
-                                if (isset ($_GET['status']) && $_GET['status'] == 'failed'){
+                                if ($err == 1){
                                     echo 'error-text';
                                 }else{
                                     echo 'error-text-none';
