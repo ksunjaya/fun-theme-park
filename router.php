@@ -28,14 +28,14 @@
 				break;
 			//=========PRIVILEGES=========
 			case $baseURL.'/login':
-				require_once "controller/adminController.php";
-				$user_ctrl = new AdminController();
-				echo $user_ctrl->show_login();
+				require_once "controller/credentialController.php";
+				$credential_ctrl = new CredentialController();
+				echo $credential_ctrl->show_login();
 				break;
 			case $baseURL.'/logout':
-				require_once "controller/accountController.php";
-				$account_controller = new AccountController();
-				$account_controller->log_out();
+				require_once "controller/credentialController.php";
+				$credential_ctrl = new CredentialController();
+				$credential_ctrl->log_out();
 				header("Location: login");
 				break;
 			//============ADMIN============
@@ -116,11 +116,12 @@
 				require_once "controller/accountController.php";
 				$account_controller = new AccountController();
 				$status = $account_controller->post_login();
+				
 				if($status == 0){
 					header("Location: login?status=failed");
 				}else if($status == 1){
 					header("Location: main"); //halaman admin;
-				}else{
+				}else if($status == 2){
 					header("Location: staff"); //halaman staff;
 				}
 			case $baseURL.'/update':

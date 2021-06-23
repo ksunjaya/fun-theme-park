@@ -27,24 +27,6 @@ class View {
             $$key = $value;
         }
 
-        session_start();
-        if(!isset($login)){
-            if(isset($_SESSION["role"]) && $_SESSION["role"] == "admin"){
-                $nama_user = $_SESSION["name"];
-            }else{
-                header("Location: forbidden");
-            }  
-        }else{
-            //kalau mau ke login tapi sebenernya uda login, langsung redirect ke halamannya masing-masing
-            if(isset($_SESSION["role"])){
-                if($_SESSION["role"] == "admin"){
-                    header("Location: main");
-                }else{
-                    header("Location: staff");
-                }
-            }
-        }
-
         ob_start();
         include 'view/'.$view;
         $content = ob_get_contents();
@@ -63,13 +45,7 @@ class View {
         {
             $$key = $value;
         }
-
-        //==cek valid user==
-        session_start();
-        if(!isset($_SESSION["name"])){
-            header("Location: forbidden");
-        }
-
+        
         ob_start();
         include 'view/'.$view;
         $content = ob_get_contents();
