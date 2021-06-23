@@ -9,6 +9,10 @@
 }
 
 .nama-user {
+    top: 16px;
+    right: 10px;
+    color: #1A6793;
+    position: absolute;
     display: flex;
     justify-content: flex-end;
     align-items: center;
