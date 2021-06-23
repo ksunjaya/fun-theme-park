@@ -7,7 +7,7 @@ require_once "services/mySQLDB.php";
 require_once "services/view.php";
 require_once "model/staff.php";
 
-class StaffAccountController{
+class KaryawanController{
 	protected $db;
 
 	public function __construct(){

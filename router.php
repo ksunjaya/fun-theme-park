@@ -124,25 +124,25 @@
 					header("Location: staff"); //halaman staff;
 				}
 			case $baseURL.'/update':
-				require_once "controller/staffAccountController.php";
-				$staffCtrl = new StaffAccountController();
+				require_once "controller/karyawanController.php";
+				$staffCtrl = new KaryawanController();
 				echo $staffCtrl->view_update_pass();
 				break;
 			case $baseURL.'/updatepass':
-				require_once "controller/staffAccountController.php";
-				$staffCtrl = new StaffAccountController();
+				require_once "controller/karyawanController.php";
+				$staffCtrl = new KaryawanController();
 				echo $staffCtrl->updatePass();
 				header('Location: staff-list');
 				break;
 			case $baseURL.'/delete':
-				require_once "controller/staffAccountController.php";
-				$staffCtrl = new StaffAccountController();
+				require_once "controller/karyawanController.php";
+				$staffCtrl = new KaryawanController();
 				echo $staffCtrl->deletePass();
 				header('Location: staff-list');
 				break;
 			case $baseURL.'/add-staff':
-				require_once "controller/staffAccountController.php";
-				$staffCtrl = new StaffAccountController();
+				require_once "controller/karyawanController.php";
+				$staffCtrl = new KaryawanController();
 				echo $staffCtrl->add_staff();
 				break;
 			//=============STAFF================
