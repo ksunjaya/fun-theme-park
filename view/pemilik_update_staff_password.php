@@ -166,7 +166,7 @@
 
 <script>
     
-    let btn = document.getElementById('update');
+    let btn = document.getElementById('btn-submit');
     btn.addEventListener('click', validate);
     
     function validate(e){
