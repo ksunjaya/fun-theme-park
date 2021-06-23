@@ -62,8 +62,8 @@
             </div>
         </div>
         <div class="footer2-box-button" style="height: 15%;">
-            <a href = "staff-list" class="login-back-button c-white" style = "margin-right:20px;" href=""><span class="material-icons md-48">arrow_back</span></a>
-            <button type="submit" id="btn-submit" class="login-next-button c-white bg-dark-blue" href=""><span class="material-icons md-48">arrow_forward</span></button>
+            <a href = "staff-list" class="login-back-button c-white" style = "margin-right:20px;" href=""><span class="txtButton">BACK</span></a>
+            <button type="submit" id="btn-submit" class="login-next-button c-white bg-dark-blue" href=""><span class="txtButton">CREATE</span></button>
         </div>
     </div>
 </form>

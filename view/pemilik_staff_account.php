@@ -125,11 +125,11 @@
 			 			echo "<td>".$value->getUsername()."</td>";
 			 			echo "<td class ='action'> 
 						<form method='POST' action='update' style='display:inline;'>
-							<input type='submit' name='update' value='UPDATE'>
+							<button type= 'submit' class = 'update-button' type='submit' name='update'>UPDATE</button>
 							<input type='hidden' name='user' value='". $value->getUsername() ."'>
 						</form>
 						<form method='POST' action='delete' style='display:inline;' id='deletestaff'>
-							<input type='submit' name='delete' value='DELETE' id='delete'>
+							<button class = 'update-button' type='submit' name='delete' id='delete'>DELETE</button>
 							<input type='hidden' name='user' value='". $value->getUsername() ."' id='user'>
 						</form>
 							</td>";
@@ -193,7 +193,7 @@
 
 
 
-<script>
+<script defer>
     
     let btn = document.getElementById('delete');
     btn.addEventListener('click', popup);  

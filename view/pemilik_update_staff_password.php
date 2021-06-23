@@ -131,10 +131,10 @@
 
 <form method="POST" action="updatepass" id="updatepass" class="login-main">
     <div class="login-content bg-white" style="width: 90%;">
-        <div class="login-h1-box" style="height: 10%;">
+        <div class="login-h1-box" style="height: 10%; margin-top:50px; margin-bottom: 50px;">
             <h1 class="c-dark-blue fs-48">UPDATE PASSWORD</h1>
         </div>
-        <div class="login-isi" style="height: 70%;" id="content">
+        <div class="login-isi" style="height: 50%; margin-bottom: 25px" id="content">
             <div class="login-box" style="margin-bottom: 25px;">
                 <label class="fw-700 fs-18 c-dark-blue">USERNAME</label>
                 <input name="username" type="text" class="login-input fw-700 fs-36 bg-light-blue" style="font-size: 25px; font-weight: 500; border: solid 3px;" readonly="" value="<?php echo $username ?>" id="username">
@@ -148,15 +148,10 @@
                 <input name="retype" type="password" class="login-input fw-700 fs-36 bg-light-blue" style="font-size: 25px; font-weight: 500;" id="retype">
             </div>
         </div>
-
-            <div class="footer-box-button" style="height: 15%;">
-                <div style="margin-right: 10px; ">
-                    <a href="staff-list" class="back" style="background-color: #cf4a4a; color: white; "><span style="font-size: 30px;"> BACK </span> </a>
-                </div>
-                <div style="margin-right: 10px;">
-                    <input type="submit" class="next" style="background-color: #2f549e; color: white;" value="➔" id="update">
-                </div>
-            </div>
+        <div class="footer2-box-button" style="height: 15%;">
+            <a href = "staff-list" class="login-back-button c-white" style = "margin-right:20px;" href=""><span class="txtButton">BACK</span></a>
+            <button type="submit" id="btn-submit" class="login-next-button c-white bg-dark-blue" href=""><span class="txtButton">NEXT</span></button>
+        </div>
     </div>
 </form> 
 
