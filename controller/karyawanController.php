@@ -109,7 +109,27 @@ class KaryawanController{
 		return $result;
 	}
 
+	//buat urusan login
+	public function is_valid($username, $password){
+		$query = 'SELECT COUNT(username) AS "jumlah"
+              FROM karyawan
+              WHERE username="'.$username.'" AND password=PASSWORD("'.$password.'")';
 
+    $query_result = $this->db->executeSelectQuery($query);
+
+    if($query_result[0]["jumlah"] > 0) return true;
+    else return false;
+	}
+
+	public function get_nama($username){
+    $query = 'SELECT nama
+              FROM karyawan
+              WHERE username="'.$username.'"';
+    $query_result = $this->db->executeSelectQuery($query);
+
+    if(count($query_result) > 0) return $query_result[0]['nama'];
+    else return "Error : username tidak ditemukan!";
+  }
 }
 
  ?>

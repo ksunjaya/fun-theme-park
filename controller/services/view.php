@@ -8,6 +8,7 @@ class View {
         {
             $$key = $value;
         }
+
         ob_start();
         include 'view/'.$view;
         $content = ob_get_contents();
@@ -20,6 +21,22 @@ class View {
         return $include;
     }
 
+    //bedanya yang ini ga pake cek credentials dulu
+    public static function createLoginView ($view, $err)
+    {
+        //credentials
+        ob_start();
+        include 'view/'.$view;
+        $content = ob_get_contents();
+        ob_end_clean();
+
+        ob_start();
+        include 'view/layout/layout_admin.php';
+        $include = ob_get_contents();
+        ob_end_clean();
+        return $include;
+    }
+
     public static function createAdminView ($view, $param)
     {
         foreach ($param as $key => $value)
@@ -27,23 +44,11 @@ class View {
             $$key = $value;
         }
 
-        session_start();
-        if(!isset($login)){
-            if(isset($_SESSION["role"]) && $_SESSION["role"] == "admin"){
-                $nama_user = $_SESSION["name"];
-            }else{
-                header("Location: forbidden");
-            }  
-        }else{
-            //kalau mau ke login tapi sebenernya uda login, langsung redirect ke halamannya masing-masing
-            if(isset($_SESSION["role"])){
-                if($_SESSION["role"] == "admin"){
-                    header("Location: main");
-                }else{
-                    header("Location: staff");
-                }
-            }
-        }
+        //credentials
+        require_once "controller/credentialController.php";
+        $role = CredentialController::get_credential();
+        if($role == "none" || $role == "staff") header("Location: forbidden");
+        else $nama_user = CredentialController::get_nama();
 
         ob_start();
         include 'view/'.$view;
@@ -64,11 +69,11 @@ class View {
             $$key = $value;
         }
 
-        //==cek valid user==
-        session_start();
-        if(!isset($_SESSION["name"])){
-            header("Location: forbidden");
-        }
+        //credentials
+        require_once "controller/credentialController.php";
+        $role = CredentialController::get_credential();
+        if($role == "none") header("Location: forbidden");
+        else $nama_user = CredentialController::get_nama();
 
         ob_start();
         include 'view/'.$view;

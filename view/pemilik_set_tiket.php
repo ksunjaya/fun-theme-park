@@ -102,7 +102,7 @@
 <?php
     //buat set html date supaya pemilik gabisa milih tanggal sebelumnya
     $today = new DateTime(date("Y-m-d"));
-    $today->modify('+1 day');
+    //$today->modify('+1 day');
     $today = $today->format("Y-m-d");
 ?>
 

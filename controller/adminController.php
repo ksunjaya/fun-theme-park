@@ -44,31 +44,59 @@ class AdminController{
     if(isset($_GET["page"])) $page = $_GET["page"];
 
     $query = 'SELECT transaksi.id_reservasi, transaksi.tanggal, transaksi.total_harga, reservasi.jml_orang
-              FROM transaksi INNER JOIN reservasi ON transaksi.id_reservasi = reservasi.id_reservasi 
-              ORDER BY transaksi.tanggal';
+              FROM transaksi INNER JOIN reservasi ON transaksi.id_reservasi = reservasi.id_reservasi ';
+    
+    $dateFrom = "";
+    $dateUntil = "";
 
-    if (isset($_POST['dateFrom']) && $_POST['dateFrom'] != "" && isset($_POST['dateUntil']) && $_POST['dateUntil'] != ""){
-      $dateFrom = $_POST['dateFrom'];
-      $dateUntil = $_POST['dateUntil'];
+    if (isset ($_GET['dateFrom']) && $_GET['dateFrom'] != "" && isset($_GET['dateUntil']) && $_GET['dateUntil'] != ""){
+      $dateFrom = $_GET['dateFrom'];
+      $dateUntil = $_GET['dateUntil'];
       $this->db->escapeString($dateFrom);
       $this->db->escapeString($dateUntil);
-      $query = 'SELECT transaksi.id_reservasi, transaksi.tanggal, transaksi.total_harga, reservasi.jml_orang
-              FROM transaksi INNER JOIN reservasi ON transaksi.id_reservasi = reservasi.id_reservasi 
-              WHERE transaksi.tanggal >= '."'".$dateFrom."'".' AND transaksi.tanggal <= '."'".$dateUntil."'".'
-              ORDER BY transaksi.tanggal';
+      $query.='WHERE transaksi.tanggal >= '."'".$dateFrom."'".' AND transaksi.tanggal <= '."'".$dateUntil."'";
+    }else if (isset ($_GET['dateFrom']) && $_GET['dateFrom'] != ""){
+      $dateFrom = $_GET['dateFrom'];
+      $this->db->escapeString($dateFrom);
+      $query.='WHERE transaksi.tanggal >= '."'".$dateFrom."'";
+    }else if (isset($_GET['dateUntil']) && $_GET['dateUntil'] != ""){
+      $dateUntil = $_GET['dateUntil'];
+      $this->db->escapeString($dateUntil);
+      $query.='WHERE transaksi.tanggal <= '."'".$dateUntil."'";
     }
-    $result = $this->getLogTransaksi($page, MAX, $query);
-    $last_page = count ($result) / MAX;
+    $query.=' ORDER BY transaksi.tanggal, transaksi.id_reservasi';
+    
+    $query_result = $this->db->executeSelectQuery($query);
+    $last_page = (int)(count ($query_result) / 5);
+
+    //untuk total income
+    $sum = 0;
+    $totalCustomer = 0;
+    foreach ($query_result as $key => $value){
+        $sum+=$value['total_harga'];
+        $totalCustomer+=$value['jml_orang'];
+    }
+
+    //untuk format total income
+    $totalIncome = "";
+    for($i = strlen($sum)-3; $i >= 0; $i -= 3){
+        $totalIncome = substr($sum, 0, $i).'.'.substr($sum, $i, strlen($sum));
+    }
+
+    $result = $this->getLogTransaksi($page, 5, $query);
     return View::createAdminView('pemilik_log.php',[
       "result"=> $result,
       "page"=> $page,
-      "last_page"=>$last_page
+      "last_page"=>$last_page,
+      "totalCustomer"=>$totalCustomer,
+      "totalIncome"=>$totalIncome,
+      "dateFrom"=>$dateFrom,
+      "dateUntil"=>$dateUntil
     ]);
   }
-
   private function getLogTransaksi($page, $count, $query){
+    $page *= 5;
     $query .= ' LIMIT '.$page.','.$count;
-    $page *= MAX;
     $query_result = $this->db->executeSelectQuery($query);
     $result = [];
 

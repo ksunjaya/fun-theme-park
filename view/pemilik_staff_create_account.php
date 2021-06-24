@@ -53,8 +53,9 @@ function onSubmit(e){
         formData.append(input_type_text[i].name, input_type_text[i].value);
     }
 
-    let password = document.querySelectorAll("input[type='password']");
+    let password = document.querySelector("input[type='password']");
     formData.append("password", password.value);
+    console.log(password.value);
 
     //====POST=====
     fetch('add-staff', {

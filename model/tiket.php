@@ -4,15 +4,15 @@ class Tiket{
 	protected $tanggal;
 	protected $limit;
 	protected $maxOrder;
-  protected $sisa;
-  protected $harga;
+  	protected $sisa;
+  	protected $harga;
 
 	public function __construct($tanggal, $limit, $maxOrder, $sisa, $harga){
 		$this->tanggal = $tanggal;
 		$this->limit = $limit;
 		$this->maxOrder = $maxOrder;
-    $this->sisa = $sisa;
-    $this->harga = $harga;
+    	$this->sisa = $sisa;
+    	$this->harga = $harga;
 	}
 
 	public function getRawTanggal(){
@@ -33,21 +33,21 @@ class Tiket{
 		return $this->maxOrder;
 	}
 
-  public function getSisa(){
+  	public function getSisa(){
 		return $this->sisa;
 	}
 
-  public function getHarga(){
+ 	public function getHarga(){
 		return 'Rp. '.$this->format_harga($this->harga);
 	}
 
 	private function format_harga($harga){
-    $result = "";
-    for($i = strlen($harga)-3; $i >= 0; $i -= 3){
-      $result = substr($harga, 0, $i).'.'.substr($harga, $i, strlen($harga));
-    }
-    return $result;
-  }
+		$result = "";
+		for($i = strlen($harga)-3; $i >= 0; $i -= 3){
+		$result = substr($harga, 0, $i).'.'.substr($harga, $i, strlen($harga));
+		}
+		return $result;
+  	}
 }
 
 ?>
