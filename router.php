@@ -110,11 +110,6 @@
 				$admin_ctrl = new AdminController();
 				$admin_ctrl->createTicket();
 				break;
-			case $baseURL.'/log-transaksi-filter':
-				require_once "controller/adminController.php";
-				$admin_ctrl = new AdminController();
-				echo $admin_ctrl->view_log();
-				break;
 			case $baseURL.'/login':
 				require_once "controller/credentialController.php";
 				$account_controller = new CredentialController();

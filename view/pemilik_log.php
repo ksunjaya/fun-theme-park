@@ -1,4 +1,4 @@
-<form id="log-form" class="login-main" action="log-transaksi-filter" method="POST">
+<form id="log-form" class="login-main" action="log-transaksi" method="GET">
         <div class="login-content bg-white" style="width: 90%;">
             <div class="login-h1-box" style="height: 15%;">
                 <h1 class="c-dark-blue fs-48">LOG</h1>
@@ -26,27 +26,11 @@
                         </div>
                         <div class="log-kiri-row log-txt-biru" style="margin-bottom: 25px;">
                             <label class="fw-700 fs-18 c-dark-blue">TOTAL INCOME</label>
-                            <h3>Rp. <?php
-                                $sum = 0;
-                                foreach ($result as $key => $value){
-                                    $sum+=$value->getTotalPrice();
-                                }
-                                $x = "";
-                                for($i = strlen($sum)-3; $i >= 0; $i -= 3){
-                                    $x = substr($sum, 0, $i).'.'.substr($sum, $i, strlen($sum));
-                                }
-                                echo $x;
-                            ?></h3>
+                            <h3>Rp. <?php echo $totalIncome;?></h3>
                         </div>
                         <div class="log-kiri-row log-txt-biru ">
                             <label class="fw-700 fs-18 c-dark-blue ">TOTAL CUSTOMER</label>
-                            <h3><?php
-                                $sum2 = 0;
-                                foreach ($result as $key => $value){
-                                    $sum2+=$value->getTotalTicket();
-                                }
-                                echo $sum2;
-                            ?></h3>
+                            <h3><?php echo $totalCustomer;?></h3>
                         </div>
                     </div>
                 </div>
@@ -95,16 +79,50 @@
                             </div>
                             <div class="log-kanan-footer-kanan">
                                 <?php
-                                if($page > 0) {
-                                    //kalau di halaman 1 ga perlu tampilin tombol back
-                                    $href = 'tickets?page='.($page - 1);
-                                    echo '<a class="login-next-button log-table-next-button " href="'.$href.'" style="margin-right: 25px;"><span class="material-icons md-48">chevron_left</span></a>'; 
-                                }
-                                if($page < $last_page-1){
-                                    //kalau halaman terkahir ga perlu tombol next
-                                    $href = 'tickets?page='.($page + 1);
-                                    echo '<a class="login-next-button log-table-next-button " href="'.$href.'"><span class="material-icons md-48">chevron_right</span></a>'; 
-                                    // echo '<a href="'.$href.'" class="next"><span> > </span> </a>'; 
+                                if ($dateFrom != "" && $dateUntil != ""){
+                                    if($page > 0) {
+                                        //kalau di halaman 1 ga perlu tampilin tombol back
+                                        $href = 'log-transaksi?page='.($page - 1).'&dateFrom='.$dateFrom.'&dateUntil='.$dateUntil;
+                                        echo '<a class="login-next-button log-table-next-button " href="'.$href.'" style="margin-right: 25px;"><span class="material-icons md-48">chevron_left</span></a>'; 
+                                    }
+                                    if($page < $last_page){
+                                        //kalau halaman terkahir ga perlu tombol next
+                                        $href = 'log-transaksi?page='.($page + 1).'&dateFrom='.$dateFrom.'&dateUntil='.$dateUntil;
+                                        echo '<a class="login-next-button log-table-next-button " href="'.$href.'"><span class="material-icons md-48">chevron_right</span></a>';
+                                    }
+                                }else if ($dateFrom != ""){
+                                    if($page > 0) {
+                                        //kalau di halaman 1 ga perlu tampilin tombol back
+                                        $href = 'log-transaksi?page='.($page - 1).'&dateFrom='.$dateFrom;
+                                        echo '<a class="login-next-button log-table-next-button " href="'.$href.'" style="margin-right: 25px;"><span class="material-icons md-48">chevron_left</span></a>'; 
+                                    }
+                                    if($page < $last_page){
+                                        //kalau halaman terkahir ga perlu tombol next
+                                        $href = 'log-transaksi?page='.($page + 1).'&dateFrom='.$dateFrom;
+                                        echo '<a class="login-next-button log-table-next-button " href="'.$href.'"><span class="material-icons md-48">chevron_right</span></a>';
+                                    }
+                                }else if ($dateUntil != ""){
+                                    if($page > 0) {
+                                        //kalau di halaman 1 ga perlu tampilin tombol back
+                                        $href = 'log-transaksi?page='.($page - 1).'&dateUntil='.$dateUntil;
+                                        echo '<a class="login-next-button log-table-next-button " href="'.$href.'" style="margin-right: 25px;"><span class="material-icons md-48">chevron_left</span></a>'; 
+                                    }
+                                    if($page < $last_page){
+                                        //kalau halaman terkahir ga perlu tombol next
+                                        $href = 'log-transaksi?page='.($page + 1).'&dateUntil='.$dateUntil;
+                                        echo '<a class="login-next-button log-table-next-button " href="'.$href.'"><span class="material-icons md-48">chevron_right</span></a>';
+                                    }
+                                }else{
+                                    if($page > 0) {
+                                        //kalau di halaman 1 ga perlu tampilin tombol back
+                                        $href = 'log-transaksi?page='.($page - 1);
+                                        echo '<a class="login-next-button log-table-next-button " href="'.$href.'" style="margin-right: 25px;"><span class="material-icons md-48">chevron_left</span></a>'; 
+                                    }
+                                    if($page < $last_page){
+                                        //kalau halaman terkahir ga perlu tombol next
+                                        $href = 'log-transaksi?page='.($page + 1);
+                                        echo '<a class="login-next-button log-table-next-button " href="'.$href.'"><span class="material-icons md-48">chevron_right</span></a>';
+                                    }
                                 }
                                 ?>
         
