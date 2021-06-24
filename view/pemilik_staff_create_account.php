@@ -1,46 +1,11 @@
-<!-- <div class="white">
-    <form method="POST" action="add-ticket">
-        <h1 class="title">CREATE</h1>
-            <div class="login-box">
-                <label class="fw-700 fs-18 c-dark-blue">ID NUMBER(KTP)</label>
-                <input name="idnum" type="text" class="login-input fw-700 fs-36 bg-light-blue" style="font-size: 25px; font-weight: 500;">
-            </div>
-            <div class="login-box">
-                <label class="fw-700 fs-18 c-dark-blue">FULL NAME</label>
-                <input name="name" type="text" class="login-input fw-700 fs-36 bg-light-blue" style="font-size: 25px; font-weight: 500;">
-            </div>
-            <div class="login-box">
-                <label class="fw-700 fs-18 c-dark-blue">USERNAME</label>
-                <input name="username" type="text" class="login-input fw-700 fs-36 bg-light-blue" style="font-size: 25px; font-weight: 500;">
-            </div>
-            <div class="login-box">
-                <label class="fw-700 fs-18 c-dark-blue">PASSWORD</label>
-                <input name="password" type="password" class="login-input fw-700 fs-36 bg-light-blue" style="font-size: 25px; font-weight: 500;">
-            </div>
-            
-
-
-            <div class="buttons">
-                <div style="margin-right: 10px; ">
-                    <a href="tickets" class="back" style="background-color: #cf4a4a; color: white; "><span style="font-size: 30px;"> BACK </span> </a>
-                </div>
-                <div style="margin-right: 10px;">
-                    <input type="submit" class="next" style="background-color: #2f549e; color: white;" value="➔">
-                </div>
-            </div>
-
-            
-    </form>
-</div> -->
-
 <!-- Revisi: -->
 <form id = "login-form" class="login-main">
-    <div class="login-content bg-white">
+    <div class="login-content bg-white" style="width: 90%;">
         <div class="login-h1-box" style="height: 10%; margin-top:10px; margin-bottom:10px;">
             <h1 class="c-dark-blue fs-48">CREATE</h1>
         </div>
-        <div class="login-isi" style="height: 70%;">
-            <div class="login-box" style="margin-bottom: 20px;">
+        <div class="login-isi" style="height: 70%; width: 80%;" id="box">
+            <div class="login-box" style="margin-bottom: 20px;" id="ktp-box">
                 <label class="fw-700 fs-18 c-dark-blue">ID NUMBER (KTP)</label>
                 <input name="ktp" id = "ktp" class="login-input fw-700 fs-36 bg-light-blue" type="text" maxlength="16">
             </div>
@@ -70,7 +35,9 @@
 
 <script>
 function init(){
-    document.getElementById("btn-submit").addEventListener("click", onSubmit);
+    document.getElementById("btn-submit").addEventListener("click", validate);
+    // document.getElementById("btn-submit").addEventListener("click", onSubmit);
+    
 }
 
 function onSubmit(e){
@@ -115,46 +82,61 @@ function onSubmit(e){
 
 }   
 
+function validate(e){
+        let ktp = document.getElementById('ktp');
+        let fullname = document.getElementById('fullname');
+        let username = document.getElementById('username');
+        let password = document.getElementById('password');
+        let photo = document.getElementById('photo');
+
+        let box = document.getElementById('box');
+        let ktpbox = document.getElementById('ktp-box');
+        let warning = document.createElement("span");
+        if(ktp.value.length<16 || Number.isInteger(ktp.value)==false || ktp.value==''){
+            ktpbox.appendChild(warning);
+            ktp.style.backgroundColor = "#e1001f";
+            warning.innerHTML = "* Input tidak valid!";
+            warning.style.fontSize = "25px";
+            warning.style.color = "red";
+            warning.style.position = "absolute";
+            warning.style.whiteSpace = "nowrap";
+            warning.style.marginLeft = "10px";
+            warning.style.marginTop = "25px";
+            ktpbox.style.display = "inline-block";
+        }
+        if(fullname.value==''){
+            fullname.style.backgroundColor = "#e1001f";
+        }
+        if(username.value==''){
+            username.style.backgroundColor = "#e1001f";
+        }
+        if(password.value==''){
+            password.style.backgroundColor = "#e1001f";
+        }
+        if(photo.value==''){
+            photo.style.backgroundColor = "#e1001f";
+        }
+
+        ktp.addEventListener('input', function(e){
+            ktp.style.backgroundColor = "#DBE9FF";
+            warning.innerHTML = " ";
+        });
+        fullname.addEventListener('input', function(e){
+            fullname.style.backgroundColor = "#DBE9FF";
+        });
+        username.addEventListener('input', function(e){
+            username.style.backgroundColor = "#DBE9FF";
+        });
+        password.addEventListener('input', function(e){
+            password.style.backgroundColor = "#DBE9FF";
+        });
+        photo.addEventListener('input', function(e){
+            photo.style.backgroundColor = "#DBE9FF";
+        });
+        e.preventDefault(); 
+        onSubmit();
+    }
+
 init();
+
 </script>
-
-
-<!-- Punya Kezia :  -->
-<!-- <form id = "login-form" class="login-main" action="createaccount" method="POST">
-    <div class="login-content bg-white" style="width: 90%;">
-        <div class="login-h1-box" style="height: 10%;">
-            <h1 class="c-dark-blue fs-48">CREATE</h1>
-        </div>
-        <div class="login-isi" style="height: 70%;">
-            <div class="login-box" style="margin-bottom: 25px;">
-                <label class="fw-700 fs-18 c-dark-blue">ID NUMBER (KTP)</label>
-                <input name="ktp" id = "ktp" class="login-input fw-700 fs-36 bg-light-blue" type="text" maxlength="16">
-            </div>
-            <div class="login-box" style="margin-bottom: 25px;">
-                <label class="fw-700 fs-18 c-dark-blue">FULL NAME</label>
-                <input name="name" id = "fullname" class="login-input fw-700 fs-36 bg-light-blue" type="text">
-            </div>
-            <div class="login-box" style="margin-bottom: 25px;">
-                <label class="fw-700 fs-18 c-dark-blue">USERNAME</label>
-                <input name="username" id = "username" class="login-input fw-700 fs-36 bg-light-blue" type="text">
-            </div>
-            <div class="login-box" style="margin-bottom: 25px;">
-                <label class="fw-700 fs-18 c-dark-blue">PASSWORD</label>
-                <input name="password" id = "password" class="login-input fw-700 fs-36 bg-light-blue" type="password">
-            </div>
-            <div class="login-box">
-                <label class="fw-700 fs-18 c-dark-blue">PHOTO</label>
-                <input name="photo" id = "photo" class="login-input fw-700 fs-36 bg-light-blue" type="file" style="font-size: 25px;">
-            </div>
-        </div>
-        <div class="footer-box-button" style="height: 15%;">
-            <div style="margin-right: 10px;">
-                <a href="staff-list" class="back" style="background-color: #cf4a4a; color: white; "><span style="font-size: 30px;"> BACK </span> </a>
-            </div>
-            <div style="margin-right: 10px;">
-                <input type="submit" class="next" style="background-color: #2f549e; color: white;" value="➔">
-            </div>
-        </div>
-    </div>
-</form>
-
