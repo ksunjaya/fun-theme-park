@@ -35,13 +35,15 @@
 
 <script>
 function init(){
-    document.getElementById("btn-submit").addEventListener("click", validate);
-    // document.getElementById("btn-submit").addEventListener("click", onSubmit);
+    //document.getElementById("btn-submit").addEventListener("click", validate);
+    document.getElementById("btn-submit").addEventListener("click", onSubmit);
     
 }
 
 function onSubmit(e){
     e.preventDefault();
+
+    if(validate() == false) return;
     //=====lengkapin formData=====
     let formData = new FormData();
 
@@ -83,60 +85,68 @@ function onSubmit(e){
 
 }   
 
-function validate(e){
-        let ktp = document.getElementById('ktp');
-        let fullname = document.getElementById('fullname');
-        let username = document.getElementById('username');
-        let password = document.getElementById('password');
-        let photo = document.getElementById('photo');
+function validate(){
+    let correct = true;
+    let ktp = document.getElementById('ktp');
+    let fullname = document.getElementById('fullname');
+    let username = document.getElementById('username');
+    let password = document.getElementById('password');
+    let photo = document.getElementById('photo');
 
-        let box = document.getElementById('box');
-        let ktpbox = document.getElementById('ktp-box');
-        let warning = document.createElement("span");
-        if(ktp.value.length<16 || Number.isInteger(ktp.value)==false || ktp.value==''){
-            ktpbox.appendChild(warning);
-            ktp.style.backgroundColor = "#e1001f";
-            warning.innerHTML = "* Input tidak valid!";
-            warning.style.fontSize = "25px";
-            warning.style.color = "red";
-            warning.style.position = "absolute";
-            warning.style.whiteSpace = "nowrap";
-            warning.style.marginLeft = "10px";
-            warning.style.marginTop = "25px";
-            ktpbox.style.display = "inline-block";
-        }
-        if(fullname.value==''){
-            fullname.style.backgroundColor = "#e1001f";
-        }
-        if(username.value==''){
-            username.style.backgroundColor = "#e1001f";
-        }
-        if(password.value==''){
-            password.style.backgroundColor = "#e1001f";
-        }
-        if(photo.value==''){
-            photo.style.backgroundColor = "#e1001f";
-        }
+    let box = document.getElementById('box');
+    let ktpbox = document.getElementById('ktp-box');
+    let warning = document.createElement("span");
 
-        ktp.addEventListener('input', function(e){
-            ktp.style.backgroundColor = "#DBE9FF";
-            warning.innerHTML = " ";
-        });
-        fullname.addEventListener('input', function(e){
-            fullname.style.backgroundColor = "#DBE9FF";
-        });
-        username.addEventListener('input', function(e){
-            username.style.backgroundColor = "#DBE9FF";
-        });
-        password.addEventListener('input', function(e){
-            password.style.backgroundColor = "#DBE9FF";
-        });
-        photo.addEventListener('input', function(e){
-            photo.style.backgroundColor = "#DBE9FF";
-        });
-        e.preventDefault(); 
-        onSubmit();
+    if(ktp.value.length<16 || ktp.value==''){
+        //console.log(ktp);
+        ktpbox.appendChild(warning);
+        ktp.style.backgroundColor = "#e1001f";
+        warning.innerHTML = "* Input tidak valid!";
+        warning.style.fontSize = "25px";
+        warning.style.color = "red";
+        warning.style.position = "absolute";
+        warning.style.whiteSpace = "nowrap";
+        warning.style.marginLeft = "10px";
+        warning.style.marginTop = "25px";
+        ktpbox.style.display = "inline-block";
+        correct = false;
     }
+    if(fullname.value==''){
+        fullname.style.backgroundColor = "#e1001f";
+        correct = false;
+    }
+    if(username.value==''){
+        username.style.backgroundColor = "#e1001f";
+        correct = false;
+    }
+    if(password.value==''){
+        password.style.backgroundColor = "#e1001f";
+        correct = false;
+    }
+    if(photo.value==''){
+        photo.style.backgroundColor = "#e1001f";
+        correct = false;
+    }
+
+    ktp.addEventListener('input', function(e){
+        ktp.style.backgroundColor = "#DBE9FF";
+        warning.innerHTML = " ";
+    });
+    fullname.addEventListener('input', function(e){
+        fullname.style.backgroundColor = "#DBE9FF";
+    });
+    username.addEventListener('input', function(e){
+        username.style.backgroundColor = "#DBE9FF";
+    });
+    password.addEventListener('input', function(e){
+        password.style.backgroundColor = "#DBE9FF";
+    });
+    photo.addEventListener('input', function(e){
+        photo.style.backgroundColor = "#DBE9FF";
+    });
+    
+    return correct;
+}
 
 init();
 
