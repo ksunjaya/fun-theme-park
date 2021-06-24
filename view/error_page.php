@@ -10,7 +10,7 @@
         $message = "Our kingdom doesn't allowed you to enter this page. Please contact our guardians if this was a mistake.";
         $translation = "Saat ini Anda tidak memiliki akses untuk melihat halaman ini.";
     }else if($error_code == 001){
-        $title = "Internal Server Error (001)";
+        $title = "Ticket's price is missing!";
         $message = "Server couldn't found today's ticket price. Please contact your administrator to solve this error.";
         $translation = "Pemilik belum menentukan harga tiket untuk hari ini. Mohon hubungi pemilik(administrator) untuk melengkapi administrasi hari ini.";
     }
@@ -30,3 +30,14 @@
 <div class="error-cont">
     <a class = "error-button" href="home">Take Me Home!</a>
 </div>
+<br>
+<?php
+//kalau errornya gegara harga tiket belom di set sama admin, perlu ada tombol sign out supaya admin bisa login dulu dan mendaftarkan harga tiket
+if($error_code == 001){
+    echo '
+    <div class="error-cont">
+        <a class = "error-button" href="logout">Log Out</a>
+    </div>
+    ';
+}
+?>
