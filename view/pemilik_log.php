@@ -10,16 +10,16 @@
                             <h2>FROM</h2>
                         </div>
                         <div class="log-kiri-row">
-                            <input type="date" name="dateFrom">
+                            <input type="date" class = "input-date"name="dateFrom" >
                         </div>
                         <div class="log-kiri-row">
                             <h2>UNTIL</h2>
                         </div>
                         <div class="log-kiri-row" style="margin-bottom: 25px;">
-                            <input type="date" name="dateUntil">
+                            <input type="date" class = "input-date" name="dateUntil">
                         </div>
                         <div class="footer-box-button" style="margin-bottom: 25px;">
-                            <button type="submit" class="login-next-button c-white bg-dark-blue" href=""><span class="txtButton">SET</span></button>
+                            <button type="submit" class="login-next-button c-white bg-dark-blue" style="height: 60px; border-radius:15px" href=""><span class="txtButton">SET</span></button>
                         </div>
                         <div class="login-h1-box" style="margin-bottom: 25px;">
                             <h1 class="c-dark-blue fs-48">SUMMARY</h1>
