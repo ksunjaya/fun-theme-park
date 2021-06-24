@@ -32,7 +32,21 @@ class Log{
 	}
 
     public function getTotalPrice(){
-            return $this->totalPrice;
+        return $this->totalPrice;
+	}
+
+	public function getFormattedPrice () {
+		$sum = $this->totalPrice;
+		$totalIncome = "";
+		$sisa = (strlen($sum) % 3);
+		if (strlen($sum)%3 == 0 && strlen($sum) > 3){
+		$sisa = 3;
+		}
+		$totalIncome = substr($sum, 0, $sisa);
+		for ($i = $sisa; $i < strlen($sum); $i+=3) {
+		$totalIncome.=".".substr ($sum, $i, 3);
+		}
+		return $totalIncome;
 	}
 }
 

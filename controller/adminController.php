@@ -5,6 +5,7 @@ require_once "services/mySQLDB.php";
 require_once "services/view.php";
 require_once "model/tiket.php";
 require_once "model/log.php";
+require_once "fpdf183/fpdf.php";
 
 class AdminController{
   protected $db;
@@ -66,26 +67,26 @@ class AdminController{
     }
     $query.=' ORDER BY transaksi.tanggal, transaksi.id_reservasi';
     
-    $query_result = $this->db->executeSelectQuery($query);
+    $query_result = $this->changeVal($query);
+
     $last_page = (int)(count ($query_result) / 5);
 
-    //untuk total income
+    //untuk total income & total customer
     $sum = 0;
     $totalCustomer = 0;
     foreach ($query_result as $key => $value){
-        $sum+=$value['total_harga'];
-        $totalCustomer+=$value['jml_orang'];
+        $sum+=$value->getTotalPrice();
+        $totalCustomer+=$value->getTotalTicket();
     }
+    $totalIncome = $this->formatRupiah($sum);
 
-    //untuk format total income
-    $totalIncome = "";
-    for($i = strlen($sum)-3; $i >= 0; $i -= 3){
-        $totalIncome = substr($sum, 0, $i).'.'.substr($sum, $i, strlen($sum));
-    }
+    
+    $query = $this->limitQuery($page, 5, $query);
+    $result = $this->changeVal($query);
 
-    $result = $this->getLogTransaksi($page, 5, $query);
     return View::createAdminView('pemilik_log.php',[
       "result"=> $result,
+      "query_result" => $query_result,
       "page"=> $page,
       "last_page"=>$last_page,
       "totalCustomer"=>$totalCustomer,
@@ -93,6 +94,31 @@ class AdminController{
       "dateFrom"=>$dateFrom,
       "dateUntil"=>$dateUntil
     ]);
+  }
+  private function formatRupiah ($sum) { // untuk format rupiah
+    $totalIncome = "";
+    $sisa = (strlen($sum) % 3);
+    if (strlen($sum)%3 == 0 && strlen($sum) > 3){
+      $sisa = 3;
+    }
+    $totalIncome = substr($sum, 0, $sisa);
+    for ($i = $sisa; $i < strlen($sum); $i+=3) {
+      $totalIncome.=".".substr ($sum, $i, 3);
+    }
+    return $totalIncome;
+  }
+  private function changeVal ($query) {
+    $query_result = $this->db->executeSelectQuery($query);
+    $result = [];
+    foreach ($query_result as $key => $value) {
+      $result[] = new Log($value['tanggal'], $value['id_reservasi'], $value['jml_orang'], $value['total_harga']);
+    }
+    return $result;
+  }
+  private function limitQuery ($page, $count, $query){
+    $page *= 5;
+    $query .= ' LIMIT '.$page.','.$count;
+    return $query;
   }
   private function getLogTransaksi($page, $count, $query){
     $page *= 5;
@@ -104,6 +130,83 @@ class AdminController{
         $result[] = new Log($value['tanggal'], $value['id_reservasi'], $value['jml_orang'], $value['total_harga']);
     }
     return $result;
+  }
+  public function createPDF () {
+    $pdf = new FPDF('P', 'mm', 'A4');
+    $pdf->AddPage();
+    
+    //set font
+    $pdf->SetFont('Arial', 'B', 14);
+    
+    //cell
+    $pdf -> Cell(130, 5, 'FUN RESORT', 0, 0);
+    $pdf -> Cell(59, 5, 'LOG-TRANSAKSI', 0, 1, 'R');
+
+    //set font
+    $pdf->SetFont('Arial', '', 12);
+
+    // cell kosong untuk space vertical
+    $pdf -> Cell(189, 10, '', 0, 1);
+    
+    $pdf -> Cell(189, 5, 'Keterangan', 0, 1);
+
+    $pdf -> Cell(189, 5, '', 0, 1);
+    
+    $pdf->SetFont('Arial', '', 12);
+    $pdf -> Cell(10, 5, '', 0, 0);
+    $pdf -> Cell(40, 5, 'Tanggal Mulai:', 0, 0);
+    $pdf -> Cell(40, 5, '24-Jun-2021', 0, 1);
+
+    $pdf -> Cell(10, 5, '', 0, 0);
+    $pdf -> Cell(40, 5, 'Tanggal Selesai:', 0, 0);
+    $pdf -> Cell(40, 5, '24-Jun-2021', 0, 1);
+
+    $pdf -> Cell(189, 10, '', 0, 1);
+
+    // tabel data
+
+    //header
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf -> Cell(47, 10, 'DATE', 1, 0,'C');
+    $pdf -> Cell(47, 10, 'ID BOOKING', 1, 0, 'C');
+    $pdf -> Cell(47, 10,  'TOTAL TICKET', 1, 0, 'C');
+    $pdf -> Cell(48, 10,  'TOTAL PRICE', 1, 1, 'C');
+
+    $pdf->SetFont('Arial', '', 12);
+    for ($i=0; $i<100; $i++){
+      $pdf -> Cell(47, 10, '24 June 2021', 1, 0,'C');
+      $pdf -> Cell(47, 10, '210624273', 1, 0, 'C');
+      $pdf -> Cell(47, 10,  '5', 1, 0, 'C');
+      $pdf -> Cell(48, 10,  'Rp. 250.000', 1, 1, 'C');
+    }
+
+    //summary
+    $pdf -> Cell(189, 10, '', 0, 1);
+    $pdf->SetFont('Arial', 'B', 12);
+
+    $pdf -> Cell(100, 5, '', 0, 0);
+    $pdf -> Cell(89, 5, 'SUMMARY', 0, 1);
+
+    $pdf -> Cell(189, 5, '', 0, 1);
+
+    $pdf->SetFont('Arial', '', 12);
+    $pdf -> Cell(100, 5, '', 0, 0);
+    $pdf -> Cell(40, 5, 'Total Income', 0, 0);
+    $pdf -> Cell(49, 5, 'Rp. 1.600.000', 0, 1);
+
+    $pdf -> Cell(100, 5, '', 0, 0);
+    $pdf -> Cell(40, 5, 'Total Customer', 0, 0);
+    $pdf -> Cell(49, 5, '38', 0, 1);
+
+    $pdf -> Cell(189, 20, '', 0, 1);
+
+    $pdf->SetFont('Arial', 'I', 12);
+    $pdf -> Cell(50, 5, '', 0, 0);
+    $pdf -> Cell(89, 5, '~ Printed by Vincent Kurniawan ~', 0, 0, 'C');
+    $pdf -> Cell(50, 5, '', 0, 1);
+
+    //output
+    $pdf->Output('I','fun-resort-log-transaksi.pdf');
   }
 
   //=====untuk page tiket, OOP nya masih belum bagus tapi uda jalan=======

@@ -86,6 +86,11 @@
 				echo $reservasiCtrl->HTTP_GET_reservasi();
 				break;
 			//=========ERROR PAGE============
+			case $baseURL.'/pdf':
+				require_once "controller/adminController.php";
+				$a = new AdminController();
+				$a->createPDF();
+				break;
 			case $baseURL.'/forbidden':
 				require_once "controller/services/view.php";
 				echo View::createPengunjungView("error_page.php", ["error_code"=>403]);

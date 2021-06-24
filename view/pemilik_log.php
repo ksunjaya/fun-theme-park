@@ -36,11 +36,21 @@
                 </div>
                 <div class="log-isi-kanan ">
                     <div class="log-isi-kanan-2">
-                        <div class="log-download-box">
-                            <a class="log-download-button">
+                        <form class="log-download-box" method="POST" action="pdf-transaksi">
+                            <?php
+                            // foreach($query_result as $value)
+                            // {
+                            //     echo '<input type="hidden" name="result[]" value="'. $value. '">';
+                            // }
+                            ?>
+                            <input type="hidden" name = "dateFrom" value= <?php echo $dateFrom ?>>
+                            <input type="hidden" name = "dateUntil" value= <?php echo $dateUntil ?>>
+                            <input type="hidden" name = "totalIncome" value= <?php echo $totalIncome ?>>
+                            <input type="hidden" name = "totalCustomer" value= <?php echo $totalCustomer ?>>
+                            <button class="log-download-button" type="submit">
                                 <h2>DOWNLOAD</h2>
-                            </a>
-                        </div>
+                            </button>
+                        </form>
                         <div class="log-table-box">
                             <div class="log-table-box-2">
                                 <table class="log-table">
@@ -58,8 +68,13 @@
                                             echo "<td>".$value->getTotalTicket()."</td>";
                                             $sum = $value->getTotalPrice();
                                             $y = "";
-                                            for($i = strlen($sum)-3; $i >= 0; $i -= 3){
-                                                $y = substr($sum, 0, $i).'.'.substr($sum, $i, strlen($sum));
+                                            $sisa = (strlen($sum) % 3);
+                                            if (strlen($sum)%3 == 0 && strlen($sum) > 3){
+                                                $sisa = 3;
+                                            }
+                                            $y = substr($sum, 0, $sisa);
+                                            for ($i = $sisa; $i < strlen($sum); $i+=3) {
+                                                $y.=".".substr ($sum, $i, 3);
                                             }
                                             echo "<td>Rp. ".$y."</td>";
                                             echo "</tr>";
