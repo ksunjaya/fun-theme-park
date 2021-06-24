@@ -129,7 +129,7 @@
 							<input type='hidden' name='user' value='". $value->getUsername() ."'>
 						</form>
 						<form method='POST' action='delete' style='display:inline;' id='deletestaff'>
-							<button class = 'update-button' type='submit' name='delete' id='delete'>DELETE</button>
+							<button class = 'update-button' type='submit' name='delete'>DELETE</button>
 							<input type='hidden' name='user' value='". $value->getUsername() ."' id='user'>
 						</form>
 							</td>";
