@@ -1,11 +1,11 @@
-<form id="log-form" class="login-main" action="log-transaksi" method="GET">
+<div id="log-form" class="login-main">
         <div class="login-content bg-white" style="width: 90%;">
             <div class="login-h1-box" style="height: 15%;">
                 <h1 class="c-dark-blue fs-48">LOG</h1>
             </div>
             <div class="log-isi" style="height: 85%; width: 100%;">
                 <div class="log-isi-kiri">
-                    <div class="log-isi-kiri-2">
+                    <form class="log-isi-kiri-2" action="log-transaksi" method="GET">
                         <div class="log-kiri-row">
                             <h2>FROM</h2>
                         </div>
@@ -32,7 +32,7 @@
                             <label class="fw-700 fs-18 c-dark-blue ">TOTAL CUSTOMER</label>
                             <h3><?php echo $totalCustomer;?></h3>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="log-isi-kanan ">
                     <div class="log-isi-kanan-2">
@@ -131,6 +131,5 @@
                     </div>
                 </div>
             </div>
-
         </div>
-    </form>
+    </div>

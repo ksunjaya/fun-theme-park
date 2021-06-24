@@ -64,10 +64,12 @@ class AdminController{
       $this->db->escapeString($dateUntil);
       $query.='WHERE transaksi.tanggal <= '."'".$dateUntil."'";
     }
-    $query.=' ORDER BY transaksi.tanggal';
+    $query.=' ORDER BY transaksi.tanggal, transaksi.id_reservasi';
     
-    //untuk total income
     $query_result = $this->db->executeSelectQuery($query);
+    $last_page = (int)(count ($query_result) / 5);
+
+    //untuk total income
     $sum = 0;
     $totalCustomer = 0;
     foreach ($query_result as $key => $value){
@@ -82,7 +84,6 @@ class AdminController{
     }
 
     $result = $this->getLogTransaksi($page, 5, $query);
-    $last_page = count ($result) / 5;
     return View::createAdminView('pemilik_log.php',[
       "result"=> $result,
       "page"=> $page,
@@ -93,7 +94,6 @@ class AdminController{
       "dateUntil"=>$dateUntil
     ]);
   }
-
   private function getLogTransaksi($page, $count, $query){
     $page *= 5;
     $query .= ' LIMIT '.$page.','.$count;
