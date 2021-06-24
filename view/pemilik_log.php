@@ -58,8 +58,13 @@
                                             echo "<td>".$value->getTotalTicket()."</td>";
                                             $sum = $value->getTotalPrice();
                                             $y = "";
-                                            for($i = strlen($sum)-3; $i >= 0; $i -= 3){
-                                                $y = substr($sum, 0, $i).'.'.substr($sum, $i, strlen($sum));
+                                            $sisa = (strlen($sum) % 3);
+                                            if (strlen($sum)%3 == 0 && strlen($sum) > 3){
+                                                $sisa = 3;
+                                            }
+                                            $y = substr($sum, 0, $sisa);
+                                            for ($i = $sisa; $i < strlen($sum); $i+=3) {
+                                                $y.=".".substr ($sum, $i, 3);
                                             }
                                             echo "<td>Rp. ".$y."</td>";
                                             echo "</tr>";

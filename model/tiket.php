@@ -42,10 +42,22 @@ class Tiket{
 	}
 
 	private function format_harga($harga){
+
+		// revisi
 		$result = "";
-		for($i = strlen($harga)-3; $i >= 0; $i -= 3){
-		$result = substr($harga, 0, $i).'.'.substr($harga, $i, strlen($harga));
+		$sisa = (strlen($harga) % 3);
+		if (strlen($harga)%3 == 0 && strlen($harga) > 3){
+			$sisa = 3;
 		}
+		$result = substr($harga, 0, $sisa);
+		for ($i = $sisa; $i < strlen($harga); $i+=3) {
+			$result.=".".substr ($harga, $i, 3);
+		}
+
+		// $result = "";
+		// for($i = strlen($harga)-3; $i >= 0; $i -= 3){
+		// $result = substr($harga, 0, $i).'.'.substr($harga, $i, strlen($harga));
+		// }
 		return $result;
   	}
 }

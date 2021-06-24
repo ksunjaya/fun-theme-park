@@ -79,9 +79,15 @@ class AdminController{
 
     //untuk format total income
     $totalIncome = "";
-    for($i = strlen($sum)-3; $i >= 0; $i -= 3){
-        $totalIncome = substr($sum, 0, $i).'.'.substr($sum, $i, strlen($sum));
+    $sisa = (strlen($sum) % 3);
+    if (strlen($sum)%3 == 0 && strlen($sum) > 3){
+      $sisa = 3;
     }
+    $totalIncome = substr($sum, 0, $sisa);
+    for ($i = $sisa; $i < strlen($sum); $i+=3) {
+      $totalIncome.=".".substr ($sum, $i, 3);
+    }
+    //
 
     $result = $this->getLogTransaksi($page, 5, $query);
     return View::createAdminView('pemilik_log.php',[
