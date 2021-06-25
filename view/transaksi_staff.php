@@ -49,7 +49,7 @@
 </div>
 
 <div id="interface" style="display:flex; margin: 0px 50px;">
-  <div class="white-box" id="input-container" style="flex: 5; height: 100%">
+  <div class="white-box" id="input-container" style="flex: 5; height: 100%; margin: 5% 20%;">
   <div class="white-box">
   <form class="bg-white" method="POST">
     <label class="bg-white">Kode Reservasi</label>
@@ -83,9 +83,8 @@
   </form>
   </div>
   </div>
-  <div id="struk-container" class="white-box struk-container">
-   
-  </div>
+  <!--<div id="struk-container" class="white-box struk-container">
+  </div>-->
 </div>
 
 <script>
@@ -98,18 +97,7 @@
       let total_harga_text = document.getElementById("harga");
       total_harga_text.value = (<?php echo $harga ?> * jumlah_text.value).toLocaleString('en-US', {style: 'currency',currency: 'IDR'});
     });
-
-    /*let kode_reservasi = document.getElementById("kode-reservasi");
-    kode_reservasi.addEventListener("keyup", function(event) {
-      if(kode_reservasi.value.length >= 6){
-        tombol_cari.click();
-      }else{
-        let status_text = document.getElementById("status");
-        clear_all();
-        status_text.style.visibility = "hidden";
-      }
-    });*/
-
+    
     let btn_submit = document.getElementById("btn-submit");
     btn_submit.addEventListener("click", form_submit);
   }

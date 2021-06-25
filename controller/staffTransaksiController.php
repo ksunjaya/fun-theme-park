@@ -27,5 +27,13 @@
     public function viewAll(){
       return View::createStaffView("transaksi_staff.php", []);
     }
+
+    // membuat pdf struk tiket
+    public function createPDF () {
+      require_once "fpdf183/fpdf.php";
+      
+      $pdf = new FPDF('P', 'mm', 'A4');
+      $pdf->AddPage();
+    }
   }
 ?>
