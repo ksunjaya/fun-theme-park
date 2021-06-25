@@ -75,7 +75,7 @@ class AdminController{
 
     // buat transaksi yang dilimit
     $result = $transaksi->getAllTransaksi($dateFrom, $dateUntil, $page, 5);
-    
+
     // buat create view
     return View::createAdminView('pemilik_log.php',[
       "result"=> $result,
