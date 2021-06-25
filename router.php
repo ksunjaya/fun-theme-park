@@ -94,6 +94,10 @@
 				require_once "controller/services/view.php";
 				echo View::createPengunjungView("error_page.php", ["error_code"=>404]);
 				break;
+			case $baseURL.'/limit-reached':
+				require_once "controller/services/view.php";
+				echo View::createPengunjungView("error_page.php", ["error_code"=>002]);
+				break;
 			default:
 				header("Location: not-found");
 				break;

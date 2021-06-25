@@ -44,7 +44,16 @@ class userController{
 
     if($result == true){ //artinya kalo berhasil
       $reservasi_ctrl = new ReservasiController();
-      $reservasi_ctrl->add_reservasi($kuota, $jml, $ktp, $tanggal);
+      if($reservasi_ctrl->masih_bisa_pesan($ktp, $tanggal, $jml) == false){
+        //kalau usernya uda gabisa mesen lagi karena limit, ini karena user sebelumnya uda order reservasi juga, terus dia coba pesen reservasi lagi
+        require_once "controller/services/view.php";
+				return View::createPengunjungView("error_page.php", ["error_code"=>002]);
+      }else{
+        $reservasi_ctrl->add_reservasi($kuota, $jml, $ktp, $tanggal);
+      }
+    }else{
+      require_once "controller/services/view.php";
+			return View::createPengunjungView("error_page.php", ["error_code"=>003]);
     }
 
     $kode = $reservasi_ctrl->create_unique_id($kuota, $tanggal);

@@ -13,6 +13,14 @@
         $title = "Ticket's price is missing!";
         $message = "Server couldn't found today's ticket price. Please contact your administrator to solve this error.";
         $translation = "Pemilik belum menentukan harga tiket untuk hari ini. Mohon hubungi pemilik(administrator) untuk melengkapi administrasi hari ini.";
+    }else if($error_code == 002){
+        $title = "Oops, you can't reserve at the same day again!";
+        $message = "You can only reserve one time at a day. Try to reserve for another day, or contact us if this was a mistake.";
+        $translation = "Maaf, Anda tidak dapat mendaftar dua kali di hari yang sama. Silahkan mendaftar di hari lain.";
+    }else if($error_code == 003){
+        $title = "Someone Ate The Tickets!";
+        $message = "Or for other reason, the tickets for the selected date is out. Or better, you can try another date!";
+        $translation = "Tiket untuk tanggal yang anda pesan sudah habis, mohon memilih tanggal lainnya";
     }
 ?>
 
