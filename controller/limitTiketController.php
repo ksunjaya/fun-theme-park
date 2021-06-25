@@ -59,5 +59,12 @@ class LimitTiketController{
       return $query_result[0]['count'];
     }
   }
+
+  public function get_max($tanggal){
+    $query = 'SELECT max_pesanan FROM limit_tiket WHERE tanggal = "'.$tanggal.'"';
+    $query_result = $this->db->executeSelectQuery($query);
+
+    return $query_result[0]['max_pesanan'];
+  }
 }
 ?>

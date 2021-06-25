@@ -62,7 +62,8 @@
           </tr>
         </table>
         <input type="hidden" name="kuota" id="post-kuota" value="">
-        <p style="font-size: 15px; margin: 20px 0px;">*Reservasi hanya bisa dilakukan untuk 30 hari kedepan</p>
+        <p style="font-size: 15px; margin: 20px 0px 0px 0px;">*Reservasi hanya bisa dilakukan untuk 30 hari kedepan</p>
+        <p style="font-size: 15px; margin: 0px 0px 20px 0px;">**Pastikan nama lengkap sesuai dengan KTP</p>
         <input type="submit" id="tombol-submit" value="RESERVASI">
         <span style="text-align:center">
           <p id="err" style="color:red; visibility:hidden; line-height:130%;">Maaf, masih ada kesalahan pada data yang dimasukkan. Mohon diperiksa kembali</p>
