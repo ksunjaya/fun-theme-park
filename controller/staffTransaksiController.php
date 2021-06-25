@@ -45,6 +45,17 @@
       $tanggal = $query_result[0]["tanggal"];
       $totalHarga = $query_result[0]["total_harga"];
 
+      $sum = $totalHarga;
+      $totalIncome = "";
+      $sisa = (strlen($sum) % 3);
+      if (strlen($sum)%3 == 0 && strlen($sum) > 3){
+          $sisa = 3;
+      }
+      $totalIncome = substr($sum, 0, $sisa);
+      for ($i = $sisa; $i < strlen($sum); $i+=3) {
+          $totalIncome.=".".substr ($sum, $i, 3);
+      }
+
       $pdf = new FPDF('P', 'mm', 'A4');
       $pdf->AddPage();
 
@@ -76,7 +87,7 @@
 
       $pdf->Cell(20, 5, '', 0, 0);
       $pdf->Cell(50, 5, 'TOTAL HARGA', 0, 0);
-      $pdf->Cell(120, 5, $totalHarga, 0, 1);
+      $pdf->Cell(120, 5, 'Rp. '.$totalIncome, 0, 1);
 
       $pdf->Cell(190, 5, '', 0, 1);
 
@@ -110,7 +121,7 @@
       $pdf->Cell(40, 10, '', 0, 1);
 
       //output (print)
-      $pdf -> Output("F", "invoice.pdf");
+      $pdf -> Output("", "invoice.pdf");
     }
   }
 ?>
