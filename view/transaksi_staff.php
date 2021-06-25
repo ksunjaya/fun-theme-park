@@ -97,18 +97,7 @@
       let total_harga_text = document.getElementById("harga");
       total_harga_text.value = (<?php echo $harga ?> * jumlah_text.value).toLocaleString('en-US', {style: 'currency',currency: 'IDR'});
     });
-
-    /*let kode_reservasi = document.getElementById("kode-reservasi");
-    kode_reservasi.addEventListener("keyup", function(event) {
-      if(kode_reservasi.value.length >= 6){
-        tombol_cari.click();
-      }else{
-        let status_text = document.getElementById("status");
-        clear_all();
-        status_text.style.visibility = "hidden";
-      }
-    });*/
-
+    
     let btn_submit = document.getElementById("btn-submit");
     btn_submit.addEventListener("click", form_submit);
   }

@@ -85,6 +85,14 @@ function onSubmit(e){
 
 }   
 
+function isNumber(ktp){
+    for(let i = 0; i < 16; i++){
+      if (ktp.charAt(i) >= '0' && ktp.charAt(i) <= '9') continue;
+      else return false;
+    }
+    return true;
+}
+
 function validate(){
     let correct = true;
     let ktp = document.getElementById('ktp');
@@ -97,7 +105,7 @@ function validate(){
     let ktpbox = document.getElementById('ktp-box');
     let warning = document.createElement("span");
 
-    if(ktp.value.length<16 || ktp.value==''){
+    if(ktp.value.length<16 || !isNumber(ktp.value) || ktp.value==''){
         //console.log(ktp);
         ktpbox.appendChild(warning);
         ktp.style.backgroundColor = "#e1001f";

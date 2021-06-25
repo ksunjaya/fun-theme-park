@@ -140,9 +140,9 @@
 		e.preventDefault();
 	}
 
-    function closePhoto(){
-        document.getElementById('alertbox').style.display = "none";
-        document.getElementById('page').style.display = "none";
-    }
+  function closePhoto(){
+      document.getElementById('alertbox').style.display = "none";
+      document.getElementById('page').style.display = "none";
+  }
 
 </script>
