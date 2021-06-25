@@ -14,7 +14,7 @@ class KaryawanController{
 
 	public function __construct(){
 		$this->db = new MySQLDB("localhost","root","","fun_resort");
-		(PHP_OS == "Windows" || PHP_OS == "WIN_NT")? $this->seperator = "\\" : $this->seperator = "/";
+		$this->seperator = "\\";
 	}
 
 	public function count_all(){

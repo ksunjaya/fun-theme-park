@@ -21,7 +21,7 @@
 			 			echo "<td>".$value->getKtp()."</td>";
 			 			echo "<td id='username' name='fullname'><a href='' id='photo' style='text-decoration: none; color: black;'>".$value->getNama()."</a></td>";
 			 			echo "<td name='username'>".$value->getUsername()."
-						 	<input type='hidden' name='photolocation' id='photolocation' value='". $value->getPhotoLocation() ."'>
+						 	<input type='hidden' name='photolocation' value='". $value->getPhotoLocation() ."'>
 						 	</td>";
 			 			echo "<td class ='action'> 
 						<form method='POST' action='update' style='display:inline;'>
@@ -82,6 +82,11 @@
 </div>
 
 <script defer>
+		/*let arr_location = document.getElementsByName('photolocation');
+		for(let i = 0; i < arr_location.length; i++){
+			console.log(arr_location[i].value);
+		}*/
+
 		let arr_delete = document.getElementsByName("delete");
 		for(let i = 0; i < arr_delete.length; i++){
 			arr_delete[i].param = i;
@@ -139,7 +144,7 @@
 		let body = document.getElementById('alertphotobody');
 		body.appendChild(img);
 		let arr_location = document.getElementsByName('photolocation');
-		img.src = arr_location[e.currentTarget.param].innerHTML;
+		img.src = arr_location[e.currentTarget.param].value;
 		// img.src = "src/stich.jpg";
 		img.style.height = "300px";
 		img.style.width = "250px";
