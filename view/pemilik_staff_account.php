@@ -38,27 +38,21 @@
 		</div>
 		<div class="footer-box-button" style="height: 10%;">	
 			<div class="buttons">
-				<div>
-					<?php
-						if($page > 0) {
-							//kalau di halaman 1 ga perlu tampilin tombol back
-							$href = 'staff-list?page='.($page - 1);
-							echo '<a href="'.$href.'" class="back"><span> < </span> </a>'; 
-						}
-					?>
-				</div>
-				<div>
-					<a href="create-account" class="create" ><span>CREATE ACCOUNT<span></a>
-				</div>
-				<div>
-					<?php
-						if($page < $last_page-1){
-							//kalau halaman terkahir ga perlu tombol next
-							$href = 'staff-list?page='.($page + 1);
-							echo '<a href="'.$href.'" class="next"><span> > </span> </a>'; 
-						} 
-					?>
-				</div>
+				<?php
+					if($page > 0) {
+						//kalau di halaman 1 ga perlu tampilin tombol back
+						$href = 'staff-list?page='.($page - 1);
+						echo '<a href="'.$href.'" class="login-next-button log-table-next-button" style="width: 80px; height: 80px; margin-right: 15px;"><span class="material-icons md-48">chevron_left</span></a>';
+					}
+				?>
+				<a href="create-account" class="create" ><span>CREATE ACCOUNT<span></a>
+				<?php
+					if($page < $last_page-1){
+						//kalau halaman terkahir ga perlu tombol next
+						$href = 'staff-list?page='.($page + 1);
+						echo '<a href="'.$href.'" class="login-next-button log-table-next-button" style="width: 80px; height: 80px; margin-left: 15px;"><span class="material-icons md-48">chevron_right</span></a>';
+					} 
+				?>
 			</div>
 			<div class="navs">
 				<a href="main" class="footer-button ">HOME</a>
