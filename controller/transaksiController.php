@@ -105,10 +105,10 @@ class TransaksiController{
     public function get_data_sum_pengunjung($awal, $akhir){
         $awal = $this->db->escapeString($awal);
         $akhir = $this->db->escapeString($akhir);
-        $query="SELECT reservasi.tanggal, SUM(reservasi.jml_orang) AS 'sum' 
+        $query='SELECT reservasi.tanggal, SUM(reservasi.jml_orang) AS "sum" 
                 FROM transaksi INNER JOIN reservasi on transaksi.id_reservasi = reservasi.id_reservasi 
-                WHERE reservasi.tanggal >= '".$awal."' AND reservasi.tanggal <= '".$akhir."'
-                GROUP BY reservasi.tanggal";
+                WHERE reservasi.tanggal >= "'.$awal.'" AND reservasi.tanggal <= "'.$akhir.'"
+                GROUP BY reservasi.tanggal';
 
         $result = $this->db->executeSelectQuery($query);
 
