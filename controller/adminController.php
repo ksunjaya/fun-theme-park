@@ -65,6 +65,8 @@ class AdminController{
       $dateFrom = $minDateFrom;
       $dateUntil = $maxDateUntil;
     }
+    
+    $chartResult = $transaksi->get_data_sum_pengunjung($dateFrom, $dateUntil);
 
     // buat seluruh transaksi (ga di limit)
     $result2 = $transaksi->getAllTransaksi($dateFrom, $dateUntil, 0, PHP_INT_MAX);
@@ -84,7 +86,8 @@ class AdminController{
       "totalCustomer"=>$totalCustomer,
       "totalIncome"=>$totalIncome,
       "dateFrom"=>$dateFrom,
-      "dateUntil"=>$dateUntil
+      "dateUntil"=>$dateUntil,
+      "chartResult"=>$chartResult
     ]);
   }
 

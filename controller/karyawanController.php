@@ -154,7 +154,7 @@ class KaryawanController{
         }
     }
     rmdir($dirPath);
-}
+	}
 }
 
  ?>
