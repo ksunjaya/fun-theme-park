@@ -194,24 +194,6 @@
         kode_reservasi.value = "";
         post_result.innerHTML = "Transaksi Berhasil!";
         post_result.style.color = "#34832D";
-
-        /*//tampilin struk nya di sebelah kanan
-        let struk_container = document.getElementById("struk-container");
-        //buang dulu semua elemen dari struk sebelumnya
-        while(struk_container.lastElementChild){
-          struk_container.removeChild(struk_container.lastElementChild);
-        }
-        console.log(jumlah.value);
-        for(let i = 0; i < jumlah.value; i++){
-          let new_p = document.createElement("p");
-          let txt = document.createTextNode(input["kode_reservasi"] + "-" + (i+1));
-          new_p.appendChild(txt);
-          new_p.style.margin = "5%";
-          struk_container.appendChild(new_p);
-
-          let line = document.createElement("hr");
-          struk_container.appendChild(line);
-        }*/
         
         window.open('print-invoice?idReservasi=' + input["kode_reservasi"], '_blank')
         clear_all();
