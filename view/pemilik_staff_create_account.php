@@ -143,9 +143,9 @@ function validate(){
     console.log(photo.value.substring(len-4)); //.png
     if(photo.value==''){
         photo.style.backgroundColor = "#e1001f";
-        correct = false;
+        correct = false;dd
     }
-    if(photo.value.substring(len-5)!=".jpeg" || photo.value.substring(len-4)!=".png"){
+    if(!(photo.value.substring(len-5)!=".jpeg" || photo.value.substring(len-4)!=".png")){
         photobox.appendChild(formatinfo);
         formatinfo.innerHTML = "Only .jpeg and .png are allowed";
         formatinfo.style.fontSize = "25px";
