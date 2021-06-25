@@ -170,37 +170,34 @@
         let ctx = document.getElementById('chart').getContext('2d');
         let arrTanggal = [];
         let arrCust = [];
+        let arrBG = [];
+        let arrBC = [];
+        let r, g, b;
         <?php
             foreach ($chartResult as $key=>$value){
                 ?>
                 arrTanggal.push('<?php echo $value["tanggal"]?>');
                 arrCust.push(<?php echo $value["sum"]?>);
+                r = Math.floor(Math.random() * 255);
+                g = Math.floor(Math.random() * 255);
+                b = Math.floor(Math.random() * 255);
+                arrBG.push ("rgba("+r+","+g+","+b+", 1)");
+                r = Math.floor(Math.random() * 255);
+                g = Math.floor(Math.random() * 255);
+                b = Math.floor(Math.random() * 255);
+                arrBC.push ("rgba("+r+","+g+","+b+", 1)");
         <?php
             }
         ?>
         let myChart = new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: arrTanggal,
                 datasets: [{
                     label: 'Data Jumlah Pengunjung per Hari ',
                     data: arrCust,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    backgroundColor: arrBG,
+                    borderColor: arrBC,
                     borderWidth: 1
                 }]
             },
