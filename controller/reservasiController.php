@@ -1,12 +1,14 @@
 <?php
 require_once "services/mySQLDB.php";
 require_once "services/view.php";
-
+require_once "limitTiketController.php";
 class ReservasiController{
   protected $db;
+  private $limit_tiket_ctrl;
   public function __construct()
   {
     $this->db = new mySQLDB("localhost", "root", "", "fun_resort");    
+    $this->limit_tiket_ctrl = new LimitTiketController();
   }
 
   //$nomor bukan id_reservasi, tapi merupkaan unique number
@@ -63,6 +65,20 @@ class ReservasiController{
     $query_result = $this->db->executeNonSelectQuery($query);
     
     return $query_result;
+  }
+
+  //cek apakah user ini masih bisa memesan di hari yang sama?
+  public function masih_bisa_pesan($ktp, $tanggal, $jml){
+    $query = 'SELECT SUM(jml_orang) AS "sum"
+              FROM reservasi
+              WHERE ktp = "'.$ktp.'" AND tanggal = "'.$tanggal.'"';
+    $query_result = $this->db->executeSelectQuery($query);
+
+    $sum = $query_result[0]["sum"];
+    $max = $this->limit_tiket_ctrl->get_max($tanggal);
+
+    if($sum + $jml < $max) return true;
+    else return false;
   }
 }
 ?>

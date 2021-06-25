@@ -33,7 +33,7 @@ class KaryawanController{
 		$result = [];
 
 		foreach ($query_result as $key => $value) {
-			$result[] = new Staff($value['ktp'], $value['nama'], $value['username']);
+			$result[] = new Staff($value['ktp'], $value['nama'], $value['username'], $value['photo_location']);
 		}
 		return $result;
 	}

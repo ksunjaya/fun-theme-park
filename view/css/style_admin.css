@@ -544,11 +544,10 @@ tr {
 
 .alertboxhead {
     text-align: center;
-    margin: 10px;
-    margin-top: 50px;
     color: red;
     font-size: 20px;
     font-weight: 500;
+    height: 10%;
 }
 
 .alertboxbody {
@@ -567,7 +566,7 @@ tr {
 
 .alertboxfoot {
     text-align: center;
-    margin-top: 100px;
+    height: 20%;
 }
 
 #ok {
