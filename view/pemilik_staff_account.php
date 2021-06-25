@@ -93,8 +93,13 @@
 
 <script defer>
     
-    let btn = document.getElementById('delete');
-    btn.addEventListener('click', popup);  
+    //let btn = document.getElementById('delete');
+    //btn.addEventListener('click', popup);  
+
+		let arr = document.getElementsByName("delete");
+		for(let i = 0; i < arr.length; i++){
+			arr[i].addEventListener('click', popup);
+		}
     
     function popup(e){
         e.preventDefault();
