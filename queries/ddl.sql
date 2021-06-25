@@ -30,6 +30,7 @@ CREATE TABLE Karyawan
   nama varchar(50) NOT NULL, 
   username varchar(25) NOT NULL,
   password varchar(50) NOT NULL,
+  photo_location varchar(100),
   UNIQUE(username)
 );
 

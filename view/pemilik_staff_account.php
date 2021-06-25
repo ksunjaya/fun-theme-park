@@ -19,14 +19,14 @@
 					foreach ($result as $key => $value) {
 			 			echo "<tr>";
 			 			echo "<td>".$value->getKtp()."</td>";
-			 			echo "<td id='username' name='username'>".$value->getNama()."</td>";
-			 			echo "<td>".$value->getUsername()."</td>";
+			 			echo "<td id='username' name='fullname'>".$value->getNama()."</td>";
+			 			echo "<td name='username'>".$value->getUsername()."</td>";
 			 			echo "<td class ='action'> 
 						<form method='POST' action='update' style='display:inline;'>
 							<button type= 'submit' class = 'update-button' type='submit' name='update'>UPDATE</button>
 							<input type='hidden' name='user' value='". $value->getUsername() ."'>
 						</form>
-						<form method='POST' action='delete' style='display:inline;' id='deletestaff'>
+						<form method='POST' action='delete' style='display:inline;' name='form-delete'>
 							<button class = 'update-button' type='submit' name='delete'>DELETE</button>
 							<input type='hidden' name='user' value='". $value->getUsername() ."' id='user'>
 						</form>
@@ -77,8 +77,6 @@
     </div>
 </div>
 
-
-
 <script defer>
     //let btn = document.getElementById('delete');
     //btn.addEventListener('click', popup);  
@@ -98,22 +96,24 @@
       let head = document.getElementById('alertboxhead');
       head.innerHTML = "YOU ARE ABOUT TO DELETE ACCOUNT WITH USERNAME";
       let arr_user = document.getElementsByName("username");
+			let arr_form = document.getElementsByName("form-delete");
       document.getElementById('alertboxbody').innerHTML = '"' + arr_user[e.currentTarget.param].innerHTML + '"';
       document.getElementById('alertboxbody1').innerHTML =  "ARE YOU SURE?";
-      document.getElementById('alertboxfoot').innerHTML = '<button id="no">NO</button><button id="yes">YES</button>';
-      document.getElementById('yes').addEventListener('click',confirm);
-      document.getElementById('no').addEventListener('click',cancel);
+      document.getElementById('alertboxfoot').innerHTML = '<button onClick="cancel()" id="no">NO</button><button id="yes">YES</button>';
+			document.getElementById('yes').param = arr_form[e.currentTarget.param]
+			document.getElementById('yes').addEventListener('click', confirm);
     }
 
-    function confirm(){
+    function confirm(e){
       document.getElementById('alertbox').style.display = "none";
       document.getElementById('page').style.display = "none";
-      let form = document.getElementById('deletestaff');
+			console.log(e.currentTarget.param);
+      let form = e.currentTarget.param;
       form.submit();
     }
 
-    function cancel(){
+    function cancel(e){
     	document.getElementById('alertbox').style.display = "none";
       document.getElementById('page').style.display = "none";
-    }
+  	}
 </script>
