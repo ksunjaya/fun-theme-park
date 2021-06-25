@@ -3,15 +3,18 @@
 Kelas ini digunakan untuk control panel administrator, dimana admin bisa liat, edit, dan delete.
 Dependencies : mySQLDB.php, view.php, model/staff.php
 */
+
 require_once "services/mySQLDB.php";
 require_once "services/view.php";
 require_once "model/staff.php";
 
 class KaryawanController{
 	protected $db;
+	private $seperator;
 
 	public function __construct(){
 		$this->db = new MySQLDB("localhost","root","","fun_resort");
+		(PHP_OS == "Windows" || PHP_OS == "WIN_NT")? $this->seperator = "\\" : $this->seperator = "/";
 	}
 
 	public function count_all(){
@@ -56,7 +59,7 @@ class KaryawanController{
 			$query = "DELETE FROM karyawan WHERE username='$username'";
 			$this->db->executeNonSelectQuery($query);
 
-			$file = dirname(__DIR__)."\\uploads\\".$username;
+			$file = dirname(__DIR__).$this->seperator."uploads".$this->seperator.$username;
 			self::deleteDir($file);
 		}
 	}
