@@ -238,7 +238,7 @@ class AdminController{
     $pdf->SetFont('Arial', '', 12);
     $pdf -> Cell(100, 5, '', 0, 0);
     $pdf -> Cell(40, 5, 'Total Income', 0, 0);
-    $pdf -> Cell(49, 5, $totalIncome, 0, 1);
+    $pdf -> Cell(49, 5, 'Rp. '.$totalIncome, 0, 1);
 
     $pdf -> Cell(100, 5, '', 0, 0);
     $pdf -> Cell(40, 5, 'Total Customer', 0, 0);
