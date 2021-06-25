@@ -89,11 +89,13 @@ class AdminController{
     $dateUntil = "";
     $totalIncome = 0;
     $totalCustomer = 0;
-    if (isset($_POST['dateFrom']) && isset($_POST['dateUntil']) && isset($_POST['totalIncome']) && $_POST['totalIncome'] != "" && isset($_POST['totalCustomer']) && $_POST['totalCustomer'] != "") {
+    $nama = "";
+    if (isset($_POST['dateFrom']) && isset($_POST['dateUntil']) && isset($_POST['totalIncome']) && $_POST['totalIncome'] != "" && isset($_POST['totalCustomer']) && $_POST['totalCustomer'] != "" && isset($_POST['nama']) && $_POST['nama'] != "") {
       $dateFrom = $_POST['dateFrom'];
       $dateUntil = $_POST['dateUntil'];
       $totalIncome = $_POST['totalIncome'];
       $totalCustomer = $_POST['totalCustomer'];
+      $nama = $_POST['nama'];
     }
 
     $transaksi = new TransaksiController();
@@ -169,7 +171,7 @@ class AdminController{
 
     $pdf->SetFont('Arial', 'I', 12);
     $pdf -> Cell(50, 5, '', 0, 0);
-    $pdf -> Cell(89, 5, '~ Printed by Vincent Kurniawan ~', 0, 0, 'C');
+    $pdf -> Cell(89, 5, '~ Printed by '.$nama.' ~', 0, 0, 'C');
     $pdf -> Cell(50, 5, '', 0, 1);
 
     //output

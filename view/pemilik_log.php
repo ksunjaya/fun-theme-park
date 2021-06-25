@@ -47,6 +47,7 @@
                             <input type="hidden" name = "dateUntil" value= <?php echo $dateUntil ?>>
                             <input type="hidden" name = "totalIncome" value= <?php echo $totalIncome ?>>
                             <input type="hidden" name = "totalCustomer" value= <?php echo $totalCustomer ?>>
+                            <input type="hidden" name = "nama" value= <?php echo $nama_user ?>>
                             <button class="log-download-button" type="submit">
                                 <h2>DOWNLOAD</h2>
                             </button>
