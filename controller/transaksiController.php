@@ -85,5 +85,19 @@ class TransaksiController{
         $res = array ($totalIncome, $totalCustomer);
         return $res;
     }
+
+    public function get_stating_date(){
+        $query= 'SELECT MIN(tanggal) AS min
+                 FROM transaksi';
+        $result = $this->db->executeSelectQuery($query);
+        return $result[0]['min'];
+    }
+
+    public function get_ending_date(){
+        $query= 'SELECT MAX(tanggal) AS max
+                 FROM transaksi';
+        $result = $this->db->executeSelectQuery($query);
+        return $result[0]['max'];
+    }
 }
 ?>

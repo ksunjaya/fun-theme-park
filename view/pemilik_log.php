@@ -1,3 +1,22 @@
+<?php
+    //ini buat tampilan FROM dan UNTIL
+    require_once "controller/transaksiController.php";
+    $transaki_controller = new TransaksiController();
+    $min_date = $transaki_controller->get_stating_date();
+    $max_date = $transaki_controller->get_ending_date();
+
+    if(!isset($_GET["dateFrom"]) || $_GET["dateFrom"] == ""){
+        $display_date_from = $min_date;        
+    }else{
+        $display_date_from = $_GET["dateFrom"];
+    }
+
+    if(!isset($_GET["dateUntil"]) || $_GET["dateUntil"] == ""){
+        $display_date_until = $max_date;
+    }else{
+        $display_date_until = $_GET["dateUntil"];
+    }
+?>
 <div id="log-form" class="login-main">
         <div class="login-content bg-white" style="width: 90%;">
             <div class="login-h1-box" style="height: 15%;">
@@ -10,13 +29,13 @@
                             <h2>FROM</h2>
                         </div>
                         <div class="log-kiri-row">
-                            <input type="date" class = "input-date"name="dateFrom">
+                            <input type="date" class = "input-date"name="dateFrom" min=<?php echo $min_date ?> max=<?php echo $max_date ?> value=<?php echo $display_date_from?> >
                         </div>
                         <div class="log-kiri-row">
                             <h2>UNTIL</h2>
                         </div>
                         <div class="log-kiri-row" style="margin-bottom: 25px;">
-                            <input type="date" class = "input-date" name="dateUntil">
+                            <input type="date" class = "input-date" name="dateUntil" min=<?php echo $min_date ?> max=<?php echo $max_date ?> value=<?php echo $display_date_until?> >
                         </div>
                         <div class="footer-box-button" style="margin-bottom: 25px;">
                             <button type="submit" class="login-next-button c-white bg-dark-blue" style="height: 60px; border-radius:15px" href=""><span class="txtButton">SET</span></button>
@@ -47,7 +66,6 @@
                             <input type="hidden" name = "dateUntil" value= <?php echo $dateUntil ?>>
                             <input type="hidden" name = "totalIncome" value= <?php echo $totalIncome ?>>
                             <input type="hidden" name = "totalCustomer" value= <?php echo $totalCustomer ?>>
-                            <input type="hidden" name = "nama" value= <?php echo $nama_user ?>>
                             <button class="log-download-button" type="submit">
                                 <h2>DOWNLOAD</h2>
                             </button>
