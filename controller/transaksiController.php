@@ -38,6 +38,52 @@ class TransaksiController{
         //update reservasi, set ke "done"
         $query_result2 = $reservasi_ctrl->set_selesai($id_reservasi);
         return $query_result && $query_result2;
-    }  
+    }
+
+    public function getAllTransaksi ($dateFrom, $dateUntil, $page, $count) {
+        $page *= 5;
+        $query = '  SELECT transaksi.id_reservasi, transaksi.tanggal, transaksi.total_harga, reservasi.jml_orang
+                    FROM transaksi INNER JOIN reservasi ON transaksi.id_reservasi = reservasi.id_reservasi ';
+        
+        if ($dateFrom != "" && $dateUntil != ""){
+            $this->db->escapeString($dateFrom);
+            $this->db->escapeString($dateUntil);
+            $query.='WHERE transaksi.tanggal >= '."'".$dateFrom."'".' AND transaksi.tanggal <= '."'".$dateUntil."'";
+        }else if ($dateFrom != ""){
+            $this->db->escapeString($dateFrom);
+            $query.='WHERE transaksi.tanggal >= '."'".$dateFrom."'";
+        }else if ($dateUntil != ""){
+            $this->db->escapeString($dateUntil);
+            $query.='WHERE transaksi.tanggal <= '."'".$dateUntil."'";
+        }
+        $query .=' ORDER BY transaksi.tanggal, transaksi.id_reservasi';
+        $query .= ' LIMIT '.$page.','.$count;
+        $query_result = $this->db->executeSelectQuery($query);
+
+        $result = [];
+        foreach ($query_result as $key => $value) {
+            $result[] = new Log($value['tanggal'], $value['id_reservasi'], $value['jml_orang'], $value['total_harga']);
+        }
+        return $result;
+    }
+    public function getTotalIncomeCustomer ($query_result){
+        $sum = 0;
+        $totalCustomer = 0;
+        foreach ($query_result as $key => $value){
+            $sum+=$value->getTotalPrice();
+            $totalCustomer+=$value->getTotalTicket();
+        }
+        $totalIncome = "";
+        $sisa = (strlen($sum) % 3);
+        if (strlen($sum)%3 == 0 && strlen($sum) > 3){
+            $sisa = 3;
+        }
+        $totalIncome = substr($sum, 0, $sisa);
+        for ($i = $sisa; $i < strlen($sum); $i+=3) {
+            $totalIncome.=".".substr ($sum, $i, 3);
+        }
+        $res = array ($totalIncome, $totalCustomer);
+        return $res;
+    }
 }
 ?>

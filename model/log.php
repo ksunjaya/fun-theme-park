@@ -46,7 +46,7 @@ class Log{
 		for ($i = $sisa; $i < strlen($sum); $i+=3) {
 		$totalIncome.=".".substr ($sum, $i, 3);
 		}
-		return $totalIncome;
+		return 'Rp. '.$totalIncome;
 	}
 }
 

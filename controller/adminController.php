@@ -41,52 +41,82 @@ class AdminController{
 
   //=====untuk page log transaksi======
   public function view_log(){
+
+    require_once "transaksiController.php";
+    $transaksi = new TransaksiController();
+
     $page = 0;
     if(isset($_GET["page"])) $page = $_GET["page"];
 
-    $query = 'SELECT transaksi.id_reservasi, transaksi.tanggal, transaksi.total_harga, reservasi.jml_orang
-              FROM transaksi INNER JOIN reservasi ON transaksi.id_reservasi = reservasi.id_reservasi ';
-    
     $dateFrom = "";
     $dateUntil = "";
 
     if (isset ($_GET['dateFrom']) && $_GET['dateFrom'] != "" && isset($_GET['dateUntil']) && $_GET['dateUntil'] != ""){
       $dateFrom = $_GET['dateFrom'];
       $dateUntil = $_GET['dateUntil'];
-      $this->db->escapeString($dateFrom);
-      $this->db->escapeString($dateUntil);
-      $query.='WHERE transaksi.tanggal >= '."'".$dateFrom."'".' AND transaksi.tanggal <= '."'".$dateUntil."'";
     }else if (isset ($_GET['dateFrom']) && $_GET['dateFrom'] != ""){
       $dateFrom = $_GET['dateFrom'];
-      $this->db->escapeString($dateFrom);
-      $query.='WHERE transaksi.tanggal >= '."'".$dateFrom."'";
     }else if (isset($_GET['dateUntil']) && $_GET['dateUntil'] != ""){
       $dateUntil = $_GET['dateUntil'];
-      $this->db->escapeString($dateUntil);
-      $query.='WHERE transaksi.tanggal <= '."'".$dateUntil."'";
     }
-    $query.=' ORDER BY transaksi.tanggal, transaksi.id_reservasi';
+
+    // buat seluruh transaksi (ga di limit)
+    $result2 = $transaksi->getAllTransaksi($dateFrom, $dateUntil, 0, PHP_INT_MAX);
+    $last_page = (int)(count ($result2) / 5);
+    $incomeCust = $transaksi->getTotalIncomeCustomer($result2);
+    $totalIncome = $incomeCust[0];
+    $totalCustomer = $incomeCust[1];
+
+    // buat transaksi yang dilimit
+    $result = $transaksi->getAllTransaksi($dateFrom, $dateUntil, $page, 5);
+
+
+    // $page = 0;
+    // if(isset($_GET["page"])) $page = $_GET["page"];
+
+    // $query = 'SELECT transaksi.id_reservasi, transaksi.tanggal, transaksi.total_harga, reservasi.jml_orang
+    //           FROM transaksi INNER JOIN reservasi ON transaksi.id_reservasi = reservasi.id_reservasi ';
     
-    $query_result = $this->changeVal($query);
+    // $dateFrom = "";
+    // $dateUntil = "";
 
-    $last_page = (int)(count ($query_result) / 5);
+    // if (isset ($_GET['dateFrom']) && $_GET['dateFrom'] != "" && isset($_GET['dateUntil']) && $_GET['dateUntil'] != ""){
+    //   $dateFrom = $_GET['dateFrom'];
+    //   $dateUntil = $_GET['dateUntil'];
+    //   $this->db->escapeString($dateFrom);
+    //   $this->db->escapeString($dateUntil);
+    //   $query.='WHERE transaksi.tanggal >= '."'".$dateFrom."'".' AND transaksi.tanggal <= '."'".$dateUntil."'";
+    // }else if (isset ($_GET['dateFrom']) && $_GET['dateFrom'] != ""){
+    //   $dateFrom = $_GET['dateFrom'];
+    //   $this->db->escapeString($dateFrom);
+    //   $query.='WHERE transaksi.tanggal >= '."'".$dateFrom."'";
+    // }else if (isset($_GET['dateUntil']) && $_GET['dateUntil'] != ""){
+    //   $dateUntil = $_GET['dateUntil'];
+    //   $this->db->escapeString($dateUntil);
+    //   $query.='WHERE transaksi.tanggal <= '."'".$dateUntil."'";
+    // }
 
-    //untuk total income & total customer
-    $sum = 0;
-    $totalCustomer = 0;
-    foreach ($query_result as $key => $value){
-        $sum+=$value->getTotalPrice();
-        $totalCustomer+=$value->getTotalTicket();
-    }
-    $totalIncome = $this->formatRupiah($sum);
+    // $query.=' ORDER BY transaksi.tanggal, transaksi.id_reservasi';
+    
+    // $query_result = $this->changeVal($query);
+
+    // $last_page = (int)(count ($query_result) / 5);
+
+    // //untuk total income & total customer
+    // $sum = 0;
+    // $totalCustomer = 0;
+    // foreach ($query_result as $key => $value){
+    //     $sum+=$value->getTotalPrice();
+    //     $totalCustomer+=$value->getTotalTicket();
+    // }
+    // $totalIncome = $this->formatRupiah($sum);
 
     
-    $query = $this->limitQuery($page, 5, $query);
-    $result = $this->changeVal($query);
+    // $query = $this->limitQuery($page, 5, $query);
+    // $result = $this->changeVal($query);
 
     return View::createAdminView('pemilik_log.php',[
       "result"=> $result,
-      "query_result" => $query_result,
       "page"=> $page,
       "last_page"=>$last_page,
       "totalCustomer"=>$totalCustomer,
@@ -120,18 +150,34 @@ class AdminController{
     $query .= ' LIMIT '.$page.','.$count;
     return $query;
   }
-  private function getLogTransaksi($page, $count, $query){
-    $page *= 5;
-    $query .= ' LIMIT '.$page.','.$count;
-    $query_result = $this->db->executeSelectQuery($query);
-    $result = [];
+  // private function getLogTransaksi($page, $count, $query){
+  //   $page *= 5;
+  //   $query .= ' LIMIT '.$page.','.$count;
+  //   $query_result = $this->db->executeSelectQuery($query);
+  //   $result = [];
 
-    foreach ($query_result as $key => $value) {
-        $result[] = new Log($value['tanggal'], $value['id_reservasi'], $value['jml_orang'], $value['total_harga']);
-    }
-    return $result;
-  }
+  //   foreach ($query_result as $key => $value) {
+  //       $result[] = new Log($value['tanggal'], $value['id_reservasi'], $value['jml_orang'], $value['total_harga']);
+  //   }
+  //   return $result;
+  // }
   public function createPDF () {
+    require_once 'transaksiController.php';
+
+    $dateFrom = "";
+    $dateUntil = "";
+    $totalIncome = 0;
+    $totalCustomer = 0;
+    if (isset($_POST['dateFrom']) && isset($_POST['dateUntil']) && isset($_POST['totalIncome']) && $_POST['totalIncome'] != "" && isset($_POST['totalCustomer']) && $_POST['totalCustomer'] != "") {
+      $dateFrom = $_POST['dateFrom'];
+      $dateUntil = $_POST['dateUntil'];
+      $totalIncome = $_POST['totalIncome'];
+      $totalCustomer = $_POST['totalCustomer'];
+    }
+
+    $transaksi = new TransaksiController();
+    $result = $transaksi->getAllTransaksi($dateFrom, $dateUntil, 0, PHP_INT_MAX);
+
     $pdf = new FPDF('P', 'mm', 'A4');
     $pdf->AddPage();
     
@@ -155,11 +201,11 @@ class AdminController{
     $pdf->SetFont('Arial', '', 12);
     $pdf -> Cell(10, 5, '', 0, 0);
     $pdf -> Cell(40, 5, 'Tanggal Mulai:', 0, 0);
-    $pdf -> Cell(40, 5, '24-Jun-2021', 0, 1);
+    $pdf -> Cell(40, 5, $dateFrom, 0, 1);
 
     $pdf -> Cell(10, 5, '', 0, 0);
     $pdf -> Cell(40, 5, 'Tanggal Selesai:', 0, 0);
-    $pdf -> Cell(40, 5, '24-Jun-2021', 0, 1);
+    $pdf -> Cell(40, 5, $dateUntil, 0, 1);
 
     $pdf -> Cell(189, 10, '', 0, 1);
 
@@ -173,11 +219,11 @@ class AdminController{
     $pdf -> Cell(48, 10,  'TOTAL PRICE', 1, 1, 'C');
 
     $pdf->SetFont('Arial', '', 12);
-    for ($i=0; $i<100; $i++){
-      $pdf -> Cell(47, 10, '24 June 2021', 1, 0,'C');
-      $pdf -> Cell(47, 10, '210624273', 1, 0, 'C');
-      $pdf -> Cell(47, 10,  '5', 1, 0, 'C');
-      $pdf -> Cell(48, 10,  'Rp. 250.000', 1, 1, 'C');
+    foreach ($result as $key => $value){
+      $pdf -> Cell(47, 10, $value->getDate(), 1, 0,'C');
+      $pdf -> Cell(47, 10, $value->getIdBooking(), 1, 0, 'C');
+      $pdf -> Cell(47, 10, $value->getTotalTicket(), 1, 0, 'C');
+      $pdf -> Cell(48, 10, $value->getFormattedPrice(), 1, 1, 'C');
     }
 
     //summary
@@ -192,11 +238,11 @@ class AdminController{
     $pdf->SetFont('Arial', '', 12);
     $pdf -> Cell(100, 5, '', 0, 0);
     $pdf -> Cell(40, 5, 'Total Income', 0, 0);
-    $pdf -> Cell(49, 5, 'Rp. 1.600.000', 0, 1);
+    $pdf -> Cell(49, 5, $totalIncome, 0, 1);
 
     $pdf -> Cell(100, 5, '', 0, 0);
     $pdf -> Cell(40, 5, 'Total Customer', 0, 0);
-    $pdf -> Cell(49, 5, '38', 0, 1);
+    $pdf -> Cell(49, 5, $totalCustomer, 0, 1);
 
     $pdf -> Cell(189, 20, '', 0, 1);
 
