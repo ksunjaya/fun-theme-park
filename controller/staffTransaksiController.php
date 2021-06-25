@@ -110,7 +110,7 @@
       $pdf->Cell(40, 10, '', 0, 1);
 
       //output (print)
-      $pdf -> Output();
+      $pdf -> Output("F", "invoice.pdf");
     }
   }
 ?>
