@@ -87,8 +87,8 @@
 				break;
 			case $baseURL.'/print-invoice':
 				require_once 'controller/staffTransaksiController.php';
-				$a = new StaffController();
-				$a -> createPDF();
+				$staff_ctrl = new StaffController();
+				$staff_ctrl -> createPDF();
 			//=========ERROR PAGE============
 			case $baseURL.'/forbidden':
 				require_once "controller/services/view.php";
