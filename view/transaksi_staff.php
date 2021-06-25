@@ -13,11 +13,22 @@
   }
   
   function format_harga($harga){
-    $result = "";
-    for($i = strlen($harga)-3; $i >= 0; $i -= 3){
-      $result = substr($harga, 0, $i).'.'.substr($harga, $i, strlen($harga));
-    }
-    return $result;
+    $sum = $harga;
+		$totalIncome = "";
+		$sisa = (strlen($sum) % 3);
+		if (strlen($sum)%3 == 0 && strlen($sum) > 3){
+		$sisa = 3;
+		}
+		$totalIncome = substr($sum, 0, $sisa);
+		for ($i = $sisa; $i < strlen($sum); $i+=3) {
+		$totalIncome.=".".substr ($sum, $i, 3);
+		}
+		return 'Rp. '.$totalIncome;
+    // $result = "";
+    // for($i = strlen($harga)-3; $i >= 0; $i -= 3){
+    //   $result = substr($harga, 0, $i).'.'.substr($harga, $i, strlen($harga));
+    // }
+    // return $result;
   }
 ?>
 
@@ -44,7 +55,7 @@
   </div>
   <div style="flex:1;">
     <p class="float-right" style="font-size: 20px; margin: 5px;">Harga/Tiket</p>
-    <p class="float-right bold" style="font-size: 30px; margin: 5px;"><?php echo 'Rp. '.format_harga($harga) ?></p>
+    <p class="float-right bold" style="font-size: 30px; margin: 5px;"><?php echo format_harga($harga) ?></p>
   </div>
 </div>
 
@@ -77,7 +88,7 @@
         </tr>
       </table>
     </div>
-
+    
     <input type="submit" class="blue-button" id="btn-submit" value="Cetak" style="margin: 0% 40% 0% 40%;">
     <p id="post-result" style="text-align: center; margin-right: 5%;font-weight: 800; color: #34832D; visibility: hidden">Transaksi berhasil!</p>
   </form>
