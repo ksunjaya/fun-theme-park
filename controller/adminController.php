@@ -49,14 +49,21 @@ class AdminController{
 
     $dateFrom = "";
     $dateUntil = "";
-
+    $minDateFrom = $transaksi->get_stating_date();
+    $maxDateUntil = $transaksi->get_ending_date();
     if (isset ($_GET['dateFrom']) && $_GET['dateFrom'] != "" && isset($_GET['dateUntil']) && $_GET['dateUntil'] != ""){
       $dateFrom = $_GET['dateFrom'];
       $dateUntil = $_GET['dateUntil'];
     }else if (isset ($_GET['dateFrom']) && $_GET['dateFrom'] != ""){
       $dateFrom = $_GET['dateFrom'];
+      $dateUntil = $maxDateUntil;
     }else if (isset($_GET['dateUntil']) && $_GET['dateUntil'] != ""){
       $dateUntil = $_GET['dateUntil'];
+      $dateFrom = $minDateFrom;
+    }else{
+      //kalau dua duanya belum di set
+      $dateFrom = $minDateFrom;
+      $dateUntil = $maxDateUntil;
     }
 
     // buat seluruh transaksi (ga di limit)
@@ -68,8 +75,7 @@ class AdminController{
 
     // buat transaksi yang dilimit
     $result = $transaksi->getAllTransaksi($dateFrom, $dateUntil, $page, 5);
-
-
+    
     // buat create view
     return View::createAdminView('pemilik_log.php',[
       "result"=> $result,
