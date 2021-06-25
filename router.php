@@ -85,6 +85,10 @@
 				$reservasiCtrl = new ReservasiController();
 				echo $reservasiCtrl->HTTP_GET_reservasi();
 				break;
+			case $baseURL.'/print-invoice':
+				require_once 'controller/staffTransaksiController.php';
+				$a = new StaffController();
+				$a -> createPDF();
 			//=========ERROR PAGE============
 			case $baseURL.'/forbidden':
 				require_once "controller/services/view.php";
@@ -94,6 +98,7 @@
 				require_once "controller/services/view.php";
 				echo View::createPengunjungView("error_page.php", ["error_code"=>404]);
 				break;
+			
 			default:
 				header("Location: not-found");
 				break;
