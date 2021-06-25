@@ -166,7 +166,7 @@
         <?php
             foreach ($chartResult as $key=>$value){
                 ?>
-                arrTanggal.push(<?php echo $value["tanggal"]?>);
+                arrTanggal.push('<?php echo $value["tanggal"]?>');
                 arrCust.push(<?php echo $value["sum"]?>);
         <?php
             }
