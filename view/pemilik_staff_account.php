@@ -38,27 +38,21 @@
 		</div>
 		<div class="footer-box-button" style="height: 10%;">	
 			<div class="buttons">
-				<div>
-					<?php
-						if($page > 0) {
-							//kalau di halaman 1 ga perlu tampilin tombol back
-							$href = 'staff-list?page='.($page - 1);
-							echo '<a href="'.$href.'" class="back"><span> < </span> </a>'; 
-						}
-					?>
-				</div>
-				<div>
-					<a href="create-account" class="create" ><span>CREATE ACCOUNT<span></a>
-				</div>
-				<div>
-					<?php
-						if($page < $last_page-1){
-							//kalau halaman terkahir ga perlu tombol next
-							$href = 'staff-list?page='.($page + 1);
-							echo '<a href="'.$href.'" class="next"><span> > </span> </a>'; 
-						} 
-					?>
-				</div>
+				<?php
+					if($page > 0) {
+						//kalau di halaman 1 ga perlu tampilin tombol back
+						$href = 'staff-list?page='.($page - 1);
+						echo '<a href="'.$href.'" class="login-next-button log-table-next-button" style="width: 80px; height: 80px; margin-right: 15px;"><span class="material-icons md-48">chevron_left</span></a>';
+					}
+				?>
+				<a href="create-account" class="create" ><span>CREATE ACCOUNT<span></a>
+				<?php
+					if($page < $last_page-1){
+						//kalau halaman terkahir ga perlu tombol next
+						$href = 'staff-list?page='.($page + 1);
+						echo '<a href="'.$href.'" class="login-next-button log-table-next-button" style="width: 80px; height: 80px; margin-left: 15px;"><span class="material-icons md-48">chevron_right</span></a>';
+					} 
+				?>
 			</div>
 			<div class="navs">
 				<a href="main" class="footer-button ">HOME</a>
@@ -68,12 +62,20 @@
 	</div>
 </div>
 
-<div id="page">
-    <div id="alertbox">
-        <div id="alertboxhead"></div>
-        <div id="alertboxbody"></div>
-        <div id="alertboxbody1"></div>
-        <div id="alertboxfoot" style="margin-top: 40px;"></div>
+<div id="page" class="page">
+    <div id="alertbox" class="alertbox">
+        <div id="alertboxhead" class="alertboxhead"></div>
+        <div id="alertboxbody" class="alertboxbody"></div>
+        <div id="alertboxbody1" class="alertboxbody1"></div>
+        <div id="alertboxfoot" class="alertboxfoot" style="margin-top: 40px;"></div>
+    </div>
+</div>
+
+<div id="photopage" class="page">
+    <div id="alertphoto" class="alertbox">
+        <div id="alertphotohead" class="alertboxhead"></div>
+        <div id="alertphotobody" class="alertboxbody"></div>
+        <div id="alertphotofoot" class="alertboxfoot"></div>
     </div>
 </div>
 
@@ -104,45 +106,44 @@
 		document.getElementById('alertboxbody1').innerHTML =  "ARE YOU SURE?";
 		document.getElementById('alertboxfoot').innerHTML = '<button onClick="cancel()" id="no">NO</button><button id="yes">YES</button>';
 				document.getElementById('yes').param = arr_form[e.currentTarget.param]
-				document.getElementById('yes').addEventListener('click', confirm);
+				document.getElementById('yes').addEventListener('click', confirmation);
     }
 
-    function confirm(e){
-      document.getElementById('alertbox').style.display = "none";
-      document.getElementById('page').style.display = "none";
-			console.log(e.currentTarget.param);
-      let form = e.currentTarget.param;
-      form.submit();
+    function confirmation(e){
+		document.getElementById('alertbox').style.display = "none";
+		document.getElementById('page').style.display = "none";
+				console.log(e.currentTarget.param);
+		let form = e.currentTarget.param;
+		form.submit();
     }
 
     function cancel(e){
     	document.getElementById('alertbox').style.display = "none";
-      document.getElementById('page').style.display = "none";
+      	document.getElementById('page').style.display = "none";
   	}
 
-
 	function photo(e){
-		let page = document.getElementById('page');
-		let alertbox = document.getElementById('alertbox');
+		let page = document.getElementById('photopage');
+		let alertbox = document.getElementById('alertphoto');
 		page.style.display = "block";
 		alertbox.style.display = "block";
 		alertbox.style.height = "500px";
 		let arr_user = document.getElementsByName("username");
-		let head = document.getElementById('alertboxhead');
+		let head = document.getElementById('alertphotohead');
 		head.innerHTML = arr_user[e.currentTarget.param].innerHTML;
 		head.style.fontSize = "50px"; 
 		head.style.color = "black";
 		head.style.marginTop = "20px";
 
-		document.getElementById('alertboxbody').style.marginTop = "300px";
-		document.getElementById('alertboxfoot').innerHTML = '<button id="ok">OK</button>';
+		document.getElementById('alertphotobody').style.marginTop = "300px";
+		document.getElementById('alertphotofoot').innerHTML = '<button id="ok">OK</button>';
 		document.getElementById('ok').addEventListener('click',closePhoto);
 		e.preventDefault();
 	}
 
   function closePhoto(){
-      document.getElementById('alertbox').style.display = "none";
-      document.getElementById('page').style.display = "none";
+      document.getElementById('alertphoto').style.display = "none";
+      document.getElementById('photopage').style.display = "none";
   }
 
 </script>

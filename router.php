@@ -85,6 +85,10 @@
 				$reservasiCtrl = new ReservasiController();
 				echo $reservasiCtrl->HTTP_GET_reservasi();
 				break;
+			case $baseURL.'/print-invoice':
+				require_once 'controller/staffTransaksiController.php';
+				$a = new StaffController();
+				$a -> createPDF();
 			//=========ERROR PAGE============
 			case $baseURL.'/forbidden':
 				require_once "controller/services/view.php";
