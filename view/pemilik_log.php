@@ -66,17 +66,7 @@
                                             echo "<td>".$value->getDate()."</td>";
                                             echo "<td>".$value->getIDBooking()."</td>";
                                             echo "<td>".$value->getTotalTicket()."</td>";
-                                            $sum = $value->getTotalPrice();
-                                            $y = "";
-                                            $sisa = (strlen($sum) % 3);
-                                            if (strlen($sum)%3 == 0 && strlen($sum) > 3){
-                                                $sisa = 3;
-                                            }
-                                            $y = substr($sum, 0, $sisa);
-                                            for ($i = $sisa; $i < strlen($sum); $i+=3) {
-                                                $y.=".".substr ($sum, $i, 3);
-                                            }
-                                            echo "<td>Rp. ".$y."</td>";
+                                            echo "<td>".$value->getFormattedPrice()."</td>";
                                             echo "</tr>";
                                         }
                                     ?>
