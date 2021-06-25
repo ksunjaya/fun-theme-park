@@ -6,7 +6,7 @@
 
     public function __construct()
     {
-      $db = new MySQLDB("localhost", "root", "", "fun_resort");
+      $this->db = new MySQLDB("localhost", "root", "", "fun_resort");
     }
 
     public function get_reservasi_attributes(){
