@@ -23,9 +23,9 @@ class KaryawanController{
     
 	}
 
-	public function getAllStaff(){
-		// $page *= MAX;
-		$query = "SELECT * FROM karyawan ORDER BY karyawan.ktp";
+	public function getAllStaff($page, $count){
+		$page *= MAX;
+		$query = 'SELECT * FROM karyawan ORDER BY karyawan.ktp LIMIT '.$page.','.$count;
 		$query_result = $this->db->executeSelectQuery($query);
 		$result = [];
 

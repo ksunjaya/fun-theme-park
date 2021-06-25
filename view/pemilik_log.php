@@ -10,7 +10,7 @@
                             <h2>FROM</h2>
                         </div>
                         <div class="log-kiri-row">
-                            <input type="date" class = "input-date"name="dateFrom" >
+                            <input type="date" class = "input-date"name="dateFrom">
                         </div>
                         <div class="log-kiri-row">
                             <h2>UNTIL</h2>
