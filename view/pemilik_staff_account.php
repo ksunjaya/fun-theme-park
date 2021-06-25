@@ -136,11 +136,11 @@
 
 		document.getElementById('alertboxbody').style.marginTop = "300px";
 		document.getElementById('alertboxfoot').innerHTML = '<button id="ok">OK</button>';
-		document.getElementById('ok').addEventListener('click',confirm);
+		document.getElementById('ok').addEventListener('click',closePhoto);
 		e.preventDefault();
 	}
 
-    function confirm(){
+    function closePhoto(){
         document.getElementById('alertbox').style.display = "none";
         document.getElementById('page').style.display = "none";
     }

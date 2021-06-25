@@ -49,7 +49,7 @@
 </div>
 
 <div id="interface" style="display:flex; margin: 0px 50px;">
-  <div class="white-box" id="input-container" style="flex: 5; height: 100%">
+  <div class="white-box" id="input-container" style="flex: 5; height: 100%; margin: 5% 20%;">
   <div class="white-box">
   <form class="bg-white" method="POST">
     <label class="bg-white">Kode Reservasi</label>
@@ -83,9 +83,8 @@
   </form>
   </div>
   </div>
-  <div id="struk-container" class="white-box struk-container">
-   
-  </div>
+  <!--<div id="struk-container" class="white-box struk-container">
+  </div>-->
 </div>
 
 <script>

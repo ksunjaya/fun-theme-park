@@ -89,7 +89,7 @@ class KaryawanController{
 	private function upload_file($folder_name){
 		//$folder_name = $this->db->escapeString($_POST["username"]);
 
-		$upload_dir = dirname(__DIR__)."\\uploads\\";
+		$upload_dir = dirname(__DIR__).$this->seperator."uploads".$this->seperator;
 		//kalau belum ada foldernya, harus dibikin dulu
 		if(!file_exists($upload_dir.$folder_name)){
 			mkdir($upload_dir.$folder_name, 0777, true);
