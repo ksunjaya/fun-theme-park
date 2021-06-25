@@ -14,7 +14,7 @@ class KaryawanController{
 
 	public function __construct(){
 		$this->db = new MySQLDB("localhost","root","","fun_resort");
-		$this->seperator = "\\";
+		$this->seperator = "/";
 	}
 
 	public function count_all(){
@@ -102,10 +102,10 @@ class KaryawanController{
 				$result["name"] = $_FILES['upfile']['name'];
 				$result["temp_dir"] = $_FILES['upfile']['tmp_name'];
 
-				$newname = $upload_dir.$folder_name.'\\'.$result["name"];
+				$newname = $upload_dir.$folder_name.$this->seperator.$result["name"];
 				if(move_uploaded_file($result["temp_dir"], $newname)){
 			 		$result["result"] =  true;
-					$result["file_name"] = $newname;
+					$result["file_name"] = 'uploads'.$this->seperator.$folder_name.$this->seperator.$result["name"];
 				}else{
 			 		$result["result"] = "error_copy";
 				}
