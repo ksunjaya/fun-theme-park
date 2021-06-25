@@ -77,7 +77,7 @@ class ReservasiController{
     $sum = $query_result[0]["sum"];
     $max = $this->limit_tiket_ctrl->get_max($tanggal);
 
-    if($sum + $jml < $max) return true;
+    if($sum + $jml <= $max) return true;
     else return false;
   }
 }
