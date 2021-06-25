@@ -19,7 +19,7 @@
 					foreach ($result as $key => $value) {
 			 			echo "<tr>";
 			 			echo "<td>".$value->getKtp()."</td>";
-			 			echo "<td id='username'>".$value->getNama()."</td>";
+			 			echo "<td id='username' name='username'>".$value->getNama()."</td>";
 			 			echo "<td>".$value->getUsername()."</td>";
 			 			echo "<td class ='action'> 
 						<form method='POST' action='update' style='display:inline;'>
@@ -37,18 +37,6 @@
 			</table>
 		</div>
 		<div class="footer-box-button" style="height: 10%;">	
-			<!-- <div class="buttons">
-				<div>
-					<a href="" class="back"><span> < </span> </a>
-				</div>
-				<div>
-					<a href="create-account" class="create" ><span>CREATE ACCOUNT<span></a>
-				</div>
-				<div>
-					<a href="" class="next"><span> > </span> </a>
-				</div>
-			</div> -->
-
 			<div class="buttons">
 				<div>
 					<?php
@@ -92,40 +80,40 @@
 
 
 <script defer>
-    
     //let btn = document.getElementById('delete');
     //btn.addEventListener('click', popup);  
 
-		let arr = document.getElementsByName("delete");
-		for(let i = 0; i < arr.length; i++){
-			arr[i].addEventListener('click', popup);
+		let arr_delete = document.getElementsByName("delete");
+		for(let i = 0; i < arr_delete.length; i++){
+			arr_delete[i].param = i;
+			arr_delete[i].addEventListener('click', popup);
 		}
     
     function popup(e){
-        e.preventDefault();
-        let page = document.getElementById('page');
-        let alertbox = document.getElementById('alertbox');
-        page.style.display = "block";
-        alertbox.style.display = "block";
-        let head = document.getElementById('alertboxhead');
-        head.innerHTML = "YOU ARE ABOUT TO DELETE ACCOUNT WITH USERNAME";
-        let username = document.getElementById('user').value;
-        document.getElementById('alertboxbody').innerHTML = '"' + username + '"';
-        document.getElementById('alertboxbody1').innerHTML =  "ARE YOU SURE?";
-        document.getElementById('alertboxfoot').innerHTML = '<button id="no">NO</button><button id="yes">YES</button>';
-        document.getElementById('yes').addEventListener('click',confirm);
-        document.getElementById('no').addEventListener('click',cancel);
+      e.preventDefault();
+      let page = document.getElementById('page');
+      let alertbox = document.getElementById('alertbox');
+      page.style.display = "block";
+      alertbox.style.display = "block";
+      let head = document.getElementById('alertboxhead');
+      head.innerHTML = "YOU ARE ABOUT TO DELETE ACCOUNT WITH USERNAME";
+      let arr_user = document.getElementsByName("username");
+      document.getElementById('alertboxbody').innerHTML = '"' + arr_user[e.currentTarget.param].innerHTML + '"';
+      document.getElementById('alertboxbody1').innerHTML =  "ARE YOU SURE?";
+      document.getElementById('alertboxfoot').innerHTML = '<button id="no">NO</button><button id="yes">YES</button>';
+      document.getElementById('yes').addEventListener('click',confirm);
+      document.getElementById('no').addEventListener('click',cancel);
     }
 
     function confirm(){
-        document.getElementById('alertbox').style.display = "none";
-        document.getElementById('page').style.display = "none";
-        let form = document.getElementById('deletestaff');
-        form.submit();
+      document.getElementById('alertbox').style.display = "none";
+      document.getElementById('page').style.display = "none";
+      let form = document.getElementById('deletestaff');
+      form.submit();
     }
 
     function cancel(){
     	document.getElementById('alertbox').style.display = "none";
-        document.getElementById('page').style.display = "none";
+      document.getElementById('page').style.display = "none";
     }
 </script>

@@ -131,15 +131,16 @@ class AdminController{
     }
     return $result;
   }
+
   public function createPDF () {
-    $pdf = new FPDF('P', 'mm', 'A4');
+    $pdf = new FPDF('P', 'mm', 'A4'); //Potrait, Milimeter, Ukuran Kertas
     $pdf->AddPage();
     
     //set font
-    $pdf->SetFont('Arial', 'B', 14);
+    $pdf->SetFont('Arial', 'B', 14); //arial bold 14
     
     //cell
-    $pdf -> Cell(130, 5, 'FUN RESORT', 0, 0);
+    $pdf -> Cell(130, 5, 'FUN RESORT', 0, 0); //130 mm ke kanan, 5 mm ke bawah
     $pdf -> Cell(59, 5, 'LOG-TRANSAKSI', 0, 1, 'R');
 
     //set font
@@ -172,6 +173,7 @@ class AdminController{
     $pdf -> Cell(47, 10,  'TOTAL TICKET', 1, 0, 'C');
     $pdf -> Cell(48, 10,  'TOTAL PRICE', 1, 1, 'C');
 
+    //data
     $pdf->SetFont('Arial', '', 12);
     for ($i=0; $i<100; $i++){
       $pdf -> Cell(47, 10, '24 June 2021', 1, 0,'C');
@@ -206,7 +208,7 @@ class AdminController{
     $pdf -> Cell(50, 5, '', 0, 1);
 
     //output
-    $pdf->Output('I','fun-resort-log-transaksi.pdf');
+    $pdf->Output('I','fun-resort-log-transaksi.pdf'); //I supaya kita bisa liat di browser
   }
 
   //=====untuk page tiket, OOP nya masih belum bagus tapi uda jalan=======
