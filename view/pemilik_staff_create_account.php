@@ -1,4 +1,3 @@
-<!-- Revisi: -->
 <form id = "login-form" class="login-main">
     <div class="login-content bg-white" style="width: 90%;">
         <div class="login-h1-box" style="height: 10%; margin-top:10px; margin-bottom:10px;">
@@ -35,7 +34,6 @@
 
 <script>
 function init(){
-    // document.getElementById("btn-submit").addEventListener("click", validate);
     document.getElementById("btn-submit").addEventListener("click", onSubmit);
 }
 
@@ -81,7 +79,6 @@ function onSubmit(e){
             console.err("Error : internal database error");
         }
     });
-
 }   
 
 function isNumber(ktp){
@@ -105,7 +102,6 @@ function validate(){
     let warning = document.createElement("span");
 
     if(ktp.value.length<16 || !isNumber(ktp.value) || ktp.value==''){
-        //console.log(ktp);
         ktpbox.appendChild(warning);
         ktp.style.backgroundColor = "#e1001f";
         warning.innerHTML = "* Input tidak valid!";
@@ -137,10 +133,6 @@ function validate(){
     let photobox = document.getElementById('photo-box');
     let formatinfo = document.createElement("span");
     let len = photo.value.length;
-    console.log(photo.value);
-    console.log(photo.value.length);
-    console.log(photo.value.substring(len-5)); //.jpeg
-    console.log(photo.value.substring(len-4)); //.png
     if(photo.value==''){
         photo.style.backgroundColor = "#e1001f";
         correct = false;dd
@@ -157,10 +149,6 @@ function validate(){
         photobox.style.display = "inline-block";
         correct = false;
     }
-    // if(photo.value.substring(len-5).equals(".jpeg") || photo.value.substring(len-4).equals(".png")){
-    //     console.log("hello");
-    // }
-    
 
     ktp.addEventListener('input', function(e){
         ktp.style.backgroundColor = "#DBE9FF";
@@ -179,8 +167,6 @@ function validate(){
         photo.style.backgroundColor = "#DBE9FF";
         formatinfo.innerHTML = " ";
     });
-    
-
     return correct;
 }
 
