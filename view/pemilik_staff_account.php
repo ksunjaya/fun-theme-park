@@ -20,7 +20,9 @@
 			 			echo "<tr>";
 			 			echo "<td>".$value->getKtp()."</td>";
 			 			echo "<td id='username' name='fullname'><a href='' id='photo' style='text-decoration: none; color: black;'>".$value->getNama()."</a></td>";
-			 			echo "<td name='username'>".$value->getUsername()."</td>";
+			 			echo "<td name='username'>".$value->getUsername()."
+						 	<input type='hidden' name='photolocation' id='photolocation' value='". $value->getPhotoLocation() ."'>
+						 	</td>";
 			 			echo "<td class ='action'> 
 						<form method='POST' action='update' style='display:inline;'>
 							<button type= 'submit' class = 'update-button' type='submit' name='update'>UPDATE</button>
@@ -73,9 +75,9 @@
 
 <div id="photopage" class="page">
     <div id="alertphoto" class="alertbox">
-        <div id="alertphotohead" class="alertboxhead"></div>
+        <div id="alertphotohead" class="alertboxhead" style="margin-top: 0px";></div>
         <div id="alertphotobody" class="alertboxbody"></div>
-        <div id="alertphotofoot" class="alertboxfoot"></div>
+        <div id="alertphotofoot" class="alertboxfoot" style="margin-top: 0px;"></div>
     </div>
 </div>
 
@@ -90,7 +92,8 @@
 		for(let i = 0; i < arr_photo.length; i++){
 			arr_photo[i].param = i;
 			arr_photo[i].addEventListener('click', photo);
-		}
+		}	
+		let img = document.createElement('img');
 
     function popup(e){
 		e.preventDefault();
@@ -133,9 +136,13 @@
 		head.innerHTML = arr_user[e.currentTarget.param].innerHTML;
 		head.style.fontSize = "50px"; 
 		head.style.color = "black";
-		head.style.marginTop = "20px";
-
-		document.getElementById('alertphotobody').style.marginTop = "300px";
+		let body = document.getElementById('alertphotobody');
+		body.appendChild(img);
+		let arr_location = document.getElementsByName('photolocation');
+		img.src = arr_location[e.currentTarget.param].innerHTML;
+		// img.src = "src/stich.jpg";
+		img.style.height = "300px";
+		img.style.width = "250px";
 		document.getElementById('alertphotofoot').innerHTML = '<button id="ok">OK</button>';
 		document.getElementById('ok').addEventListener('click',closePhoto);
 		e.preventDefault();
@@ -144,6 +151,7 @@
   function closePhoto(){
       document.getElementById('alertphoto').style.display = "none";
       document.getElementById('photopage').style.display = "none";
+	  img.src = "";
   }
 
 </script>
