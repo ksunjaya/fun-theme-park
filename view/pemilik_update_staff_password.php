@@ -26,11 +26,11 @@
 </form> 
 
 
-<div id="page">
-    <div id="alertbox">
-        <div id="alertboxhead"></div>
-        <div id="alertboxbody"></div>
-        <div id="alertboxfoot"></div>
+<div id="page" class="page">
+    <div id="alertbox" class="alertbox">
+        <div id="alertboxhead" class="alertboxhead"></div>
+        <div id="alertboxbody" class="alertboxbody"></div>
+        <div id="alertboxfoot" class="alertboxfoot"></div>
     </div>
 </div>
 
