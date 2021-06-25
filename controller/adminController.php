@@ -26,12 +26,12 @@ class AdminController{
   //=====untuk page staff list=======
   public function view_staff_accounts(){
     require_once "karyawanController.php";
-    $staff_acc_controller = new KaryawanController();
-    $last_page = ($staff_acc_controller->count_all()) / MAX;
+    $karyawan_controller = new KaryawanController();
+    $last_page = ($karyawan_controller->count_all()) / MAX;
     $page = 0; //set default nya dulu mo ada request dari GET ato engga
     if(isset($_GET["page"])) $page = $_GET["page"];
 
-    $result = $staff_acc_controller->getAllStaff();
+    $result = $karyawan_controller->getAllStaff($page, MAX);
     return View::createAdminView('pemilik_staff_account.php',[
 			"result"=> $result,
       "page"=>$page,
