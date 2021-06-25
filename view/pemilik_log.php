@@ -158,7 +158,14 @@
             </div>
         </div>
     </div>
-    <canvas id="chart" width="200" height="200"></canvas>
+    <div style="display: flex; width:100%; justify-content:center; margin-bottom:100px">
+        <div style="display: flex; width:90%; justify-content:center; align-items:center; height:800px; background-color:white; border-radius:30px; border:solid 6px #1A6793;">
+            <div style="background-color: white; width:600px; height:600px;" >
+                <canvas id="chart" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+
     <script defer>
         let ctx = document.getElementById('chart').getContext('2d');
         let arrTanggal = [];
@@ -172,7 +179,7 @@
             }
         ?>
         let myChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels: arrTanggal,
                 datasets: [{
