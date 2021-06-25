@@ -34,9 +34,9 @@
 
       $idReservasi = $_GET['idReservasi'];
 
-      $query = " SELECT pengunjung.nama, reservasi.jml_orang, reservasi.tanggal, transaksi.total_harga
+      $query = ' SELECT pengunjung.nama, reservasi.jml_orang, reservasi.tanggal, transaksi.total_harga
                  FROM reservasi INNER JOIN pengunjung ON reservasi.ktp = pengunjung.ktp INNER JOIN transaksi ON transaksi.id_reservasi = reservasi.id_reservasi
-                WHERE reservasi.id_reservasi = ".$idReservasi;
+                 WHERE reservasi.id_reservasi = "'.$idReservasi.'"';
 
       $query_result = $this->db->executeSelectQuery($query);
 

@@ -184,7 +184,7 @@
         post_result.innerHTML = "Transaksi Berhasil!";
         post_result.style.color = "#34832D";
 
-        //tampilin struk nya di sebelah kanan
+        /*//tampilin struk nya di sebelah kanan
         let struk_container = document.getElementById("struk-container");
         //buang dulu semua elemen dari struk sebelumnya
         while(struk_container.lastElementChild){
@@ -200,8 +200,9 @@
 
           let line = document.createElement("hr");
           struk_container.appendChild(line);
-        }
+        }*/
         
+        window.open('print-invoice?idReservasi=' + input["kode_reservasi"], '_blank')
         clear_all();
       }else{
         //tidak berhasil
