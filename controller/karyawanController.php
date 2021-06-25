@@ -55,6 +55,9 @@ class KaryawanController{
 		if(isset($username)){
 			$query = "DELETE FROM karyawan WHERE username='$username'";
 			$this->db->executeNonSelectQuery($query);
+
+			$file = dirname(__DIR__)."\\uploads\\".$username;
+			self::deleteDir($file);
 		}
 	}
 
@@ -130,6 +133,25 @@ class KaryawanController{
     if(count($query_result) > 0) return $query_result[0]['nama'];
     else return "Error : username tidak ditemukan!";
   }
+
+	//UTILITES
+	private static function deleteDir($dirPath) {
+    if (! is_dir($dirPath)) {
+        throw new InvalidArgumentException("$dirPath must be a directory");
+    }
+    if (substr($dirPath, strlen($dirPath) - 1, 1) != '/') {
+        $dirPath .= '/';
+    }
+    $files = glob($dirPath . '*', GLOB_MARK);
+    foreach ($files as $file) {
+        if (is_dir($file)) {
+            self::deleteDir($file);
+        } else {
+            unlink($file);
+        }
+    }
+    rmdir($dirPath);
+}
 }
 
  ?>
