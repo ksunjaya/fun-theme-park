@@ -1,4 +1,3 @@
-<!-- Revisi: -->
 <form id = "login-form" class="login-main">
     <div class="login-content bg-white" style="width: 90%;">
         <div class="login-h1-box" style="height: 10%; margin-top:10px; margin-bottom:10px;">
@@ -21,7 +20,7 @@
                 <label class="fw-700 fs-18 c-dark-blue">PASSWORD</label>
                 <input name="password" id = "password" class="login-input fw-700 fs-36 bg-light-blue" type="password">
             </div>
-            <div class="login-box" style="margin-bottom: 20px;">
+            <div class="login-box" style="margin-bottom: 20px;" id="photo-box">
                 <label class="fw-700 fs-18 c-dark-blue">PHOTO</label>
                 <input name="photo" id = "photo" class="login-input fw-700 fs-36 bg-light-blue" type="file">
             </div>
@@ -35,9 +34,7 @@
 
 <script>
 function init(){
-    //document.getElementById("btn-submit").addEventListener("click", validate);
     document.getElementById("btn-submit").addEventListener("click", onSubmit);
-    
 }
 
 function onSubmit(e){
@@ -82,7 +79,6 @@ function onSubmit(e){
             console.err("Error : internal database error");
         }
     });
-
 }   
 
 function isNumber(ktp){
@@ -106,7 +102,6 @@ function validate(){
     let warning = document.createElement("span");
 
     if(ktp.value.length<16 || !isNumber(ktp.value) || ktp.value==''){
-        //console.log(ktp);
         ktpbox.appendChild(warning);
         ktp.style.backgroundColor = "#e1001f";
         warning.innerHTML = "* Input tidak valid!";
@@ -135,6 +130,25 @@ function validate(){
         photo.style.backgroundColor = "#e1001f";
         correct = false;
     }
+    let photobox = document.getElementById('photo-box');
+    let formatinfo = document.createElement("span");
+    let len = photo.value.length;
+    if(photo.value==''){
+        photo.style.backgroundColor = "#e1001f";
+        correct = false;dd
+    }
+    if(!(photo.value.substring(len-5)!=".jpeg" || photo.value.substring(len-4)!=".png")){
+        photobox.appendChild(formatinfo);
+        formatinfo.innerHTML = "Only .jpeg and .png are allowed";
+        formatinfo.style.fontSize = "25px";
+        formatinfo.style.color = "red";
+        formatinfo.style.position = "absolute";
+        formatinfo.style.whiteSpace = "nowrap";
+        formatinfo.style.marginLeft = "10px";
+        formatinfo.style.marginTop = "25px";
+        photobox.style.display = "inline-block";
+        correct = false;
+    }
 
     ktp.addEventListener('input', function(e){
         ktp.style.backgroundColor = "#DBE9FF";
@@ -151,8 +165,8 @@ function validate(){
     });
     photo.addEventListener('input', function(e){
         photo.style.backgroundColor = "#DBE9FF";
+        formatinfo.innerHTML = " ";
     });
-    
     return correct;
 }
 

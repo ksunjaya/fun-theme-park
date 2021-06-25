@@ -82,11 +82,6 @@
 </div>
 
 <script defer>
-		/*let arr_location = document.getElementsByName('photolocation');
-		for(let i = 0; i < arr_location.length; i++){
-			console.log(arr_location[i].value);
-		}*/
-
 		let arr_delete = document.getElementsByName("delete");
 		for(let i = 0; i < arr_delete.length; i++){
 			arr_delete[i].param = i;
@@ -136,16 +131,15 @@
 		page.style.display = "block";
 		alertbox.style.display = "block";
 		alertbox.style.height = "500px";
-		let arr_user = document.getElementsByName("username");
+		let arr_name = document.getElementsByName("fullname");
 		let head = document.getElementById('alertphotohead');
-		head.innerHTML = arr_user[e.currentTarget.param].innerHTML;
+		head.innerHTML = arr_name[e.currentTarget.param].innerHTML;
 		head.style.fontSize = "50px"; 
 		head.style.color = "black";
 		let body = document.getElementById('alertphotobody');
 		body.appendChild(img);
 		let arr_location = document.getElementsByName('photolocation');
 		img.src = arr_location[e.currentTarget.param].value;
-		// img.src = "src/stich.jpg";
 		img.style.height = "300px";
 		img.style.width = "250px";
 		document.getElementById('alertphotofoot').innerHTML = '<button id="ok">OK</button>';
