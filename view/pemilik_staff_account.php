@@ -141,15 +141,15 @@
 		head.style.color = "black";
 		head.style.marginTop = "20px";
 
-		document.getElementById('alertboxbody').style.marginTop = "300px";
-		document.getElementById('alertboxfoot').innerHTML = '<button id="ok">OK</button>';
+		document.getElementById('alertphotobody').style.marginTop = "300px";
+		document.getElementById('alertphotofoot').innerHTML = '<button id="ok">OK</button>';
 		document.getElementById('ok').addEventListener('click',closePhoto);
 		e.preventDefault();
 	}
 
   function closePhoto(){
-      document.getElementById('alertbox').style.display = "none";
-      document.getElementById('page').style.display = "none";
+      document.getElementById('alertphoto').style.display = "none";
+      document.getElementById('photopage').style.display = "none";
   }
 
 </script>
