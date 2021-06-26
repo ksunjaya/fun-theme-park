@@ -100,7 +100,7 @@
       $pdf->SetFont('Arial', 'B', 12);
       $pdf->Cell(20, 10, '', 0, 0);
       $pdf->Cell(20, 10, 'NO', 1, 0, 'C');
-      $pdf->Cell(130, 10, 'KODE RESERVASI', 1, 0, 'C');
+      $pdf->Cell(130, 10, 'KODE TIKET', 1, 0, 'C');
       $pdf->Cell(20, 10, '', 0, 1);
 
       $str = $idReservasi;
