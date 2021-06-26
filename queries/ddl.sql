@@ -38,7 +38,8 @@ CREATE TABLE Pemilik (
   ktp varchar(16) PRIMARY KEY,
   nama varchar(50) NOT NULL,
   username varchar(25) NOT NULL,
-  password varchar(50) NOT NULL
+  password varchar(50) NOT NULL,
+  UNIQUE(username)
 );
 
 CREATE TABLE Limit_Tiket(
