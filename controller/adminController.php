@@ -117,7 +117,7 @@ class AdminController{
     $pdf->SetFont('Arial', 'B', 14);
     
     //cell
-    $pdf -> Cell(130, 5, 'FUN RESORT', 0, 0);
+    $pdf -> Cell(130, 5, 'FUN RESORT AND THEME PARK', 0, 0);
     $pdf -> Cell(59, 5, 'LOG-TRANSAKSI', 0, 1, 'R');
 
     //set font

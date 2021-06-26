@@ -66,13 +66,13 @@
       $pdf->SetFont('Arial', '', 14);
       $pdf->Cell(190, 20, '', 0, 1);
 
-      $pdf->SetFont('Arial', 'B', 14);
+      $pdf->SetFont('Arial', 'B', 12);
       $pdf->Cell(20, 5, '', 0, 0);
       $pdf->Cell(95, 5, 'DETAILS', 0, 1);
 
       $pdf->Cell(190, 10, '', 0, 1);
 
-      $pdf->SetFont('Arial', '', 14);
+      $pdf->SetFont('Arial', '', 12);
       $pdf->Cell(20, 5, '', 0, 0);
       $pdf->Cell(50, 5, 'ATAS NAMA', 0, 0);
       $pdf->Cell(120, 5, $nama, 0, 1);
@@ -97,7 +97,7 @@
 
       $pdf->Cell(190, 20, '', 0, 1);
 
-      $pdf->SetFont('Arial', 'B', 14);
+      $pdf->SetFont('Arial', 'B', 12);
       $pdf->Cell(20, 10, '', 0, 0);
       $pdf->Cell(20, 10, 'NO', 1, 0, 'C');
       $pdf->Cell(130, 10, 'KODE RESERVASI', 1, 0, 'C');
@@ -105,7 +105,7 @@
 
       $str = $idReservasi;
 
-      $pdf->SetFont('Arial', '', 14);
+      $pdf->SetFont('Arial', '', 12);
       for ($i=1; $i<=$jmlOrang; $i++){
         $pdf->Cell(20, 10, '', 0, 0);
         $pdf->Cell(20, 10, $i, 1, 0, 'C');
@@ -115,7 +115,7 @@
 
       $pdf->Cell(190, 20, '', 0, 1);
 
-      $pdf->SetFont('Arial', 'I', 14);
+      $pdf->SetFont('Arial', 'I', 12);
       $pdf->Cell(40, 10, '', 0, 0);
       $pdf->Cell(110, 10, '~ Have a Great Day ! ~', 0, 0, 'C');
       $pdf->Cell(40, 10, '', 0, 1);
