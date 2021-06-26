@@ -1,66 +1,75 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Lato:wght@400;500;600;700;900&display=swap');
-*{
-  font-family: 'Cairo', sans-serif;
-  line-height: 100%;
-} 
-
-body{
-  background-color: #DBE9FF;
+* {
+    font-family: 'Cairo', sans-serif;
+    line-height: 100%;
 }
 
-.blue-button{
-  background-color: #003B73;
-  border:2px solid #003B73;
-  color: white;
-  font-weight: 900;
-  text-decoration: none;
-  padding: 8px 30px;
-  border-radius: 15px;
-  transition: 0.1s; 
+body {
+    background-color: #DBE9FF;
 }
 
-.float-right{
-  float:right;
+.blue-button {
+    background-color: #003B73;
+    border: 2px solid #003B73;
+    color: white;
+    font-weight: 900;
+    text-decoration: none;
+    padding: 8px 30px;
+    border-radius: 15px;
+    transition: 0.1s;
 }
 
-.bold{
-  font-weight: 700;
+.blue-button:hover {
+    background-color: white;
+    color: #003B73;
+    font-weight: 900;
+    text-decoration: none;
+    transition: 0.1s;
+    cursor: pointer;
 }
 
-.welcome{
-  margin: 16px;
-  font-size: 28px;
+.float-right {
+    float: right;
 }
 
-.white-box{
-  background-color: white;
-  margin: 3%;
-  border-radius: 20px;
+.bold {
+    font-weight: 700;
 }
 
-.bg-white{
-  background-color: white;
+.welcome {
+    margin: 16px;
+    font-size: 28px;
 }
 
-label{
-  font-size: 20px;
+.white-box {
+    background-color: white;
+    margin: 3%;
+    border-radius: 20px;
 }
 
-.text-input{
-  background-color: #DBE9FF;
-  border: 0px;
-  margin: 5px 0px;
-  border-radius: 5px;
-  font-size: 20px;
+.bg-white {
+    background-color: white;
 }
 
-.search{
-  margin: 5px 0px;
-  background-color: #003B73;
-  border-radius: 5px;
+label {
+    font-size: 20px;
 }
 
-.struk-container{
-  flex: 4;
-  text-align: center;
+.text-input {
+    background-color: #DBE9FF;
+    border: 0px;
+    margin: 5px 0px;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.search {
+    margin: 5px 0px;
+    background-color: #003B73;
+    border-radius: 5px;
+}
+
+.struk-container {
+    flex: 4;
+    text-align: center;
 }
