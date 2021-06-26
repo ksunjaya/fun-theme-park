@@ -40,22 +40,24 @@ class userController{
     
     $limit_ctrl = new LimitTiketController();
     $kuota = $limit_ctrl->get_kuota($tanggal)["sisa_tiket"];
-    $result = $limit_ctrl->update_tiket($kuota, $tanggal, $jml);
+    
 
-    if($result == true){ //artinya kalo berhasil
-      $reservasi_ctrl = new ReservasiController();
-      if($reservasi_ctrl->masih_bisa_pesan($ktp, $tanggal, $jml) == false){
-        //kalau usernya uda gabisa mesen lagi karena limit, ini karena user sebelumnya uda order reservasi juga, terus dia coba pesen reservasi lagi
-        require_once "controller/services/view.php";
-				return View::createPengunjungView("error_page.php", ["error_code"=>002]);
-      }else{
-        $reservasi_ctrl->add_reservasi($kuota, $jml, $ktp, $tanggal);
-      }
-    }else{
+    $reservasi_ctrl = new ReservasiController();
+    if($reservasi_ctrl->masih_bisa_pesan($ktp, $tanggal, $jml) == false){
+      //kalau usernya uda gabisa mesen lagi karena limit, ini karena user sebelumnya uda order reservasi juga, terus dia coba pesen reservasi lagi
       require_once "controller/services/view.php";
-			return View::createPengunjungView("error_page.php", ["error_code"=>003]);
+			return View::createPengunjungView("error_page.php", ["error_code"=>002]);
+    }else{
+      $update_tiket_result = $limit_ctrl->update_tiket($kuota, $tanggal, $jml);
+      $add_reservasi_result = $reservasi_ctrl->add_reservasi($kuota, $jml, $ktp, $tanggal);
+      if($update_tiket_result == false || $add_reservasi_result == false){
+        require_once "controller/services/view.php";
+        return View::createPengunjungView("error_page.php", ["error_code"=>003]);
+      }
     }
-
+    
+    $result = $update_tiket_result && $add_reservasi_result;
+    
     $kode = $reservasi_ctrl->create_unique_id($kuota, $tanggal);
     return View::createPengunjungView("pengunjung_post_booking.php", [
       "nama"=> $nama,

@@ -15,6 +15,7 @@ class LimitTiketController{
     if($result == NULL) return NULL;
     else return json_encode($result);
   }
+  
   //kalau return NULL artinya libur / ato belom di set di database nya
   public function get_kuota($tanggal){
     if(!isset($tanggal)) return NULL;

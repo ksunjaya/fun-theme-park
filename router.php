@@ -15,7 +15,7 @@
 				$user_ctrl = new userController();
 				echo $user_ctrl->show_cari_tahu();
 				break;
-			//=========SERVICES==========
+			//=========USER'S SERVICES==========
 			case $baseURL.'/getkuota':
 				require_once "controller/limitTiketController.php";
 				$lt_ctrl = new LimitTiketController();
@@ -125,25 +125,25 @@
 				break;
 			case $baseURL.'/update':
 				require_once "controller/karyawanController.php";
-				$staffCtrl = new KaryawanController();
-				echo $staffCtrl->view_update_pass();
+				$karyawan_ctrl = new KaryawanController();
+				echo $karyawan_ctrl->view_update_pass();
 				break;
 			case $baseURL.'/updatepass':
 				require_once "controller/karyawanController.php";
-				$staffCtrl = new KaryawanController();
-				echo $staffCtrl->updatePass();
+				$karyawan_ctrl = new KaryawanController();
+				echo $karyawan_ctrl->updatePass();
 				header('Location: staff-list');
 				break;
 			case $baseURL.'/delete':
 				require_once "controller/karyawanController.php";
-				$staffCtrl = new KaryawanController();
-				echo $staffCtrl->deletePass();
+				$karyawan_ctrl = new KaryawanController();
+				echo $karyawan_ctrl->deletePass();
 				header('Location: staff-list');
 				break;
 			case $baseURL.'/add-staff':
 				require_once "controller/karyawanController.php";
-				$staffCtrl = new KaryawanController();
-				echo $staffCtrl->add_staff();
+				$karyawan_ctrl = new KaryawanController();
+				echo $karyawan_ctrl->add_staff();
 				break;
 			// print-pdf-log-transaksi
 			case $baseURL.'/pdf-transaksi':
