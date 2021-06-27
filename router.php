@@ -134,7 +134,7 @@
 				echo $karyawan_ctrl->updatePass();
 				header('Location: staff-list');
 				break;
-			case $baseURL.'/delete':
+			case $baseURL.'/delete-staff':
 				require_once "controller/karyawanController.php";
 				$karyawan_ctrl = new KaryawanController();
 				echo $karyawan_ctrl->deletePass();
@@ -147,9 +147,9 @@
 				break;
 			// print-pdf-log-transaksi
 			case $baseURL.'/pdf-transaksi':
-				require_once "controller/adminController.php";
-				$a = new AdminController();
-				$a->createPDF();
+				require_once "controller/transaksiController.php";
+				$transaksi_ctrl = new TransaksiController();
+				$transaksi_ctrl->createPDF();
 				break;
 			//=============STAFF================
 			case $baseURL.'/post-ticket':

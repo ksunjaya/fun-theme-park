@@ -28,7 +28,7 @@
 							<button type= 'submit' class = 'update-button' type='submit' name='update'>UPDATE</button>
 							<input type='hidden' name='user' value='". $value->getUsername() ."'>
 						</form>
-						<form method='POST' action='delete' style='display:inline;' name='form-delete'>
+						<form method='POST' action='delete-staff' style='display:inline;' name='form-delete'>
 							<button class = 'update-button' type='submit' name='delete'>DELETE</button>
 							<input type='hidden' name='user' value='". $value->getUsername() ."' id='user'>
 						</form>

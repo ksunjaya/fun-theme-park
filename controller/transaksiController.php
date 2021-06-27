@@ -1,6 +1,8 @@
 <?php
 require_once "services/mySQLDB.php";
 require_once "reservasiController.php";
+require_once "model/log.php";
+require_once "fpdf183/fpdf.php";
 
 class TransaksiController{
     protected $db;
@@ -114,5 +116,102 @@ class TransaksiController{
 
         return $result;
     }
+
+    //=====PRINT LAPORAN=====
+    public function createPDF () {
+        require_once 'transaksiController.php';
+    
+        $dateFrom = "";
+        $dateUntil = "";
+        $totalIncome = 0;
+        $totalCustomer = 0;
+        $nama = "";
+        if (isset($_POST['dateFrom']) && isset($_POST['dateUntil']) && isset($_POST['totalIncome']) && $_POST['totalIncome'] != "" && isset($_POST['totalCustomer']) && $_POST['totalCustomer'] != "" && isset($_POST['nama']) && $_POST['nama'] != "") {
+          $dateFrom = $_POST['dateFrom'];
+          $dateUntil = $_POST['dateUntil'];
+          $totalIncome = $_POST['totalIncome'];
+          $totalCustomer = $_POST['totalCustomer'];
+          $nama = $_POST['nama'];
+        }
+    
+        $transaksi = new TransaksiController();
+        $result = $transaksi->getAllTransaksi($dateFrom, $dateUntil, 0, PHP_INT_MAX);
+    
+        $pdf = new FPDF('P', 'mm', 'A4');
+        $pdf->AddPage();
+        
+        //set font
+        $pdf->SetFont('Arial', 'B', 14);
+        
+        //cell
+        $pdf -> Cell(130, 5, 'FUN RESORT AND THEME PARK', 0, 0);
+        $pdf -> Cell(59, 5, 'LOG-TRANSAKSI', 0, 1, 'R');
+    
+        //set font
+        $pdf->SetFont('Arial', '', 12);
+    
+        // cell kosong untuk space vertical
+        $pdf -> Cell(189, 10, '', 0, 1);
+        
+        $pdf -> Cell(189, 5, 'Keterangan', 0, 1);
+    
+        $pdf -> Cell(189, 5, '', 0, 1);
+        
+        $pdf->SetFont('Arial', '', 12);
+        $pdf -> Cell(10, 5, '', 0, 0);
+        $pdf -> Cell(40, 5, 'Tanggal Mulai:', 0, 0);
+        $pdf -> Cell(40, 5, $dateFrom, 0, 1);
+    
+        $pdf -> Cell(10, 5, '', 0, 0);
+        $pdf -> Cell(40, 5, 'Tanggal Selesai:', 0, 0);
+        $pdf -> Cell(40, 5, $dateUntil, 0, 1);
+    
+        $pdf -> Cell(189, 10, '', 0, 1);
+    
+        // tabel data
+    
+        //header
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf -> Cell(47, 10, 'DATE', 1, 0,'C');
+        $pdf -> Cell(47, 10, 'ID BOOKING', 1, 0, 'C');
+        $pdf -> Cell(47, 10,  'TOTAL TICKET', 1, 0, 'C');
+        $pdf -> Cell(48, 10,  'TOTAL PRICE', 1, 1, 'C');
+    
+        $pdf->SetFont('Arial', '', 12);
+        foreach ($result as $key => $value){
+          $pdf -> Cell(47, 10, $value->getDate(), 1, 0,'C');
+          $pdf -> Cell(47, 10, $value->getIdBooking(), 1, 0, 'C');
+          $pdf -> Cell(47, 10, $value->getTotalTicket(), 1, 0, 'C');
+          $pdf -> Cell(48, 10, $value->getFormattedPrice(), 1, 1, 'C');
+        }
+    
+        //summary
+        $pdf -> Cell(189, 10, '', 0, 1);
+        $pdf->SetFont('Arial', 'B', 12);
+    
+        $pdf -> Cell(100, 5, '', 0, 0);
+        $pdf -> Cell(89, 5, 'SUMMARY', 0, 1);
+    
+        $pdf -> Cell(189, 5, '', 0, 1);
+    
+        $pdf->SetFont('Arial', '', 12);
+        $pdf -> Cell(100, 5, '', 0, 0);
+        $pdf -> Cell(40, 5, 'Total Income', 0, 0);
+        $pdf -> Cell(49, 5, 'Rp. '.$totalIncome, 0, 1);
+    
+        $pdf -> Cell(100, 5, '', 0, 0);
+        $pdf -> Cell(40, 5, 'Total Customer', 0, 0);
+        $pdf -> Cell(49, 5, $totalCustomer, 0, 1);
+    
+        $pdf -> Cell(189, 20, '', 0, 1);
+    
+        $pdf->SetFont('Arial', 'I', 12);
+        $pdf -> Cell(50, 5, '', 0, 0);
+        $pdf -> Cell(89, 5, '~ Printed by '.$nama.' ~', 0, 0, 'C');
+        $pdf -> Cell(50, 5, '', 0, 1);
+    
+        //output
+        $pdf->Output('I','fun-resort-log-transaksi.pdf');
+      }
 }
 ?>

@@ -9,6 +9,21 @@ class LimitTiketController{
     $this->db = new mySQLDB("localhost", "root", "", "fun_resort");
   }
 
+  public function getAllTiket($page, $count){
+    $page *= MAX;
+    $query = 'SELECT * 
+              FROM limit_tiket INNER JOIN harga_tiket ON limit_tiket.tanggal = harga_tiket.tanggal 
+              ORDER BY limit_tiket.tanggal
+              LIMIT '.$page.','.$count;
+    $query_result = $this->db->executeSelectQuery($query);
+    $result = [];
+
+    foreach ($query_result as $key => $value) {
+        $result[] = new Tiket($value['tanggal'], $value['limit_harian'], $value['max_pesanan'], $value['sisa_tiket'], $value['harga']);
+    }
+    return $result;
+  }
+  
   public function get_kuota_json(){
     $tanggal = $_GET["tanggal"];
     $result = $this->get_kuota($tanggal);
