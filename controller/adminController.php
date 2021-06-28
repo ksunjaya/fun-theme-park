@@ -107,6 +107,7 @@ class AdminController{
     ]);
   }
 
+  //dimasukkin ke sini soalnya pakai dua kelas entity
   public function createTicket(){
     $tanggal = $_POST["tanggal"];
     $max_tiket = $_POST["jumlah-tiket"];
