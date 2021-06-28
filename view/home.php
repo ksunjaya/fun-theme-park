@@ -66,7 +66,7 @@
         <p style="font-size: 15px; margin: 0px 0px 20px 0px;">**Pastikan nama lengkap sesuai dengan KTP</p>
         <input type="submit" id="tombol-submit" value="RESERVASI">
         <span style="text-align:center">
-          <p id="err" style="color:red; visibility:hidden; line-height:130%;">Maaf, masih ada kesalahan pada data yang dimasukkan. Mohon diperiksa kembali</p>
+          <p id="err" style="color:red; visibility:hidden; line-height:130%;">Reservasi tidak dapat diproses. Pastikan semua data sudah terisi dengan benar</p>
         </span>
       </form>
     </div>
@@ -175,20 +175,20 @@
     let tanggal = document.getElementById("tanggal");
     if(validate_ktp(ktp.value) == false){
       isValid = false;
-      ktp.style.backgroundColor = "red";
+      ktp.style.backgroundColor = "#ffcccb";
     }
     if(nama.value.length == 0){
       isValid = false;
-      nama.style.backgroundColor = "red";
+      nama.style.backgroundColor = "#ffcccb";
     }
     if(validate_telepon(telepon.value) == false){
       isValid = false;
-      telepon.style.backgroundColor = "red";
+      telepon.style.backgroundColor = "#ffcccb";
     }
 
     if(harga == 0) {
       isValid = false; //tanggal yg dipilih masi salah
-      tanggal.style.backgroundColor = "red";
+      tanggal.style.backgroundColor = "#ffcccb";
     }
 
     if(!isValid){

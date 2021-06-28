@@ -56,7 +56,10 @@
 
         if(tanggal.value == "" || jumlah.value == "" || max_tiket.value == "" || harga.value == ""){
             e.preventDefault();
-            alert("Masih ada kesalahan pada input!");
+            if(tanggal.value == "") tanggal.style.backgroundColor = "#ffcccb";
+            if(jumlah.value == "") jumlah.style.backgroundColor = "#ffcccb";
+            if(max_tiket.value == "") max_tiket.style.backgroundColor = "#ffcccb";
+            if(harga.value == "") harga.style.backgroundColor = "#ffcccb";
         }
     }
 
