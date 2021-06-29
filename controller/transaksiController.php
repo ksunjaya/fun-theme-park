@@ -116,6 +116,19 @@ class TransaksiController{
 
         return $result;
     }
+    
+    public function get_data_pendapatan_pengunjung($awal, $akhir){
+        $awal = $this->db->escapeString($awal);
+        $akhir = $this->db->escapeString($akhir);
+        $query='SELECT reservasi.tanggal, SUM(transaksi.total_harga) AS "pendapatan" 
+                FROM transaksi INNER JOIN reservasi on transaksi.id_reservasi = reservasi.id_reservasi 
+                WHERE reservasi.tanggal >= "'.$awal.'" AND reservasi.tanggal <= "'.$akhir.'"
+                GROUP BY reservasi.tanggal';
+
+        $result = $this->db->executeSelectQuery($query);
+
+        return $result;
+    }
 
     //=====PRINT LAPORAN=====
     public function createPDF () {
