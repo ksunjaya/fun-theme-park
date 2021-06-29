@@ -47,8 +47,8 @@
         box.appendChild(warning);
 
         if(newpass.value=='' && retype.value==''){
-            newpass.style.backgroundColor = "#e1001f";
-            retype.style.backgroundColor = "#e1001f";
+            newpass.style.backgroundColor = "#ffcccb";
+            retype.style.backgroundColor = "#ffcccb";
             warning.innerHTML = "* Masukkan password!";
             warning.style.fontSize = "20px";
             warning.style.color = "red";
@@ -56,7 +56,7 @@
             warning.style.marginTop = "400px";
         }
         else if(newpass.value==''){
-            newpass.style.backgroundColor = "#e1001f";
+            newpass.style.backgroundColor = "#ffcccb";
             warning.innerHTML = "* Masukkan password!";
             warning.style.fontSize = "20px";
             warning.style.color = "red";
@@ -64,7 +64,7 @@
             warning.style.marginTop = "400px";
         }
         else if(retype.value==''){
-            retype.style.backgroundColor = "#e1001f";
+            retype.style.backgroundColor = "#ffcccb";
             warning.innerHTML = "* Masukkan kembali password!";
             warning.style.fontSize = "20px";
             warning.style.color = "red";
@@ -72,7 +72,7 @@
             warning.style.marginTop = "400px";
         }
         else if(newpass.value != retype.value){
-            retype.style.backgroundColor = "#e1001f";
+            retype.style.backgroundColor = "#ffcccb";
             warning.innerHTML = "* Password yang dimasukkan tidak cocok!";
             warning.style.fontSize = "20px";
             warning.style.color = "red";

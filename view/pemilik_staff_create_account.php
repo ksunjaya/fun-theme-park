@@ -103,7 +103,7 @@ function validate(){
 
     if(ktp.value.length<16 || !isNumber(ktp.value) || ktp.value==''){
         ktpbox.appendChild(warning);
-        ktp.style.backgroundColor = "#e1001f";
+        ktp.style.backgroundColor = "#ffcccb";
         warning.innerHTML = "* Input tidak valid!";
         warning.style.fontSize = "25px";
         warning.style.color = "red";
@@ -115,19 +115,19 @@ function validate(){
         correct = false;
     }
     if(fullname.value==''){
-        fullname.style.backgroundColor = "#e1001f";
+        fullname.style.backgroundColor = "#ffcccb";
         correct = false;
     }
     if(username.value==''){
-        username.style.backgroundColor = "#e1001f";
+        username.style.backgroundColor = "#ffcccb";
         correct = false;
     }
     if(password.value==''){
-        password.style.backgroundColor = "#e1001f";
+        password.style.backgroundColor = "#ffcccb";
         correct = false;
     }
     if(photo.value==''){
-        photo.style.backgroundColor = "#e1001f";
+        photo.style.backgroundColor = "#ffcccb";
         correct = false;
     }
     let photobox = document.getElementById('photo-box');
