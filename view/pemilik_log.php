@@ -163,11 +163,15 @@
             <div style="background-color: white; width:600px; height:600px;" >
                 <canvas id="chart" width="400" height="400"></canvas>
             </div>
+            <div style="background-color: white; width:600px; height:600px;" >
+                <canvas id="chart2" width="400" height="400"></canvas>
+            </div>
         </div>
     </div>
 
     <script defer>
         let ctx = document.getElementById('chart').getContext('2d');
+        
         let arrTanggal = [];
         let arrCust = [];
         let arrBG = [];
@@ -195,6 +199,50 @@
                 labels: arrTanggal,
                 datasets: [{
                     label: 'Data Jumlah Pengunjung per Hari ',
+                    data: arrCust,
+                    backgroundColor: arrBG,
+                    borderColor: arrBC,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        let ctx2 = document.getElementById('chart2').getContext('2d');
+        
+        let arrTanggal2 = [];
+        let arrPendapatan = [];
+        let arrBG2 = [];
+        let arrBC2 = [];
+        let r, g, b;
+        <?php
+            foreach ($chartResult2 as $key=>$value){
+                ?>
+                arrTanggal2.push('<?php echo $value["tanggal"]?>');
+                arrPendapatan.push(<?php echo $value["pendapatan"]?>);
+                r = Math.floor(Math.random() * 255);
+                g = Math.floor(Math.random() * 255);
+                b = Math.floor(Math.random() * 255);
+                arrBG2.push ("rgba("+r+","+g+","+b+", 1)");
+                r = Math.floor(Math.random() * 255);
+                g = Math.floor(Math.random() * 255);
+                b = Math.floor(Math.random() * 255);
+                arrBC2.push ("rgba("+r+","+g+","+b+", 1)");
+        <?php
+            }
+        ?>
+        let myChart2 = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: arrTanggal,
+                datasets: [{
+                    label: 'Data Jumlah Pendapatan per Hari ',
                     data: arrCust,
                     backgroundColor: arrBG,
                     borderColor: arrBC,

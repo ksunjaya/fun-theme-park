@@ -65,6 +65,7 @@ class AdminController{
     }
     
     $chartResult = $transaksi->get_data_sum_pengunjung($dateFrom, $dateUntil);
+    $chartResult2 = $transaksi->get_data_pendapatan_pengunjung($dateFrom, $dateUntil);
 
     // buat seluruh transaksi (ga di limit)
     $result2 = $transaksi->getAllTransaksi($dateFrom, $dateUntil, 0, PHP_INT_MAX);
@@ -85,7 +86,8 @@ class AdminController{
       "totalIncome"=>$totalIncome,
       "dateFrom"=>$dateFrom,
       "dateUntil"=>$dateUntil,
-      "chartResult"=>$chartResult
+      "chartResult"=>$chartResult,
+      "chartResult2"=>$chartResult2
     ]);
   }
 

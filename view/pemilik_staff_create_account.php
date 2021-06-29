@@ -124,7 +124,7 @@ function validate(){
         ktp.style.backgroundColor = "#ffcccb";
         correct = false;
     }
-    if(ktp.value.length<16 || !isNumber(ktp.value)){
+    else if(ktp.value.length<16 || !isNumber(ktp.value)){
         ktpbox.appendChild(warning);
         ktp.style.backgroundColor = "#ffcccb";
         warning.innerHTML = "* Input tidak valid!";
@@ -157,7 +157,7 @@ function validate(){
         photo.style.backgroundColor = "#ffcccb";
         correct = false;
     }
-    if(!(photo.value.substring(len-5) == ".jpeg" || photo.value.substring(len-4) ==".png" || photo.value.substring(len-4) ==".jpg")){
+    else if(!(photo.value.substring(len-5) == ".jpeg" || photo.value.substring(len-4) ==".png" || photo.value.substring(len-4) ==".jpg")){
         photobox.appendChild(formatinfo);
         formatinfo.innerHTML = "Only .jpg .jpeg and .png are allowed";
         formatinfo.style.fontSize = "25px";
