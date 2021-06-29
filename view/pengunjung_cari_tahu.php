@@ -1,7 +1,8 @@
 <div id="about_main">
-    <div class="row-1">
+    <div class="row-1" id="header-pic">
         <div class="center_castle_text">Magic Is Here<br>The FUN Theme Park is Now Open!</div>
     </div>
+
     <div class="row">
         <div class="about_col">
             <div>
@@ -48,3 +49,18 @@
         <h2>SENIN-JUMAT : 10.00 - 18.00<br>SABTU, MINGGU, DAN HARI LIBUR NASIONAL : 08.00 - 18.00</h2>
     </div>
 </div>
+
+<script>
+    function slide_show(){
+        let x = document.getElementById("header-pic");
+        let paths = ["url('src/night-castle.jpg')", "url('src/castle.jpg')"];
+        let curImage = 0;
+
+        window.setInterval(function(){
+            x.style.backgroundImage = paths[curImage];
+            curImage = (curImage + 1) % paths.length;
+        }, 5 * 1000);
+    }
+
+    slide_show();
+</script>

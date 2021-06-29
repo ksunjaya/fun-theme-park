@@ -23,7 +23,10 @@
     color: white;
     background-repeat: no-repeat;
     background-size: cover;
+
+    transition: background 1s linear;
 }
+
 
 .row {
     display: flex;
