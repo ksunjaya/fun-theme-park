@@ -55,7 +55,7 @@
                 </div>
                 <div class="log-isi-kanan ">
                     <div class="log-isi-kanan-2">
-                        <form class="log-download-box" method="POST" action="pdf-transaksi">
+                        <form class="log-download-box" target="_blank" method="POST" action="pdf-transaksi">
                             <?php
                             // foreach($query_result as $value)
                             // {
