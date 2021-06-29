@@ -53,13 +53,13 @@
 <script>
     function slide_show(){
         let x = document.getElementById("header-pic");
-        let paths = ["url('src/night-castle.jpg')", "url('src/castle.jpg')"];
+        let paths = ["url('src/castle.jpg')", "url('src/night-castle.jpg')", "url('src/afternoon-castle.jpg')"];
         let curImage = 0;
 
         window.setInterval(function(){
             x.style.backgroundImage = paths[curImage];
             curImage = (curImage + 1) % paths.length;
-        }, 5 * 1000);
+        }, 3 * 1000);
     }
 
     slide_show();
