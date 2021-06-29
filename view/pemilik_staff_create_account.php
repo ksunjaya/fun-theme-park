@@ -54,7 +54,7 @@ function onSubmit(e){
 
     let password = document.querySelector("input[type='password']");
     formData.append("password", password.value);
-    console.log(password.value);
+
 
     //====POST=====
     fetch('add-staff', {
@@ -69,14 +69,14 @@ function onSubmit(e){
         if(response["result"] == true){
             window.location = "staff-list";
         }else if(response["result"] == "error_copy"){
-            console.err("Server error : unable to copy files");
+            console.error("Server error : unable to copy files");
         }else if(response["result"] == "format_error"){
-            console.err("Only .jpeg and .png are allowed");
+            console.error("Only .jpeg and .png are allowed");
         }else if(response["result"] == "no_pic"){
-            console.err("Please select a picture first!");
+            console.error("Please select a picture first!");
         }else{
-            //internal database error
-            console.err("Error : internal database error");
+            //ini artinya ada duplikat username.
+            console.error("Please use another username!");
         }
     });
 }   
@@ -135,9 +135,9 @@ function validate(){
     let len = photo.value.length;
     if(photo.value==''){
         photo.style.backgroundColor = "#e1001f";
-        correct = false;dd
+        correct = false;
     }
-    if(!(photo.value.substring(len-5)!=".jpeg" || photo.value.substring(len-4)!=".png")){
+    if(!(photo.value.substring(len-5) == ".jpeg" || photo.value.substring(len-4) ==".png" || photo.value.substring(len-4) ==".jpg")){
         photobox.appendChild(formatinfo);
         formatinfo.innerHTML = "Only .jpeg and .png are allowed";
         formatinfo.style.fontSize = "25px";

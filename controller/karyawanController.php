@@ -98,7 +98,7 @@ class KaryawanController{
 		if($_SERVER["REQUEST_METHOD"] == "POST"){
 		  $result = array();
 		  if($_FILES['upfile']['name'] != ""){
-			if(substr($_FILES['upfile']['name'], -4, 4) == ".jpg" || substr($_FILES['upfile']['name'], -4, 4) == ".png"){
+			if(substr($_FILES['upfile']['name'], -4, 4) == ".jpg" || substr($_FILES['upfile']['name'], -4, 4) == ".png" || substr($_FILES['upfile']['name'], -5, 5) == ".jpeg"){
 				$result["name"] = $_FILES['upfile']['name'];
 				$result["temp_dir"] = $_FILES['upfile']['tmp_name'];
 
