@@ -160,7 +160,7 @@
     </div>
     <div style="display: flex; width:100%; justify-content:center;">
         <div style="display: flex; width:90%; justify-content:center; align-items:center; height:800px; background-color:white; border-radius:30px; border:solid 6px #1A6793;">
-            <div style="background-color: white; width:600px; height:600px;" >
+            <div style="background-color: white; width:600px; height:600px; margin-right: 40px" >
                 <canvas id="chart" width="400" height="400"></canvas>
             </div>
             <div style="background-color: white; width:600px; height:600px;" >
@@ -211,6 +211,18 @@
                     y: {
                         beginAtZero: true
                     }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            // This more specific font property overrides the global property
+                            font: {
+                                size: 20,
+                                family: "Cairo",
+                                weight: 700
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -253,6 +265,18 @@
                 scales: {
                     y: {
                         beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            // This more specific font property overrides the global property
+                            font: {
+                                size: 20,
+                                family: "Cairo",
+                                weight: 700
+                            }
+                        }
                     }
                 }
             }
