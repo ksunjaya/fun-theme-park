@@ -53,7 +53,7 @@
 <script>
     function slide_show(){
         let x = document.getElementById("header-pic");
-        let paths = ["url('src/castle.jpg')", "url('src/night-castle.jpg')", "url('src/afternoon-castle.jpg')"];
+        let paths = ["url('src/castle.jpg')", "url('src/night-castle.jpg')", "url('src/fla.jpg')"];
         let curImage = 0;
 
         window.setInterval(function(){
