@@ -134,7 +134,7 @@ function validate(){
     let formatinfo = document.createElement("span");
     let len = photo.value.length;
     if(photo.value==''){
-        photo.style.backgroundColor = "#e1001f";
+        photo.style.backgroundColor = "#ffcccb";
         correct = false;
     }
     if(!(photo.value.substring(len-5) == ".jpeg" || photo.value.substring(len-4) ==".png" || photo.value.substring(len-4) ==".jpg")){
