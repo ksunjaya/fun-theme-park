@@ -24,6 +24,20 @@ class LimitTiketController{
     return $result;
   }
   
+  //cek apakah tanggal tersebut sudah ada di entitas limit_tiket?
+  public function contains(){
+    if(!isset($_GET["tanggal"])) return 0;
+
+    $tanggal = $_GET["tanggal"];
+    $query = 'SELECT COUNT(tanggal) AS "count"
+              FROM limit_tiket
+              WHERE tanggal="'.$tanggal.'"';
+    $query_result = $this->db->executeSelectQuery($query);
+
+    if($query_result[0]["count"] > 0) return 1;
+    else return 0;
+  }
+
   public function get_kuota_json(){
     $tanggal = $_GET["tanggal"];
     $result = $this->get_kuota($tanggal);

@@ -66,6 +66,11 @@
 				$user_ctrl = new AdminController();
 				echo $user_ctrl->view_tiket();
 				break;
+			case $baseURL.'/cek-tiket':
+				require_once "controller/limitTiketController.php";
+				$limit_ctrl = new LimitTiketController();
+				echo $limit_ctrl->contains();
+				break;
 			case $baseURL.'/add-ticket':
 				require_once "controller/services/view.php";
 				echo View::createAdminView("pemilik_set_tiket.php", []);

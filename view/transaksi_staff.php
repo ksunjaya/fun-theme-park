@@ -89,11 +89,13 @@
       </table>
     </div>
     
-    <div style="display: flex; width: 100%; justify-content: center; align-item: center;">
+    <div style="display: flex; width: 100%; justify-content: center; align-items: center;">
       <input type="submit" class="blue-button" id="btn-submit" value="Cetak" style="margin: auto;">
+      
     </div>
-    
-    <p id="post-result" style="text-align: center; margin-right: 5%;font-weight: 800; color: #34832D; visibility: hidden">Transaksi berhasil!</p>
+    <div style="display: flex; width: 100%; justify-content: center; align-items: center;">
+      <p id="post-result" style="text-align: center;font-weight: 800; color: #34832D; visibility: hidden">Transaksi berhasil!</p>
+    <div>
   </form>
   </div>
   </div>

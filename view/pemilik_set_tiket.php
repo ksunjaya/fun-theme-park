@@ -46,6 +46,25 @@
     function init(){
         let btn_submit = document.getElementById("next");
         btn_submit.addEventListener("click", onClick);
+
+        let tanggal = document.getElementById("tanggal");
+        tanggal.addEventListener("change", onTanggalChange);
+    }
+
+    function onTanggalChange(e){
+        //cek apakah tanggal tersebut sudah pernah diinput sebelumnya
+        let tanggal = document.getElementById("tanggal");
+        fetch('cek-tiket?tanggal='+tanggal.value)
+            .then(function(response){
+              return response.text();
+            }).then(function(result){
+              console.log(result);
+              if(result == 1){
+                e.preventDefault();
+                tanggal.value="";
+                alert("The selected date has been registered!");
+              }
+            });
     }
 
     function onClick(e){
@@ -61,6 +80,8 @@
             if(max_tiket.value == "") max_tiket.style.backgroundColor = "#ffcccb";
             if(harga.value == "") harga.style.backgroundColor = "#ffcccb";
         }
+
+       
     }
 
     init();
