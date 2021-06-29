@@ -159,6 +159,7 @@ function validate(){
     }
     else if(!(photo.value.substring(len-5) == ".jpeg" || photo.value.substring(len-4) ==".png" || photo.value.substring(len-4) ==".jpg")){
         photobox.appendChild(formatinfo);
+        photo.style.backgroundColor = "#ffcccb";
         formatinfo.innerHTML = "Only .jpg .jpeg and .png are allowed";
         formatinfo.style.fontSize = "25px";
         formatinfo.style.color = "red";
