@@ -12,7 +12,7 @@
                 <label class="fw-700 fs-18 c-dark-blue">FULL NAME</label>
                 <input name="fullname" id = "fullname" class="login-input fw-700 fs-36 bg-light-blue" type="text">
             </div>
-            <div class="login-box" style="margin-bottom: 20px;">
+            <div class="login-box" style="margin-bottom: 20px;" id="user-box">
                 <label class="fw-700 fs-18 c-dark-blue">USERNAME</label>
                 <input name="username" id = "username" class="login-input fw-700 fs-36 bg-light-blue" type="text">
             </div>
@@ -77,6 +77,25 @@ function onSubmit(e){
         }else{
             //ini artinya ada duplikat username.
             console.error("Please use another username!");
+
+            let username = document.getElementById('username');
+            let userbox = document.getElementById('user-box');
+            let info = document.createElement("span");
+            userbox.appendChild(info);
+            username.style.backgroundColor = "#ffcccb";
+            info.innerHTML = "Please use another username!";
+            info.style.fontSize = "25px";
+            info.style.color = "red";
+            info.style.position = "absolute";
+            info.style.whiteSpace = "nowrap";
+            info.style.marginLeft = "10px";
+            info.style.marginTop = "25px";
+            userbox.style.display = "inline-block";
+
+            username.addEventListener('input', function(e){
+                username.style.backgroundColor = "#DBE9FF";
+                info.innerHTML = " ";
+            });
         }
     });
 }   
@@ -101,7 +120,11 @@ function validate(){
     let ktpbox = document.getElementById('ktp-box');
     let warning = document.createElement("span");
 
-    if(ktp.value.length<16 || !isNumber(ktp.value) || ktp.value==''){
+    if(ktp.value==''){
+        ktp.style.backgroundColor = "#ffcccb";
+        correct = false;
+    }
+    if(ktp.value.length<16 || !isNumber(ktp.value)){
         ktpbox.appendChild(warning);
         ktp.style.backgroundColor = "#ffcccb";
         warning.innerHTML = "* Input tidak valid!";
@@ -126,10 +149,7 @@ function validate(){
         password.style.backgroundColor = "#ffcccb";
         correct = false;
     }
-    if(photo.value==''){
-        photo.style.backgroundColor = "#ffcccb";
-        correct = false;
-    }
+
     let photobox = document.getElementById('photo-box');
     let formatinfo = document.createElement("span");
     let len = photo.value.length;
@@ -139,7 +159,7 @@ function validate(){
     }
     if(!(photo.value.substring(len-5) == ".jpeg" || photo.value.substring(len-4) ==".png" || photo.value.substring(len-4) ==".jpg")){
         photobox.appendChild(formatinfo);
-        formatinfo.innerHTML = "Only .jpeg and .png are allowed";
+        formatinfo.innerHTML = "Only .jpg .jpeg and .png are allowed";
         formatinfo.style.fontSize = "25px";
         formatinfo.style.color = "red";
         formatinfo.style.position = "absolute";
