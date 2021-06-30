@@ -181,15 +181,32 @@
 
   function onCariClick(e){
     e.preventDefault();
+    
     let ktp = document.getElementById("hilang-ktp");
     let tanggal = document.getElementById("hilang-tanggal");
-    
+    ktp.style.backgroundColor = "#DBE9FF";
+    tanggal.style.backgroundColor = "#DBE9FF";
+    let status = document.getElementById("hilang-status");
+    status.style.visibility = "visible";
+
+    if(validate_ktp(ktp.value) == false){
+      ktp.style.backgroundColor="#ffcccb";
+      status.style.color = "#EE4848";
+      status.innerHTML = "Pastikan data sudah valid!";
+      return false;
+    }
+
+    if(tanggal.value == ""){
+      tanggal.style.backgroundColor="#ffcccb";
+      status.style.color = "#EE4848";
+      status.innerHTML = "Pastikan data sudah valid!";
+      return false;
+    }
+
     fetch('hilang-reservasi?tanggal='+tanggal.value+'&ktp='+ktp.value)
     .then(function(response){
       return response.text();
     }).then(function(result){
-      let status = document.getElementById("hilang-status");
-      status.style.visibility = "visible";
       let arr = JSON.parse(result);
       if(arr.length > 0){
         status.style.color = "black";
