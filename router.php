@@ -26,6 +26,11 @@
 				$ht_ctrl = new HargaTiketController();
 				echo $ht_ctrl->_request_harga();
 				break;
+			case $baseURL.'/hilang-reservasi':
+				require_once "controller/reservasiController.php";
+				$reservasiCtrl = new ReservasiController();
+				echo $reservasiCtrl->json_reservasi_lost();
+				break;
 			//=========PRIVILEGES=========
 			case $baseURL.'/login':
 				require_once "controller/credentialController.php";

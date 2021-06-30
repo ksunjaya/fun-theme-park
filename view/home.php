@@ -64,12 +64,53 @@
         <input type="hidden" name="kuota" id="post-kuota" value="">
         <p style="font-size: 15px; margin: 20px 0px 0px 0px;">*Reservasi hanya bisa dilakukan untuk 30 hari kedepan</p>
         <p style="font-size: 15px; margin: 0px 0px 20px 0px;">**Pastikan nama lengkap sesuai dengan KTP</p>
-        <input type="submit" id="tombol-submit" value="RESERVASI">
+        
         <span style="text-align:center">
+          <span style="display:block;">
+            <input type="submit" id="tombol-submit" value="RESERVASI">
+          </span>
           <p id="err" style="color:red; visibility:hidden; line-height:130%;">Reservasi tidak dapat diproses. Pastikan semua data sudah terisi dengan benar</p>
+          <span style="display:block;"><a id="hilang" href="">Kode reservasi saya hilang</a></span>
         </span>
       </form>
     </div>
+  </div>
+
+  <div class="popup cairo" id="popup">
+  <div class="popup-content">
+    <div class="popup-header">
+      <span class="popup-close" id="popup-close">&times;</span>
+      <h2>CARI KODE RESERVASI</h2>
+    </div>
+    <div class="popup-body">
+      <form>
+        <table style="width: 100%;">
+          <tr>
+            <td style="width: 55%;"><label>Nomor KTP</label></td>
+            <td style="width: 5%;"></td>
+            <td><label>Tanggal Kunjungan</label></td>
+          </tr>
+          <tr>
+            <td style="width: 55%;"><input name="ktp" id="hilang-ktp" type="text" maxlength="16"></td>
+            <td style="width: 5%;"></td>
+            <td><?php echo '<input name="tanggal" id="hilang-tanggal" type="date" min="'.$today.'" max="'.$next_month.'"><br>'; ?></td>
+            <td style="width: 5%"></td>
+            <td><a id="hilang-cari" href="" class="blue_button" style="height: 32px; width: 100px; margin: 0px; font-weight: 700;">CARI</a></td>
+          </tr>
+        </table>
+      </form>
+
+      <p style="text-align: center; margin: 20px; color:#EE4848; font-weight: 800; visibility: hidden" id="hilang-status">Data tidak ditemukan</p>
+      <!--<div id="hilang-result">
+        <table style="width: 100%;">
+        <td>
+          <th>Kode Reservasi</th>
+          <th>Jumlah Pengunjung</th>
+        </td>
+        </table>
+      </div>-->
+    </div>
+  </div>
   </div>
 </div>
 
@@ -110,6 +151,57 @@
     telepon.addEventListener("input", function(e){
       telepon.style.backgroundColor = "#DBE9FF";
       document.getElementById("err").style.visibility = 'hidden';
+    });
+
+
+    //====kode reservasi saya hilang====
+    let hilang = document.getElementById("hilang");
+    let popup = document.getElementById("popup");
+    hilang.addEventListener("click", function(e){
+      e.preventDefault();
+
+      popup.style.display = "block";
+    });
+
+    let tutup_popup = document.getElementById("popup-close");
+    tutup_popup.addEventListener("click", function(e){
+      let popup = document.getElementById("popup");
+      popup.style.display = "none";
+    });
+
+    let hilang_cari = document.getElementById("hilang-cari");
+    hilang_cari.addEventListener("click", onCariClick);
+
+    window.onclick = function(event) {
+      if (event.target == popup)
+        popup.style.display = "none";
+    }
+
+  }
+
+  function onCariClick(e){
+    e.preventDefault();
+    let ktp = document.getElementById("hilang-ktp");
+    let tanggal = document.getElementById("hilang-tanggal");
+    
+    fetch('hilang-reservasi?tanggal='+tanggal.value+'&ktp='+ktp.value)
+    .then(function(response){
+      return response.text();
+    }).then(function(result){
+      let status = document.getElementById("hilang-status");
+      status.style.visibility = "visible";
+      let arr = JSON.parse(result);
+      if(arr.length > 0){
+        status.style.color = "black";
+        status.innerHTML = "Ditemukan kode reservasi : ";
+        for(let i = 0; i < arr.length; i++){
+          status.innerHTML += arr[i]["id_reservasi"];
+          if(i != arr.length - 1) status.value += ", ";
+        }
+      }else{
+        status.style.color = "#EE4848";
+        status.innerHTML = "Kode reservasi untuk tanggal " + tanggal.value + " tidak ditemukan!";
+      }
     });
   }
 

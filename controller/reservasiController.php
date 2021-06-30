@@ -52,6 +52,16 @@ class ReservasiController{
     return $details;
   }
 
+  public function json_reservasi_lost(){
+    if(isset($_GET["ktp"]) && isset($_GET["tanggal"])){
+      $ktp = $this->db->escapeString($_GET["ktp"]);
+      $tanggal = $this->db->escapeString($_GET["tanggal"]);
+      $query = 'SELECT reservasi.id_reservasi, reservasi.jml_orang FROM reservasi WHERE reservasi.ktp="'.$ktp.'" and reservasi.tanggal="'.$tanggal.'"';
+      $query_result = $this->db->executeSelectQuery($query);
+
+      return json_encode($query_result);
+    }return "";
+  }
   public function create_unique_id($nomor, $tanggal){
     $format_tanggal = new DateTime($tanggal);
     $format_tanggal = $format_tanggal->format('ymd'); //6 digit

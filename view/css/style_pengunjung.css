@@ -191,7 +191,7 @@ p {
     height: 50px;
     font-size: 100%;
     width: 40%;
-    margin: 0% 30%;
+    margin: auto;
     transition: 0.1s;
 }
 
@@ -260,4 +260,74 @@ p {
     transition: 0.1s;
     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
     cursor: pointer;
+}
+
+.popup{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.popup-content{
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%; 
+}
+
+.popup-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.popup-close, .popup-close {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.popup-header {
+    padding: 2px 16px;
+    background-color: #EE4848;
+    color: white;
+  }
+  
+.popup-body {padding: 16px 16px;}
+  
+  
+.popup-content {
+    font-size: 19px;
+    position: relative;
+    top: 20%;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.8s
+}
+
+.popup-content form input{
+    background-color: #DBE9FF;
+    border: 1px solid black;
+    height: 30px;
+    width: 100%;
+}
+
+  /* Add Animation */
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 20%; opacity: 1}
 }

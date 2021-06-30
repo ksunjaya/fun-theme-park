@@ -91,7 +91,6 @@
     
     <div style="display: flex; width: 100%; justify-content: center; align-items: center;">
       <input type="submit" class="blue-button" id="btn-submit" value="Cetak" style="margin: auto;">
-      
     </div>
     <div style="display: flex; width: 100%; justify-content: center; align-items: center;">
       <p id="post-result" style="text-align: center;font-weight: 800; color: #34832D; visibility: hidden">Transaksi berhasil!</p>
