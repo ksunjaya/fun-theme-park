@@ -183,17 +183,17 @@
                 ?>
                 arrTanggal.push('<?php echo $value["tanggal"]?>');
                 arrCust.push(<?php echo $value["sum"]?>);
-                r = Math.floor(Math.random() * 255);
-                g = Math.floor(Math.random() * 255);
-                b = Math.floor(Math.random() * 255);
-                arrBG.push ("rgba("+r+","+g+","+b+", 1)");
-                r = Math.floor(Math.random() * 255);
-                g = Math.floor(Math.random() * 255);
-                b = Math.floor(Math.random() * 255);
-                arrBC.push ("rgba("+r+","+g+","+b+", 1)");
         <?php
             }
         ?>
+        r = Math.floor(Math.random() * 255);
+        g = Math.floor(Math.random() * 255);
+        b = Math.floor(Math.random() * 255);
+        arrBG.push ("rgba("+r+","+g+","+b+", 1)");
+        r = Math.floor(Math.random() * 255);
+        g = Math.floor(Math.random() * 255);
+        b = Math.floor(Math.random() * 255);
+        arrBC.push ("rgba("+r+","+g+","+b+", 1)");
         let myChart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -238,17 +238,17 @@
                 ?>
                 arrTanggal2.push('<?php echo $value["tanggal"]?>');
                 arrPendapatan.push(<?php echo $value["pendapatan"]?>);
-                r = Math.floor(Math.random() * 255);
-                g = Math.floor(Math.random() * 255);
-                b = Math.floor(Math.random() * 255);
-                arrBG2.push ("rgba("+r+","+g+","+b+", 1)");
-                r = Math.floor(Math.random() * 255);
-                g = Math.floor(Math.random() * 255);
-                b = Math.floor(Math.random() * 255);
-                arrBC2.push ("rgba("+r+","+g+","+b+", 1)");
         <?php
             }
         ?>
+        r = Math.floor(Math.random() * 255);
+        g = Math.floor(Math.random() * 255);
+        b = Math.floor(Math.random() * 255);
+        arrBG2.push ("rgba("+r+","+g+","+b+", 1)");
+        r = Math.floor(Math.random() * 255);
+        g = Math.floor(Math.random() * 255);
+        b = Math.floor(Math.random() * 255);
+        arrBC2.push ("rgba("+r+","+g+","+b+", 1)");
         let myChart2 = new Chart(ctx2, {
             type: 'bar',
             data: {
