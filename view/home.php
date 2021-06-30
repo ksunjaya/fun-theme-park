@@ -195,7 +195,11 @@
         status.style.color = "black";
         status.innerHTML = "Ditemukan kode reservasi : ";
         for(let i = 0; i < arr.length; i++){
-          status.innerHTML += arr[i]["id_reservasi"];
+          if (i > 0){
+            status.innerHTML += ", " + arr[i]["id_reservasi"];
+          }else{
+            status.innerHTML += arr[i]["id_reservasi"];
+          }
           if(i != arr.length - 1) status.value += ", ";
         }
       }else{
