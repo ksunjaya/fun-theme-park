@@ -200,7 +200,6 @@
           }else{
             status.innerHTML += arr[i]["id_reservasi"];
           }
-          if(i != arr.length - 1) status.value += ", ";
         }
       }else{
         status.style.color = "#EE4848";
