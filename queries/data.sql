@@ -1,3 +1,7 @@
+/**
+  Disini hanya disediakan limit tiket untuk tanggal 1 Juli - 5 Juli
+  Untuk menambah data lagi, silahkan mengakses halaman admin.
+**/
 INSERT INTO Harga_Tiket
 VALUES ('2021-07-01', 40000);
 
@@ -36,37 +40,15 @@ INSERT INTO Pemilik
 VALUES ('1384281900120541', 'Willy Wonka', 'user_willy', 'thewilwon123');
 
 
+/**INSERT INTO Karyawan
+VALUES ('1384281923761014', 'Wombat Wonderland', 'woland', 'wombwonder01', NULL);**/
 
 INSERT INTO Karyawan
-VALUES ('1384281923761014', 'Wombat Wonderland', 'woland', 'wombwonder01');
+VALUES ('1384281923761034', 'Dodo Digidigi Bang', 'bangdodo', 'dordor2021', 'uploads/bangdodo/foto.jpg');
 
-INSERT INTO Karyawan
-VALUES ('1384281923761034', 'Dodo Digidigi Bang', 'bangdodo', 'dordor2021');
+/**INSERT INTO Karyawan
+VALUES ('1384281923761001', 'Bambang Budiman', 'Bambankxs', 'bambu1020', NULL);**/
 
-INSERT INTO Karyawan
-VALUES ('1384281923761001', 'Bambang Budiman', 'Bambankxs', 'bambu1020');
-
-
-
-INSERT INTO Pengunjung
-VALUES ('2233114112100123', 'Lala Lilili', '081902193103');
-
-INSERT INTO Reservasi
-VALUES (210701211, 3, '2233114112100123', '2021-07-01', 0);
-
-INSERT INTO Transaksi
-VALUES (20210001, 210701211, '2021-07-01', 120000);
-
-
-
-INSERT INTO Pengunjung
-VALUES ('2233114112112003', 'Si Wombomz', '081681901002');
-
-INSERT INTO Reservasi
-VALUES (21070498, 3, '2233114112112003', '2021-07-04', 0);
-
-INSERT INTO Transaksi
-VALUES (20210002, 21070498, '2021-07-04', 180000);
 
 UPDATE Pemilik SET pemilik.password = PASSWORD(password);
 UPDATE Karyawan SET karyawan.password = PASSWORD(password);

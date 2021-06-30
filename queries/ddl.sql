@@ -6,14 +6,6 @@
   ALTER TABLE karyawan ADD photo_location varchar(100);
 */
 
-/*Pengunjung (KTP, nama, nomor_hp)
-Karyawan  (KTP, nama, username, password)
-Pemilik  (KTP, nama, username, password)
-Reservasi (id_reservasi, jml_orang, KTP → FK ke Pengunjung, tanggal → FK ke Limit_Tiket)
-Limit_Tiket (tanggal, limit_harian, max_pesanan, sisa_tiket)
-Transaksi (id_transaksi, id_reservasi → FK ke Reservasi, tanggal → FK ke Harga_Tiket, total_harga)
-Harga_Tiket (tanggal, harga)*/
-
 DROP DATABASE fun_resort;
 CREATE DATABASE fun_resort;
 USE fun_resort;
