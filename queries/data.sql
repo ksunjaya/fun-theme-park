@@ -50,5 +50,14 @@ VALUES ('1384281923761034', 'Dodo Digidigi Bang', 'bangdodo', 'dordor2021', 'upl
 VALUES ('1384281923761001', 'Bambang Budiman', 'Bambankxs', 'bambu1020', NULL);**/
 
 
+INSERT INTO Pengunjung
+VALUES ('2233114112100123', 'Lala Lilili', '081902193103');
+
+INSERT INTO Reservasi
+VALUES (210701211, 3, '2233114112100123', '2021-07-01', 0);
+
+INSERT INTO Transaksi
+VALUES (20210001, 210701211, '2021-07-01', 120000);
+
 UPDATE Pemilik SET pemilik.password = PASSWORD(password);
 UPDATE Karyawan SET karyawan.password = PASSWORD(password);
